@@ -47,7 +47,7 @@ I (..\Hardware\SETCS\setcs.h)(0x60FEA485)
 I (..\Hardware\SETCS\pic.h)(0x60FAC287)
 I (..\Hardware\CAN\can.h)(0x60F04A39)
 I (..\Hardware\AD1239\CS1239.h)(0x60A1FE0C)
-I (..\Hardware\AD1239\TM7707.h)(0x6100BE2F)
+I (..\Hardware\AD1239\TM7707.h)(0x610CEB90)
 I (..\Hardware\MODBUS\mport.h)(0x60E4EFD5)
 I (..\Hardware\IIC\IIC__.h)(0x60FABF34)
 F (.\stm32f10x_it.c)(0x4EBEACB0)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
@@ -375,7 +375,7 @@ I (..\Hardware\IIC\myiic.h)(0x60F7D42E)
 I (..\Hardware\LED\led.h)(0x60FABDE9)
 I (..\SYSTEM\usart\usart.h)(0x60DAB468)
 I (D:\2122\Keil\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
-I (..\Hardware\AD1239\TM7707.h)(0x6100BE2F)
+I (..\Hardware\AD1239\TM7707.h)(0x610CEB90)
 I (..\Hardware\MODBUS\protocol.h)(0x60E2AC52)
 I (..\Hardware\MODBUS\mport.h)(0x60E4EFD5)
 I (..\Hardware\MODBUS\mcheck.h)(0x5993ED37)
@@ -514,7 +514,7 @@ I (..\FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
-F (..\Hardware\SETCS\setcs.c)(0x610B313C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\setcs.o --omf_browse ..\obj\setcs.crf --depend ..\obj\setcs.d)
+F (..\Hardware\SETCS\setcs.c)(0x610CE70D)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\setcs.o --omf_browse ..\obj\setcs.crf --depend ..\obj\setcs.d)
 I (..\Hardware\KEY\key.h)(0x60FBCA0D)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
 I (..\USER\stm32f10x.h)(0x4D783CB5)
@@ -615,7 +615,7 @@ I (..\FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
-F (..\Hardware\24CXX\24c64.c)(0x610B313C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\24c64.o --omf_browse ..\obj\24c64.crf --depend ..\obj\24c64.d)
+F (..\Hardware\24CXX\24c64.c)(0x610C88F6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\24c64.o --omf_browse ..\obj\24c64.crf --depend ..\obj\24c64.d)
 I (..\Hardware\24CXX\24c64.h)(0x60AB06A3)
 I (..\Hardware\IIC\myiic.h)(0x60F7D42E)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
@@ -648,8 +648,8 @@ I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
 I (..\SYSTEM\delay\delay.h)(0x555AC82A)
-F (..\Hardware\AD1239\TM7707.c)(0x6108D101)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\tm7707.o --omf_browse ..\obj\tm7707.crf --depend ..\obj\tm7707.d)
-I (..\Hardware\AD1239\TM7707.h)(0x6100BE2F)
+F (..\Hardware\AD1239\TM7707.c)(0x610CEFB2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\tm7707.o --omf_browse ..\obj\tm7707.crf --depend ..\obj\tm7707.d)
+I (..\Hardware\AD1239\TM7707.h)(0x610CEB90)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
 I (..\USER\stm32f10x.h)(0x4D783CB5)
 I (..\CORE\core_cm3.h)(0x4D523B59)

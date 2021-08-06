@@ -174,11 +174,7 @@ void TM7707_init(void) //初始化
 	
     GPIO_SetBits (GPIOB,GPIO_Pin_11|GPIO_Pin_10|GPIO_Pin_12|GPIO_Pin_13);   //CS, REST上拉  
  
-	delay_ms(5);
-	GPIO_ResetBits(GPIOB,GPIO_Pin_12);
-	delay_ms(100);
-	GPIO_SetBits (GPIOB,GPIO_Pin_12);
-	delay_ms(100);
+
 //write_byte1(0X10); //向通信寄存器写数据,选择通道1 作为有效通道，将下一个操作设为对设置寄存器进行写操作。
 //write_byte1(0X20); //对设置寄存器写操作，选择16 倍增益,无BUF 缓冲器,双极性。
 //write_byte1(0X50); //向通信寄存器写数据，选择通道1 作为有效通道,将下一个操作设为对滤波低寄存器进行写操作。
@@ -188,10 +184,9 @@ void TM7707_init(void) //初始化
  //	TM7705_WriteByte(0x10);    TM7705_WriteByte(0x20);//ain1
 //	TM7705_WriteByte(0x20);    TM7705_WriteByte(0x2f);//ain1
 //	TM7705_WriteByte(0x50);    TM7705_WriteByte(0x50);//ain1  
-
+_7707_REST();
     TM=1;
 	 TM7705_CalibSelf(1);
-	 
 	TM=0;
 	 TM7705_CalibSelf(2);
 delay_ms(600);
@@ -443,19 +438,12 @@ void TM7705_WaitDRDY(void)
 	for (i = 0; i < 5000000; i++)
 	{
 		if(TM)
-		  {  if (DRDY1_IS_LOW()) {break;}	else;  }	
+		  {  if (DRDY1_IS_LOW()) {break;}	else { _7707_REST(); TM7705_CalibSelf(1);delay_ms(600);}}	
 		else
-		  {  if (DRDY2_IS_LOW()) {break;}	else;  }
+		  {  if (DRDY2_IS_LOW()) {break;}	else { _7707_REST(); TM7705_CalibSelf(2);delay_ms(600);}}
 	}
-	if (i >= 2000000)
-	{
-//		 TM=1;
-//	 TM7705_CalibSelf(1);
-//	       TM=0;
-//	 TM7705_CalibSelf(2);
-//	  delay_ms(100);	
-
-	}
+	
+	TM7707_init();
 }
 
 /*
@@ -676,6 +664,14 @@ uint32_t TM7705_ReadAdc(uint8_t _ch)
 	}
 	return read;	
 }
+
+void _7707_REST(void)
+{
+	GPIO_ResetBits(GPIOB,GPIO_Pin_12);
+	delay_ms(50);
+	GPIO_SetBits (GPIOB,GPIO_Pin_12);
+	delay_ms(50);
+}	
 
 /***************************** 安富莱电子 www.armfly.com (END OF FILE) *********************************/
 

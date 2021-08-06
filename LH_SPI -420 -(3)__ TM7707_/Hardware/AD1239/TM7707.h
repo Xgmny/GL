@@ -51,6 +51,7 @@ static void TM7705_Delay(void);
 void TM7705_CalibSelf(uint8_t _ch);
 uint32_t TM7705_ReadAdc(uint8_t _ch);
 void TM7705_WriteReg(uint8_t _RegID, uint32_t _RegValue);
+void _7707_REST(void);
 
 
 void DIO_IN( );
