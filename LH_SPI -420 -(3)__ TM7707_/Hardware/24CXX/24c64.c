@@ -59,8 +59,9 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0200+0x0008,kl,8);  //计数
 	}
 		delay_ms(2);
-		myid=A_N_24C64(3,kl,0x0108);
-		myid*=16;   //16进制
+		AT24CXX_Read(0X0108,kl,3);
+		myid=(kl[0]-0x30)*100+(kl[1]-0x30)*10+(kl[2]-0x30);
+		if (myid>255) myid=255;
 		myid=0x11940400+myid;
 		NIAN=A_N_24C64(4,kl,0x01f0);   //1百万
 		NIAN*=16;   //16进制
