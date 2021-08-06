@@ -443,7 +443,7 @@ void TM7705_WaitDRDY(void)
 		  {  if (DRDY2_IS_LOW()) {break;}	else { _7707_REST(); TM7705_CalibSelf(2);delay_ms(600);}}
 	}
 	
-	TM7707_init();
+
 }
 
 /*
