@@ -438,12 +438,20 @@ void TM7705_WaitDRDY(void)
 	for (i = 0; i < 5000000; i++)
 	{
 		if(TM)
-		  {  if (DRDY1_IS_LOW()) {break;}	else { _7707_REST(); TM7705_CalibSelf(1);delay_ms(600);}}	
+		  {  if (DRDY1_IS_LOW()) {break;}	else; }	
 		else
-		  {  if (DRDY2_IS_LOW()) {break;}	else { _7707_REST(); TM7705_CalibSelf(2);delay_ms(600);}}
+		  {  if (DRDY2_IS_LOW()) {break;}	else; }
 	}
-	
-
+	if(i>4999999){
+		_7707_REST();
+		
+		if(TM)
+		  TM7705_CalibSelf(1);
+		else
+		  TM7705_CalibSelf(2);
+		
+		  delay_ms(600);
+	  }  
 }
 
 /*

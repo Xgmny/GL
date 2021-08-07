@@ -1213,24 +1213,27 @@ void GUI_DrawBMP(u8 x,u8 y,u8 width, u8 height, u8 BMP[], u8 mode)
 //****************************************************
 int32_t YS_LL(int32_t num){
   double i;
+	int32_t iz,zi;
 
 	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/80000)+num; //零点 0.000
-	
- if(num>=ZF)	
+	iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;
+	zi=((float)(FZ*FZ)/(int32_t )(SZ_LL_F *SZ_LL_F)*YuanMa/-100);
+ if(num>iz)	
 	{
 		 i=num;
 		 i=SZ_LL_Z*10*(sqrt((i-ZFX)/(YuanMa-ZFX)));  //流量计算 5063000
 		 num=i*SZ_JZ_Z[BFB]/1000;				  //零点  百分比校正 
 //		 num=(i+SZ_LD_Z*10)*1/1000;				  //零点  百分比校正 
 	}
- else if(num<(~FZ+2))
+	
+ else if(num<zi)
 	{
-		 i=~num+1;
-		 i=SZ_LL_F*10*(sqrt((i-FZX)/(YuanMa-FZX)));  //流量计算
-	     num=i*SZ_JZ_F[BFB]/1000;
-//		 num=(i+SZ_LD_F*10)*1/	1000;
-		 num=~num+1;
-	}
+		i=~num+1;
+			 i=SZ_LL_F*10*(sqrt((i-FZX)/(YuanMa-FZX)));  //流量计算
+			 num=i*SZ_JZ_F[BFB]/1000;
+	//		 num=(i+SZ_LD_F*10)*1/	1000;
+			 num=~num+1;
+			}
  else num=0;
 	LL=num;
 return num;

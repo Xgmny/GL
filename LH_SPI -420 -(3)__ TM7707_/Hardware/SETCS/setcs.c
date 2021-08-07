@@ -376,8 +376,10 @@ void SET_COME(void)
 							{
 				                ld[wz]=tem;
 								AT24CXX_Write(0x0108,ld,3);
-								myid=A_N_24C64(3,ld,0x0108);
+								myid=(ld[0]-0x30)*100+(ld[1]-0x30)*10+(ld[2]-0x30);
+								if (myid>255) myid=255;
 								myid=0x11940400+myid;
+		
 							}
 							MENU();row=113;col=4;smode=0;wz=0;page=0;	
 						}
