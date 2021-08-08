@@ -1217,7 +1217,7 @@ int32_t YS_LL(int32_t num){
 
 	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/80000)+num; //Áãµã 0.000
 	iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;
-	zi=((float)(FZ*FZ)/(int32_t )(SZ_LL_F *SZ_LL_F)*YuanMa/-100);
+	zi=((float)(FZ*FZ)/(int32_t)(SZ_LL_F *SZ_LL_F)*YuanMa/-100);
  if(num>iz)	
 	{
 		 i=num;
