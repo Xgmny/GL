@@ -40,12 +40,12 @@
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
    extern u8 idata,date8[];
    extern u16 QJs;
-   u8 rxd_bz,canbuf_rxd[8];
+   u8 rxd_bz,canbuf_rxd[8],run;
 	
  int main(void)
  {	
 	 
-	u8 cnt=0,old_key=0,hmqh,run;
+	u8 cnt=0,old_key=0,hmqh;
 	u8 canbuf_txd[8]={0x00,0x00,0x32,0x30,0x30,0x30,0x2e,0x30};
 
 	delay_init();	    	 //延时函数初始化	
@@ -70,10 +70,13 @@
 
 		if (rxd_bz)//接收到有数据
 		{
+			rxd_bz=0;
 			if (canbuf_rxd[0]=='O')
 			{
 				if((canbuf_rxd[1]=='U')&(canbuf_rxd[2]=='T'))
-				      {run=1;cnt=0;FIRST();}//运行
+				      {BL_24c64();run=1;cnt=0;FIRST();
+					     slj30=0;se30=0;ms200=0;}//运行
+					  
 			}
 			else
 			{
@@ -133,7 +136,7 @@
 								if (!hmqh)	
 								{	
 									 GUI_ShowString(34, 3,lll,8,16,1); // 流量
-						             GUI_ShowString(34,24,lsl,8,16,1);	//ljl   lsl
+						             GUI_ShowString(34,24,ljl,8,16,1);	//ljl   lsl
 						             GUI_ShowString(34,45,cyl,8,16,1);	
 								}
 								else{
@@ -152,9 +155,9 @@
 						}
 				  if (run==1)	
 					{
-						 Made_Data();		//AD转换	
-						{LJLL_Data();se30=0;}			//=1累计使能  30秒
-						
+						 //Made_Data();		//AD转换	
+						 //if(se30)
+						//	{LJLL_Data();se30=0;}			//=1累计使能  30秒
 						cnt++;
 						if (cnt>=255) cnt=0;
 						canbuf_txd[0]=cnt;
