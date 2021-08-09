@@ -130,7 +130,7 @@
 									else
 											{hmqh=1;FIRST_2();}
 								}else;
-							if(ms1000==4)
+							if(ms1000==3)
 							  {	
 								  ms1000=0;
 								if (!hmqh)	
@@ -155,9 +155,9 @@
 						}
 				  if (run==1)	
 					{
-						 //Made_Data();		//AD转换	
-						 //if(se30)
-						//	{LJLL_Data();se30=0;}			//=1累计使能  30秒
+						 Made_Data();		//AD转换	
+						 if(se30)
+						 {LJLL_Data();se30=0;}			//=1累计使能  30秒
 						cnt++;
 						if (cnt>=255) cnt=0;
 						canbuf_txd[0]=cnt;

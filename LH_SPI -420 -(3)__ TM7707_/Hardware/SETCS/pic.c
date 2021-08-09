@@ -35,34 +35,34 @@ void ONE(void)
 //	GUI_ShowString(105,19,"3",1,8,1);
 	GUI_ShowString(96,32,"m /h",4,16,1);
 	GUI_ShowString(105,35,"3",1,8,1);
-	GUI_ShowString(2,48,"<10%:",5,16,1);
+	GUI_ShowString(2,48,"<05%:",5,16,1);
 	
 }	
 void TWO(void)
 {	
 	OLED_Clear(0);             //清屏（全黑）
 	GUI_ShowCHinese(16,0,16,"向修正参数：",1);
-	GUI_ShowString(4,16,"10%~20%:",8,16,1);
-	GUI_ShowString(4,32,"20%~30%:",8,16,1);
-	GUI_ShowString(4,48,"30%~40%:",8,16,1);
+	GUI_ShowString(4,16,"05%~10%:",8,16,1);
+	GUI_ShowString(4,32,"10%~15%:",8,16,1);
+	GUI_ShowString(4,48,"15%~20%:",8,16,1);
 	
 }
 void THERR(void)
 {	
 	OLED_Clear(0);             //清屏（全黑）
 	GUI_ShowCHinese(16,0,16,"向修正参数：",1);
-	GUI_ShowString(4,16,"40%~50%:",8,16,1);
-	GUI_ShowString(4,32,"50%~60%:",8,16,1);
-	GUI_ShowString(4,48,"60%~70%:",8,16,1);
+	GUI_ShowString(4,16,"20%~30%:",8,16,1);
+	GUI_ShowString(4,32,"30%~40%:",8,16,1);
+	GUI_ShowString(4,48,"40%~50%:",8,16,1);
 	
 }
 void FOUR(void)
 {	
 	OLED_Clear(0);             //清屏（全黑）
 	GUI_ShowCHinese(16,0,16,"向修正参数：",1);
-	GUI_ShowString(4,16,"70%~80%:",8,16,1);
-	GUI_ShowString(4,32,"80%~90%:",8,16,1);
-	GUI_ShowString(4,48,"90%~100%:",9,16,1);
+	GUI_ShowString(4,16,"50%~60%:",8,16,1);
+	GUI_ShowString(4,32,"60%~70%:",8,16,1);
+	GUI_ShowString(4,48,"70%~80%:",9,16,1);
 	
 }
 void MENU(void)

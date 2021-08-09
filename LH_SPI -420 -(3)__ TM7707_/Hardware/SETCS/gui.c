@@ -1222,9 +1222,12 @@ int32_t YS_LL(int32_t num){
 	{
 		 i=num;
 		 i=SZ_LL_Z*10*(sqrt((i-ZFX)/(YuanMa-ZFX)));  //流量计算 5063000
-		 if(num*10/SZ_LL_Z<2) BFB=num*10/(SZ_LL_Z/2);
-		 else                 {BFB=num*10/SZ_LL_Z+4;    if(BFB>8)BFB=8;else;}
 		  
+		  BFB=i/(SZ_LL_Z/2);  //切除
+          if(BFB>3){
+               BFB=(BFB+4)/2;
+			  if(BFB>9)BFB=9;
+		  }
 		 num=i*SZ_JZ_Z[BFB]/1000;				  //零点  百分比校正 
 //		 num=(i+SZ_LD_Z*10)*1/1000;				  //零点  百分比校正 
 	}
@@ -1233,6 +1236,12 @@ int32_t YS_LL(int32_t num){
 	{
 		i=~num+1;
 			 i=SZ_LL_F*10*(sqrt((i-FZX)/(YuanMa-FZX)));  //流量计算
+		
+			BFB=i/(SZ_LL_F/2);  //切除
+            if(BFB>3){
+               BFB=(BFB+4)/2;
+			  if(BFB>9)BFB=9;
+		    }
 			 num=i*SZ_JZ_F[BFB]/1000;
 	//		 num=(i+SZ_LD_F*10)*1/	1000;
 			 num=~num+1;
