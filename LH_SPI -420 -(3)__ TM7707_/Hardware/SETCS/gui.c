@@ -15,8 +15,8 @@
 //#define YuanMa (8388607-3015000)//7707 5v 单极
 //#define YuanMa (13070000-8388607)//7707 5v 双极
 //#define YuanMa (13627000-8388607)//7707 5v 双极
-//#define YuanMa   (13607555-8388607)//7707 2.5v 双极
-#define YuanMa   (11037000-8033000)//7707 2.5v 双极小差压器200KPa
+#define YuanMa   (13607555-8388607)//7707 2.5v 双极
+//#define YuanMa   (11037000-8033000)//7707 2.5v 双极小差压器200KPa
 
     static int32_t LJI;   //0.1<累计 累加变量
 		   u8 BFB;        //校正
@@ -50,7 +50,7 @@
 };
 
 /*******************************************************************
- * @name       :void GUI_DrawPoint(u8 x,u8 y,u8 color)
+ * @name       :void GUI_DrawPoint(u8 x,u8 y,u8 color)  点
  * @date       :2018-08-27
  * @function   :draw a point in LCD screen
  * @parameters :x:the x coordinate of the point
@@ -95,7 +95,7 @@ void GUI_Fill(u8 sx,u8 sy,u8 ex,u8 ey,u8 color)
 }
 
 /*******************************************************************
- * @name       :void GUI_DrawLine(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)
+ * @name       :void GUI_DrawLine(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)线
  * @date       :2018-08-27 
  * @function   :Draw a line between two points
  * @parameters :x1:the bebinning x coordinate of the line

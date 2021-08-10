@@ -140,10 +140,10 @@
 						             GUI_ShowString(34,45,cyl,8,16,1);	
 								}
 								else{
-									GUI_ShowString(4, 21,lwd,5,16,1); 
+									GUI_ShowString(4, 16,lwd,5,16,1); 
 			//						GUI_ShowNum(34,24,QJs,7,16,1); 
-									GUI_ShowString(70,21,lwd_pa ,4,16,1);	//허실	jdl				
-									GUI_ShowString(34,45,jdl,8,16,1);	//
+									GUI_ShowString(70,16,lwd_pa ,4,16,1);	//허실	jdl				
+									GUI_ShowString(4,33,jdl,6,16,1);	//
 									}
 							  }else ms1000++;
 							

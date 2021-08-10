@@ -62,7 +62,7 @@ void FOUR(void)
 	GUI_ShowCHinese(16,0,16,"向修正参数：",1);
 	GUI_ShowString(4,16,"50%~60%:",8,16,1);
 	GUI_ShowString(4,32,"60%~70%:",8,16,1);
-	GUI_ShowString(4,48,"70%~80%:",9,16,1);
+	GUI_ShowString(4,48,"70%~80%:",8,16,1);
 	
 }
 void MENU(void)
@@ -125,6 +125,11 @@ void FIRST(void)
 	
 #else
 		OLED_Clear(0);             //清屏（全黑）
+//	GUI_DrawLine(0,0,WIDTH-1,0,1);
+//	GUI_DrawLine(0,22,WIDTH-1,22,1);
+//	GUI_DrawLine(0,42,WIDTH-1,42,1);
+//	GUI_DrawLine(1,63,WIDTH-1,63,1);
+	
 	GUI_ShowCHinese(0,3,16,"流量",1);
 	GUI_ShowCHinese(0,24,16,"累计",1);
 	GUI_ShowCHinese(0,45,16,"差压",1);
@@ -139,15 +144,16 @@ void FIRST(void)
 void FIRST_2(void)
 {	
 		OLED_Clear(0);             //??(??)
-GUI_DrawRectangle(0, 5, WIDTH/2-1, HEIGHT-1-22,1);
-GUI_DrawRectangle(WIDTH/2-1,5,  WIDTH-1, HEIGHT-1-22,1);
-	
-	GUI_ShowCHinese(16,3,16,"温度",1);
-	GUI_ShowCHinese(79,3,16,"温差",1);
-	GUI_ShowCHinese(0,45,16,"角度",1);
-	GUI_ShowString(46,20,"o",1,8,1);
-	GUI_ShowString(52,21,"C",1,16,1);
-	GUI_ShowString(107,21,"Pa",2,16,1);
+GUI_DrawRectangle(0, 5, WIDTH-1, HEIGHT-1-5,1);
+GUI_DrawLine(WIDTH/2-1,5,WIDTH/2-1,HEIGHT-6,1);
+GUI_DrawLine(0,HEIGHT/2,WIDTH-1,HEIGHT/2,1);	
+	GUI_ShowCHinese(16,0,16,"温度",1);
+	GUI_ShowCHinese(78,0,16,"温差",1);
+	GUI_ShowCHinese(16,48,16,"角度",1);
+	GUI_ShowCHinese(78,48,16,"角差",1);
+	GUI_ShowString(46,14,"o",1,8,1);
+	GUI_ShowString(52,16,"C",1,16,1);
+	GUI_ShowString(107,16,"Pa",2,16,1);
 	GUI_ShowString(102,42,"o",1,8,1);
 }
 
