@@ -148,7 +148,7 @@ void TIM4_IRQHandler(void)
 	{    //判断是否是TIM4的update中断
 					
 		//Made_Data();
-		LED0=!LED0;
+		
 		TIM_ClearITPendingBit(TIM4,TIM_IT_Update);//使能中断
         ms200=1;
 		secn++;

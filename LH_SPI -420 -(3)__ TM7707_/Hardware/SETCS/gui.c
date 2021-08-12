@@ -16,7 +16,7 @@
 //#define YuanMa (13070000-8388607)//7707 5v 双极
 //#define YuanMa (13627000-8388607)//7707 5v 双极
 #define YuanMa   (13607555-8388607)//7707 2.5v 双极
-//#define YuanMa   (11037000-8033000)//7707 2.5v 双极小差压器200KPa
+//#define YuanMa   (11408800-8400570)//7707 2.5v 双极小差压器200KPa
 
     static int32_t LJI;   //0.1<累计 累加变量
 		   u8 BFB;        //校正
@@ -34,8 +34,9 @@
 
 	extern u16 SZ_JZ_Z[], SZ_JZ_F[];                     //   %比校正
 	extern u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
+    extern int16_t SZ_WD_B ,SZ_WD_O;
 	extern int32_t  SZ_LL_Z,SZ_LL_F;		
-           int32_t WD;	
+           int32_t WD,WD_Ohm;
 	static int32_t WD_1;
 	static int32_t  PJ[10];
 	
@@ -1216,7 +1217,7 @@ int32_t YS_LL(int32_t num){
 	int32_t iz,zi;
 
 	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/80000)+num; //零点 0.000
-	iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;
+	iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;//切除
 	zi=((float)(FZ*FZ)/(int32_t)(SZ_LL_F *SZ_LL_F)*YuanMa/-100);
  if(num>iz)	
 	{
@@ -1299,6 +1300,7 @@ u8 zf;
 //	if(num>8388607){num-=8388607;num=~num;num++;}else;
 	    
 	 num=TP1000_ohm(num);
+	WD_Ohm=num;
 	 num=TP1000_wd_(num);
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,4,1,zf,lwd);
@@ -1307,7 +1309,7 @@ u8 zf;
 	 num=(num*-111+30900)/100;   //y=xk+b
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,3,0,zf,lwd_pa);
-	  WD=num;
+         WD=num;
 	return num;
 }
 /****************************************************
@@ -1331,9 +1333,10 @@ void YS_YS(int32_t num){
 	        
 		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
          B1++;  if(B1>9){B1=0;B=1;}  else;
-			 
+		
+
+		 
 	     cc=num;
-	
 //	     num+=WD;
 		 num=YS_LL(num);
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
@@ -1404,7 +1407,7 @@ int32_t TP1000_ohm(int32_t u)
     
     u1=u*i	;
     u2=u0-u1;
-    ohm=(u1*r2)/u2*100-50;	
+    ohm=(u1*r2)/u2*100+SZ_WD_B;	//50
 
 	
 return	ohm;

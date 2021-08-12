@@ -33,9 +33,10 @@
 	u8 ms1000=0;
 	u16 A;
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
-	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
+	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
+	int16_t SZ_WD_B ,SZ_WD_O;
 	int32_t  SZ_LL_Z,SZ_LL_F;
-	
+   extern int32_t WD_Ohm,WD;
    extern u32 NIAN;
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
    extern u8 idata,date8[];
@@ -130,7 +131,7 @@
 									else
 											{hmqh=1;FIRST_2();}
 								}else;
-							if(ms1000==3)
+							if(ms1000==2)
 							  {	
 								  ms1000=0;
 								if (!hmqh)	
@@ -144,6 +145,7 @@
 			//						GUI_ShowNum(34,24,QJs,7,16,1); 
 									GUI_ShowString(70,16,lwd_pa ,4,16,1);	//倾角	jdl				
 									GUI_ShowString(4,33,jdl,6,16,1);	//
+									GUI_ShowNum(64,33,WD_Ohm ,6,16,1);
 									}
 							  }else ms1000++;
 							

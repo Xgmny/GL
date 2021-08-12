@@ -6,7 +6,7 @@
 #include "setcs.h"
 #include "can.h"
 #include "delay.h"
-extern u32 NIAN;
+extern u32 NIAN ,WD;
 extern u32 myid;
 extern u8 ljks;
 extern u8 run;
@@ -285,7 +285,7 @@ void SET_COME(void)
 				switch (wz)
 				{
 					case 0x02:{	
-								SIX();page=6;wz=0;addr=0x0050;
+								SIX();page=6;wz=0;addr=0x0050;  //温度设置
 									AT24CXX_Read(addr,ss,5);
 									addr+=8;
 									AT24CXX_Read(addr,ld,6);
@@ -297,6 +297,8 @@ void SET_COME(void)
 									GUI_ShowString(79,16,ld,6,16,1);
 									GUI_ShowString(79,32,qc,6,16,1);
 									GUI_ShowString(79,48,dd,6,16,1);
+
+						
 								    row=79;col=0;tem=ss[wz];smode=1;}break;
 					case 0x03:{
 								SEV();page=7;wz=2;
@@ -547,6 +549,7 @@ void SET_COME(void)
 						if (col==32) tem=qc[wz];
 						if (col==48) tem=dd[wz];
 						GUI_ShowChar(row,col,tem,16,1);
+							
 					 }
 			if (page==7)
 				{	GUI_ShowChar(row,col,tem,16,1);
@@ -570,7 +573,8 @@ void SET_COME(void)
 					if (col==32) tem=ss[wz];
 					if (col==48) tem=ld[wz];
 					GUI_ShowChar(row,col,tem,16,1);
-				 }						
+				 }
+	    delay_ms(300);		//手感		
 		}
 		if(skey==1)//+
 		{
@@ -607,6 +611,7 @@ void SET_COME(void)
 	
 	if(page==0)
 			GUI_ShowChar(113,col,32,8,smode);
-	else
+	else{
 			GUI_ShowChar(row,col,tem,16,smode);
+   }      
 }

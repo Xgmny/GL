@@ -1,4 +1,5 @@
 #include "TM7707.h"
+#include "led.h"
 
 u8 kan;
 u8 TM;  //7705_1  TM=1    7705_2  TM=0 
@@ -185,10 +186,7 @@ void TM7707_init(void) //初始化
 //	TM7705_WriteByte(0x20);    TM7705_WriteByte(0x2f);//ain1
 //	TM7705_WriteByte(0x50);    TM7705_WriteByte(0x50);//ain1  
 _7707_REST();
-    TM=1;
-	 TM7705_CalibSelf(1);
-	TM=0;
-	 TM7705_CalibSelf(2);
+
 delay_ms(600);
 //	  write_byte1(0X20);  write_byte1(0X25);  //滤波器高寄存器   大电流
 	
@@ -435,22 +433,19 @@ void TM7705_WaitDRDY(void)
 {
 	uint32_t i;
 
-	for (i = 0; i < 5000000; i++)
+	for (i = 0; i < 50000; i++)
 	{
 		if(TM)
 		  {  if (DRDY1_IS_LOW()) {break;}	else; }	
 		else
 		  {  if (DRDY2_IS_LOW()) {break;}	else; }
 	}
-	if(i>4999999){
+	if(i>49999){
 		_7707_REST();
 		
-		if(TM)
-		  TM7705_CalibSelf(1);
-		else
-		  TM7705_CalibSelf(2);
-		
-		  delay_ms(600);
+
+		LED0=!LED0;
+		  delay_ms(60000);
 	  }  
 }
 
@@ -676,9 +671,13 @@ uint32_t TM7705_ReadAdc(uint8_t _ch)
 void _7707_REST(void)
 {
 	GPIO_ResetBits(GPIOB,GPIO_Pin_12);
-	delay_ms(50);
+	delay_ms(500);
 	GPIO_SetBits (GPIOB,GPIO_Pin_12);
-	delay_ms(50);
+	delay_ms(200);
+    TM=1;
+	 TM7705_CalibSelf(1);
+	TM=0;
+	 TM7705_CalibSelf(2);
 }	
 
 /***************************** 安富莱电子 www.armfly.com (END OF FILE) *********************************/

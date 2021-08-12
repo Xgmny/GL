@@ -7,7 +7,8 @@
 	extern int32_t LL;
 	extern u16 SZ_JZ_Z[], SZ_JZ_F[];                     //   %比校正
 	extern u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
-	extern int32_t  SZ_LL_Z,SZ_LL_F;		                 //   正反向量程  
+    extern int16_t SZ_WD_B ,SZ_WD_O;
+    extern int32_t  SZ_LL_Z,SZ_LL_F;		                 //   正反向量程  
            u8  JNW[8] ;
 		   u32 JNS;
            u32 NIAN; 
@@ -235,7 +236,7 @@ void AT24CXX_Write(u16 WriteAddr,u8 *pBuffer,u16 NumToWrite)
 //       }
 
 //ASCLL~数字
-//w 位数     a指针地址   读d24c64内在地址  
+//w 位数     a指针地址   读d24c64内在地址  右高
 int32_t  A_N_24C64 (u8 w,u8 *a,u16 d)
 {
  int32_t  n ,nn;
@@ -249,13 +250,19 @@ int32_t  A_N_24C64 (u8 w,u8 *a,u16 d)
 			bei*=10 ;
 			nn +=n ;
 		  }
-		}return nn;
+		}
+		if(a[0]==0x2d)
+		  nn=~nn+1; else;
+		return nn;
 }
 	   
 void BL_24c64(void){
 	u8 kl[8];
 	
-	    SZ_LD_Z = A_N_24C64(5,kl,0x0110);     //零点
+
+	    SZ_WD_B = A_N_24C64(6,kl,0x0058);    //温度补偿
+	    SZ_WD_O = A_N_24C64(5,kl,0x0050);    //温度电阻补偿
+		SZ_LD_Z = A_N_24C64(5,kl,0x0110);     //零点
 	    SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
         SZ_LL_Z = A_N_24C64(6,kl,0X01D0);    //流量上线
 
