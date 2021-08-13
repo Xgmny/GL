@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\tt.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\tt.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Aug 12 09:09:15 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Aug 13 14:37:44 2021
 <BR><P>
 <H3>Maximum Stack Usage =        192 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1024,7 +1024,7 @@ Global Symbols
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SET_COME
 </UL>
 
-<P><STRONG><a name="[9d]"></a>Made_Data</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, timer.o(i.Made_Data))
+<P><STRONG><a name="[9d]"></a>Made_Data</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, timer.o(i.Made_Data))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = Made_Data &rArr; YS_YS &rArr; YS_LL &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;YS_YS
@@ -1414,11 +1414,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Made_Data
 </UL>
 
-<P><STRONG><a name="[9e]"></a>TM7705_WaitDRDY</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, tm7707.o(i.TM7705_WaitDRDY))
+<P><STRONG><a name="[9e]"></a>TM7705_WaitDRDY</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, tm7707.o(i.TM7705_WaitDRDY))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = TM7705_WaitDRDY &rArr; _7707_REST &rArr; TM7705_CalibSelf &rArr; TM7705_WriteByte &rArr; TM7705_Send8Bit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_7707_REST
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Made_Data
@@ -1572,7 +1571,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Made_Data
 </UL>
 
-<P><STRONG><a name="[c4]"></a>_7707_REST</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, tm7707.o(i._7707_REST))
+<P><STRONG><a name="[c4]"></a>_7707_REST</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, tm7707.o(i._7707_REST))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = _7707_REST &rArr; TM7705_CalibSelf &rArr; TM7705_WriteByte &rArr; TM7705_Send8Bit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
@@ -1597,8 +1596,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[67]"></a>delay_ms</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, delay.o(i.delay_ms))
-<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM7705_WaitDRDY
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AT24CXX_Write
+<BR><BR>[Called By]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AT24CXX_Write
 <LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PVD_IRQHandler
 <LI><a href="#[14]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI1_IRQHandler
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM7707_init
@@ -1607,6 +1605,7 @@ Global Symbols
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_Scan
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Answer
 <LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AT24CXX_Init
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_7707_REST
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AT24CXX_Read
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Reset
@@ -1623,11 +1622,12 @@ Global Symbols
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I1C_Ack
 </UL>
 
-<P><STRONG><a name="[56]"></a>main</STRONG> (Thumb, 702 bytes, Stack size 24 bytes, main.o(i.main))
+<P><STRONG><a name="[56]"></a>main</STRONG> (Thumb, 708 bytes, Stack size 24 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
 <LI>Call Chain = main &rArr; Made_Data &rArr; YS_YS &rArr; YS_LL &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM7707_init
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_init

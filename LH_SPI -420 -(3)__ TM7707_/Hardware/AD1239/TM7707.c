@@ -1,7 +1,7 @@
 #include "TM7707.h"
 #include "led.h"
 
-u8 kan;
+u8 kan,S_7705=5;
 u8 TM;  //7705_1  TM=1    7705_2  TM=0 
 // Target : TM7707
 
@@ -433,19 +433,20 @@ void TM7705_WaitDRDY(void)
 {
 	uint32_t i;
 
-	for (i = 0; i < 50000; i++)
+	for (i = 0; i < 500000; i++)
 	{
 		if(TM)
 		  {  if (DRDY1_IS_LOW()) {break;}	else; }	
 		else
 		  {  if (DRDY2_IS_LOW()) {break;}	else; }
 	}
-	if(i>49999){
-		_7707_REST();
+	if(i>499999){
 		
-
+		S_7705=0;
+		
+		_7707_REST();
 		LED0=!LED0;
-		  delay_ms(60000);
+		
 	  }  
 }
 
@@ -673,7 +674,7 @@ void _7707_REST(void)
 	GPIO_ResetBits(GPIOB,GPIO_Pin_12);
 	delay_ms(500);
 	GPIO_SetBits (GPIOB,GPIO_Pin_12);
-	delay_ms(200);
+	delay_ms(500);
     TM=1;
 	 TM7705_CalibSelf(1);
 	TM=0;

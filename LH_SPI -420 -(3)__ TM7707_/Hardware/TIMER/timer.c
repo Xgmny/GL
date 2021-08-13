@@ -16,7 +16,7 @@
 	
 extern u32 JNS;
 extern u16 NIAN;
-extern u8 JNW[], TM;
+extern u8 JNW[], TM, S_7705;
 extern int32_t LJ;
 static uint8_t buf[3];
 //static int32_t a,b;
@@ -110,7 +110,7 @@ void TIM4_init(u16 arr,u16 psc)
 	//中断优先级NVIC设置
 	NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;  //TIM4中断
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  //先占优先级0级
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;  //从优先级3级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;  //从优先级3级
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
 	NVIC_Init(&NVIC_InitStructure);  //初始化NVIC寄存器
 
@@ -146,8 +146,7 @@ void TIM4_IRQHandler(void)
 
     if(TIM_GetITStatus(TIM4,TIM_IT_Update)!= RESET)
 	{    //判断是否是TIM4的update中断
-					
-		//Made_Data();
+//					 Made_Data();		//AD转换	
 		
 		TIM_ClearITPendingBit(TIM4,TIM_IT_Update);//使能中断
         ms200=1;
@@ -170,6 +169,9 @@ void TIM4_IRQHandler(void)
 void Made_Data(void)
 {
 	int32_t a,b;
+if(S_7705>=5){
+ 
+CAN1->IER &=(~(uint32_t)CAN_IER_FMPIE0);
 	b=0; TM=0;
 			TM7705_WaitDRDY();	// 等待内部操作完成 --- 时间较长，约180ms //
 			TM7705_WriteByte(0x38);
@@ -179,13 +181,16 @@ void Made_Data(void)
 
 	a=0; TM=1;
 			TM7705_WaitDRDY();	// 等待内部操作完成 --- 时间较长，约180ms //
-				TM7705_WriteByte(0x38);
+            TM7705_WriteByte(0x38);
 				a=TM7705_Read3Byte();
 //			TM7705_CalibSelf(1);
 //		    QingJiao_F();//倾角
 		
 				YS_YS(a);
 				YS_YM(a);
+CAN1->IER |=CAN_IER_FMPIE0;
+	
+}else S_7705++;
 		
 }
 //

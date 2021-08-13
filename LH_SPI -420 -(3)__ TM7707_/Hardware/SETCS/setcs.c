@@ -172,7 +172,7 @@ void CAN_Answer(void)
 	Can_Send_Msg(myid,Ctxd,8);
 	delay_ms(50);			
 	AT24CXX_Read(0x0078,shu,6);//FJ
-	Ctxd[0]=0X46;Ctxd[1]=0X57;Ctxd[2]=shu[0];Ctxd[6]=0x2e;
+	Ctxd[0]=0X46;Ctxd[1]=0X4A;Ctxd[2]=shu[0];Ctxd[6]=0x2e;
 	Ctxd[3]=shu[1];Ctxd[4]=shu[2];Ctxd[5]=shu[3];Ctxd[7]=shu[5];
 	Can_Send_Msg(myid,Ctxd,8);
 }

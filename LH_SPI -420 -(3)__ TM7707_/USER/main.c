@@ -84,7 +84,8 @@
 				if (canbuf_rxd[0]=='$')
 				{	
 					if (canbuf_rxd[1]=='Y')
-						{	run=2;	
+						{	run=2;
+								delay_ms(5);
 							CAN_Answer();
 						}
 				}	
