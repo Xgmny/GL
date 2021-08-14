@@ -143,7 +143,9 @@ void FIRST(void)
 }
 void FIRST_2(void)
 {	
+	u8 i,a;
 		OLED_Clear(0);             //??(??)
+#if(0)
 GUI_DrawRectangle(0, 5, WIDTH-1, HEIGHT-1-5,1);
 GUI_DrawLine(WIDTH/2-1,5,WIDTH/2-1,HEIGHT-6,1);
 GUI_DrawLine(0,HEIGHT/2,WIDTH-1,HEIGHT/2,1);	
@@ -154,6 +156,20 @@ GUI_DrawLine(0,HEIGHT/2,WIDTH-1,HEIGHT/2,1);
 	GUI_ShowString(46,14,"o",1,8,1);
 	GUI_ShowString(52,16,"C",1,16,1);
 	GUI_ShowString(107,16,"Pa",2,16,1);
-	GUI_ShowString(102,42,"o",1,8,1);
+#else
+GUI_DrawRectangle(0, 0, WIDTH-1, HEIGHT-1,1);
+//	GUI_DrawLine(WIDTH/2-1,5,WIDTH/2-1,HEIGHT-6,1);
+    i=9;
+//	for(a=1;a<7;a++)	GUI_DrawLine(0,a*i,WIDTH-1,a*i,1);
+	GUI_ShowString(2,2,  "Temperature:",12,8,1);
+	GUI_ShowString(110,2,"C",1,8,1);
+	GUI_ShowString(8,10, "Correction:",11,8,1);
+    GUI_ShowString(110,10,"Pa",2,8,1);
+	GUI_ShowString(20,19,"Sampling:",9,8,1);
+	GUI_ShowString(8,28,"Resistance:",11,8,1);
+	
+	
+	
+#endif
 }
 

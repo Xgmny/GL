@@ -153,7 +153,7 @@ void TIM4_IRQHandler(void)
 		secn++;
 		if (secn>=5) {sec=1;secn=0;}
 		slj30++;
-		if (slj30>=150) 		  //30秒
+		if (slj30>=150) 		  //30秒  150
 			{se30=1;slj30=0;}
 		if (have) 
 			{
@@ -171,7 +171,6 @@ void Made_Data(void)
 	int32_t a,b;
 if(S_7705>=5){
  
-CAN1->IER &=(~(uint32_t)CAN_IER_FMPIE0);
 	b=0; TM=0;
 			TM7705_WaitDRDY();	// 等待内部操作完成 --- 时间较长，约180ms //
 			TM7705_WriteByte(0x38);
@@ -188,7 +187,6 @@ CAN1->IER &=(~(uint32_t)CAN_IER_FMPIE0);
 		
 				YS_YS(a);
 				YS_YM(a);
-CAN1->IER |=CAN_IER_FMPIE0;
 	
 }else S_7705++;
 		

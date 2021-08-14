@@ -6,7 +6,7 @@
 #include "setcs.h"
 #include "can.h"
 #include "delay.h"
-extern u32 NIAN ,WD;
+extern u32 NIAN ,WD,LJ;
 extern u32 myid;
 extern u8 ljks;
 extern u8 run;
@@ -256,6 +256,7 @@ void CAN_SAVE(void)
 			cc[n0]=0x30;
 		cc[6]=0x2e;
 		AT24CXX_Write(0x0200+NIAN,cc,8);
+		LJ=0;		
 	}
 }
 void SET_IN(void)	

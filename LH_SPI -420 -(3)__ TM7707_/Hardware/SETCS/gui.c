@@ -1288,8 +1288,9 @@ int32_t YS_LJ(int32_t num){
 //****************************************************
 void YS_YM(int32_t num){
  u32 zf;
+	num-=8388607;
   if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
-          num/=10;
+//          num/=10;
 	     NUM_A(num,7,0,zf,lsl);
 
 }
@@ -1361,7 +1362,7 @@ void YS_YS(int32_t num){
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,cyl);
 	   
-	     num=QJs;
+	     num=QJs;//倾角
 	  if(num>18000)   {num= (36100-QJs); zf=1;} else zf=0;//负数转换正数
      	 NUM_A(num,7,2,zf,jdl); 
 

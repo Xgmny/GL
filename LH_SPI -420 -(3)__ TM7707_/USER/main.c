@@ -61,7 +61,7 @@
 	TIM4_init(1999,7199);//定时器4 200毫秒
 //	WBZD_Init();
 
-	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);//CAN初始,波特率250Kbps 
+	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,1);//CAN初始,波特率250Kbps 
 									//最后参数  mode:0,普通模式;1,回环模式; //  
 //   IWDG_Init(4,6250);      //狗10s
 	 run=1;      //运行
@@ -69,9 +69,10 @@
  	while(1)
 	{
 
-		if (rxd_bz)//接收到有数据
-		{
-			rxd_bz=0;
+		rxd_bz=Can_Receive_Msg(canbuf_rxd);//接收到有数据	
+		if (rxd_bz)   
+		   {
+		    	
 			if (canbuf_rxd[0]=='O')
 			{
 				if((canbuf_rxd[1]=='U')&(canbuf_rxd[2]=='T'))
@@ -142,11 +143,22 @@
 						             GUI_ShowString(34,45,cyl,8,16,1);	
 								}
 								else{
+									#if(0)
 									GUI_ShowString(4, 16,lwd,5,16,1); 
 			//						GUI_ShowNum(34,24,QJs,7,16,1); 
 									GUI_ShowString(70,16,lwd_pa ,4,16,1);	//倾角	jdl				
 									GUI_ShowString(4,33,jdl,6,16,1);	//
 									GUI_ShowNum(64,33,WD_Ohm ,6,16,1);
+									#else
+									GUI_ShowString(75, 2,lwd,5,8,1); 
+			//						GUI_ShowNum(34,24,QJs,7,8,1); 
+									GUI_ShowString(75,10,lwd_pa ,4,8,1);	//倾角	jdl
+									GUI_ShowString(75,19,lsl,8,8,1);
+									GUI_ShowNum(75,28,WD_Ohm ,6,8,1);
+									GUI_ShowString(75,37,jdl,6,8,1);	//
+								
+									
+									#endif
 									}
 							  }else ms1000++;
 							

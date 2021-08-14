@@ -27,7 +27,24 @@ Project File Date:  07/27/2021
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\2122\Keil\ARM\ARMCC\Bin'
 Build target 'Template'
-"..\OBJ\tt.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+..\Hardware\AD1239\TM7707.h(38): warning:  #1295-D: Deprecated declaration read_byte1 - give arg types
+  u8 read_byte1 ();
+..\Hardware\AD1239\TM7707.h(57): warning:  #1295-D: Deprecated declaration DIO_IN - give arg types
+  void DIO_IN( );
+..\Hardware\AD1239\TM7707.h(58): warning:  #1295-D: Deprecated declaration DIO_OUT - give arg types
+  void DIO_OUT( );
+main.c: 3 warnings, 0 errors
+compiling pic.c...
+..\Hardware\SETCS\pic.c(146): warning:  #550-D: variable "i"  was set but never used
+  	u8 i,a;
+..\Hardware\SETCS\pic.c(146): warning:  #177-D: variable "a"  was declared but never referenced
+  	u8 i,a;
+..\Hardware\SETCS\pic.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=27844 RO-data=7872 RW-data=504 ZI-data=1047216  
+FromELF: creating hex file...
+"..\OBJ\tt.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -41,7 +58,7 @@ Package Vendor: Keil
   D:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
