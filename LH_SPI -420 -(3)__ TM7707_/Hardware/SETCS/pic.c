@@ -162,12 +162,12 @@ GUI_DrawRectangle(0, 0, WIDTH-1, HEIGHT-1,1);
     i=9;
 //	for(a=1;a<7;a++)	GUI_DrawLine(0,a*i,WIDTH-1,a*i,1);
 	GUI_ShowString(2,2,  "Temperature:",12,8,1);
-	GUI_ShowString(110,2,"C",1,8,1);
+	GUI_ShowString(110,2,"$",1,8,1);
 	GUI_ShowString(8,1*i+2, "Correction:",11,8,1);
     GUI_ShowString(110,1*i+2,"Pa",2,8,1);
 	GUI_ShowString(20,2*i+2,"Sampling:",9,8,1);
 	GUI_ShowString(8,3*i+2,"Resistance:",11,8,1);
-	GUI_ShowString(38,4*i+2,"Angle:",6,8,1);
+	GUI_ShowString(26,4*i+2,"[]Angle:",8,8,1);
 	GUI_ShowString(38,6*i+2,"Error:",6,8,1);
 	
 	

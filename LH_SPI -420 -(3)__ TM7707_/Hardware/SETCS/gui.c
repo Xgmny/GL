@@ -1279,7 +1279,9 @@ int32_t YS_LJ(int32_t num){
 	LJI+=num;
 	while(LJI>  1800000)  {LJI-=1800000; LJ++; }
 	while(LJI<(-1800000)) {LJI+=1800000; LJ--; } 
-    if(LJ>(999999)||LJ<(-999999))LJ=0;  else;
+    if	(LJ>(999999)||LJ<(-999999))
+		 LJ=0;  
+	     else;
 	
 //	LJ+=num/100/5/60/60;//  小数点-2   1秒  1分 1时
 
@@ -1320,7 +1322,7 @@ u8 zf;
 zf 正负号
 ********************************************************/
 void YS_YS(int32_t num){
-	int32_t cc;
+	int32_t cc,ccll;
 	u8 zf;
 #if 0
 	   //                                    零点校正 负				零点校正 正
@@ -1340,12 +1342,12 @@ void YS_YS(int32_t num){
 	     cc=num;
 //	     num+=WD;
 		 num=YS_LL(num);
+		 ccll=num;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,lll);
 	
-	     num=cc;
-
-	     num=YS_LL(num);    //流量
+	     num=ccll;
+	  
 		 num=YS_LJ(num);    //累计
 //	     num+=WD;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数

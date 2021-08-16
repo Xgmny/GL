@@ -61,7 +61,7 @@
 	TIM4_init(1999,7199);//定时器4 200毫秒
 //	WBZD_Init();
 
-	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,1);//CAN初始,波特率250Kbps 
+	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);//CAN初始,波特率250Kbps 
 									//最后参数  mode:0,普通模式;1,回环模式; //  
 //   IWDG_Init(4,6250);      //狗10s
 	 run=1;      //运行
@@ -151,12 +151,11 @@
 									GUI_ShowNum(64,33,WD_Ohm ,6,16,1);
 									#else
 									GUI_ShowString(75, 2,lwd,5,8,1); 
-			//						GUI_ShowNum(34,24,QJs,7,8,1); 
-									GUI_ShowString(75,11,lwd_pa ,4,8,1);	//倾角	jdl
+									GUI_ShowString(75,11,lwd_pa ,4,8,1);	//
 									GUI_ShowString(75,20,lsl,8,8,1);
 									GUI_ShowNum_WD(81,29,WD_Ohm ,6,8,1);
 									GUI_ShowString(75,38,jdl,6,8,1);	//
-								 
+							//	 	GUI_ShowNum(75,47,QJs,7,8,1); //倾角	jdl
 									GUI_ShowNum(75,56,error ,3,8,1);
 									
 									#endif
@@ -172,7 +171,7 @@
 				  if (run==1)	
 					{
 						 Made_Data();		//AD转换	
-						 if(se30)
+						 //if(se30)
 						 {LJLL_Data();se30=0;}			//=1累计使能  30秒
 						cnt++;
 						if (cnt>=255) cnt=0;
