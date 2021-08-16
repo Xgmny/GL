@@ -39,7 +39,7 @@
    extern int32_t WD_Ohm,WD;
    extern u32 NIAN;
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
-   extern u8 idata,date8[];
+   extern u8 idata,date8[],error;
    extern u16 QJs;
    u8 rxd_bz,canbuf_rxd[8],run;
 	
@@ -152,11 +152,12 @@
 									#else
 									GUI_ShowString(75, 2,lwd,5,8,1); 
 			//						GUI_ShowNum(34,24,QJs,7,8,1); 
-									GUI_ShowString(75,10,lwd_pa ,4,8,1);	//허실	jdl
-									GUI_ShowString(75,19,lsl,8,8,1);
-									GUI_ShowNum(75,28,WD_Ohm ,6,8,1);
-									GUI_ShowString(75,37,jdl,6,8,1);	//
-								
+									GUI_ShowString(75,11,lwd_pa ,4,8,1);	//허실	jdl
+									GUI_ShowString(75,20,lsl,8,8,1);
+									GUI_ShowNum_WD(81,29,WD_Ohm ,6,8,1);
+									GUI_ShowString(75,38,jdl,6,8,1);	//
+								 
+									GUI_ShowNum(75,56,error ,3,8,1);
 									
 									#endif
 									}

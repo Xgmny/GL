@@ -45,7 +45,7 @@ static void TM7705_Write3Byte(uint32_t _data);
 static uint8_t TM7705_ReadByte(void);
 static uint16_t TM7705_Read2Byte(void);
  uint32_t TM7705_Read3Byte(void);
-void TM7705_WaitDRDY(void);
+u8 TM7705_WaitDRDY(void);
 static void TM7705_ResetHard(void);
 static void TM7705_Delay(void);
 void TM7705_CalibSelf(uint8_t _ch);

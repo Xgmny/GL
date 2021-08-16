@@ -685,12 +685,12 @@ void GUI_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 Size,u8 mode)
 	u8 t,temp;
 	u8 enshow=0,csize;
 /********************************************************************************/
-	if(num&0x800000){
-	num|=0xff000000;  //24位负  变32位负
-	GUI_ShowChar(x-10,y,'-',Size,mode);//改过 -1
-    num=~num+1;
-	}
-	else;
+//	if(num&0x800000){
+//	num|=0xff000000;  //24位负  变32位负
+//	GUI_ShowChar(x-10,y,'-',Size,mode);//改过 -1
+//    num=~num+1;
+//	}
+//	else;
 	
 /********************************************************************************/	
 	
@@ -922,14 +922,14 @@ void GUI_ShowNum_WD(u8 x,u8 y,int32_t num,u8 len,u8 Size,u8 mode)
 	u8 t,temp;
 	u8 enshow=0,csize;
 /********************************************************************************/
-	if(num&0x800000) num|=0xff000000;  //24位负  变32位负
-		num=YS_WD(num);
-	if(num &0x80000000)
-	   {  //32位数判断	
-		num= ((~num)+1); //负数转换正数
-		GUI_ShowChar(x-10,y,'-',Size,mode);//改过 -1
-	   }
-	else GUI_ShowChar(x-10,y,' ',Size,mode);//改过 
+//	if(num&0x800000) num|=0xff000000;  //24位负  变32位负
+//		num=YS_WD(num);
+//	if(num &0x80000000)
+//	   {  //32位数判断	
+//		num= ((~num)+1); //负数转换正数
+//		GUI_ShowChar(x-10,y,'-',Size,mode);//改过 -1
+//	   }
+//	else GUI_ShowChar(x-10,y,' ',Size,mode);//改过 
 /********************************************************************************/	
 	
   if(Size == 16)
@@ -961,9 +961,9 @@ void GUI_ShowNum_WD(u8 x,u8 y,int32_t num,u8 len,u8 Size,u8 mode)
 			
 		}
 //*************************************************************************
-	if(t<3)	          //加小数点
+	if(t<4)	          //加小数点
 	    GUI_ShowChar(x+csize*t,y,temp+'0',Size,mode); //'0'   ASCLL码
-	else if(t==3){
+	else if(t==4){
 		GUI_ShowChar(x+csize*t,y,'.',Size,mode); //优化
 	    GUI_ShowChar(x+csize*(t+1),y,temp+'0',Size,mode);
 	}

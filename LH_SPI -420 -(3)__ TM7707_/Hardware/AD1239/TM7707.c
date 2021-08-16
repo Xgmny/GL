@@ -1,7 +1,7 @@
 #include "TM7707.h"
 #include "led.h"
 
-u8 kan,S_7705=5;
+u8 kan,S_7705=5,error;
 u8 TM;  //7705_1  TM=1    7705_2  TM=0 
 // Target : TM7707
 
@@ -429,16 +429,16 @@ static uint16_t TM7705_Read2Byte(void)
 *	·µ »Ø Öµ: ÎÞ
 *********************************************************************************************************
 */
-void TM7705_WaitDRDY(void)
+u8 TM7705_WaitDRDY(void)
 {
 	uint32_t i;
 
 	for (i = 0; i < 500000; i++)
 	{
 		if(TM)
-		  {  if (DRDY1_IS_LOW()) {break;}	else; }	
+		  {  if (DRDY1_IS_LOW()) {return 1;}	else; }	
 		else
-		  {  if (DRDY2_IS_LOW()) {break;}	else; }
+		  {  if (DRDY2_IS_LOW()) {return 1;}	else; }
 	}
 	if(i>499999){
 		
@@ -446,6 +446,8 @@ void TM7705_WaitDRDY(void)
 		
 		_7707_REST();
 		LED0=!LED0;
+		error++;
+		return 0;
 		
 	  }  
 }

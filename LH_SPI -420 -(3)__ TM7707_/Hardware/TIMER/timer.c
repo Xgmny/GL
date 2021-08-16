@@ -168,17 +168,21 @@ void TIM4_IRQHandler(void)
 //llks=1时累加累计流量=0停止
 void Made_Data(void)
 {
-	int32_t a,b;
+	int32_t a,b,p;
 if(S_7705>=5){
  
 	b=0; TM=0;
-			TM7705_WaitDRDY();	// 等待内部操作完成 --- 时间较长，约180ms //
-			TM7705_WriteByte(0x38);
+			if(TM7705_WaitDRDY())	// 等待内部操作完成 --- 时间较长，约180ms //
+			{
+				TM7705_WriteByte(0x38);
 				b=TM7705_Read3Byte();
 				YS_WD(b);
-
+			}
+			else p=1;
 
 	a=0; TM=1;
+		  if(p==0)
+		   {
 			TM7705_WaitDRDY();	// 等待内部操作完成 --- 时间较长，约180ms //
             TM7705_WriteByte(0x38);
 				a=TM7705_Read3Byte();
@@ -187,7 +191,8 @@ if(S_7705>=5){
 		
 				YS_YS(a);
 				YS_YM(a);
-	
+			}
+		    else p=0;
 }else S_7705++;
 		
 }
