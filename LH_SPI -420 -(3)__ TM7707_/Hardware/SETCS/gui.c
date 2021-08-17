@@ -1216,15 +1216,27 @@ int32_t YS_LL(int32_t num){
   double i;
 	int32_t iz,zi;
 
-	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/80000)+num; //零点 0.000
-	iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;//切除
-	zi=((float)(FZ*FZ)/(int32_t)(SZ_LL_F *SZ_LL_F)*YuanMa/-100);
+	   num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/80000)+num; //零点 0.000
+	if((int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100)
+	  {iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;}  //切除
+	else 
+      {iz=(float)(ZF*ZF)/1;}  //切除
+	
+	if((int32_t)(SZ_LL_F *SZ_LL_F)*YuanMa/-100)
+	  zi=((float)(FZ*FZ)/(int32_t)(SZ_LL_F *SZ_LL_F)*YuanMa/-100);
+	else 
+	  zi=(float)(FZ*FZ)/1;
  if(num>iz)	
 	{
 		 i=num;
-		 i=SZ_LL_Z*10*(sqrt((i-ZFX)/(YuanMa-ZFX)));  //流量计算 5063000
-		  
+	  if(YuanMa-ZFX) 
+		i=SZ_LL_Z*10*(sqrt((i-ZFX)/(YuanMa-ZFX)));  //流量计算 5063000
+	  else 
+		i=SZ_LL_Z*10*(sqrt((i-ZFX)/1));  
+	  if(SZ_LL_Z/2)
 		  BFB=i/(SZ_LL_Z/2);  //切除
+	  else
+		  BFB=i/1;
           if(BFB>3){
                BFB=(BFB+4)/2;
 			  if(BFB>9)BFB=9;
@@ -1236,9 +1248,14 @@ int32_t YS_LL(int32_t num){
  else if(num<zi)
 	{
 		i=~num+1;
+		   if(YuanMa-FZX)
 			 i=SZ_LL_F*10*(sqrt((i-FZX)/(YuanMa-FZX)));  //流量计算
-		
-			BFB=i/(SZ_LL_F/2);  //切除
+		   else
+		     i=SZ_LL_F*10*(sqrt((i-FZX)/1));
+		   if(SZ_LL_F/2)
+			  BFB=i/(SZ_LL_F/2);  //切除
+		   else
+			  BFB=i/1;
             if(BFB>3){
                BFB=(BFB+4)/2;
 			  if(BFB>9)BFB=9;
@@ -1260,13 +1277,19 @@ int32_t YS_CY(int32_t num){
 	if((num>=ZFX))
 	{
 	   i=num;
-	   i=((i-ZFX)/(YuanMa-ZFX))*80000;
+	 if(YuanMa-ZFX)
+	    i=((i-ZFX)/(YuanMa-ZFX))*80000;
+	 else
+		i=((i-ZFX)/1)*80000;
 	   num=i;
 	}
 	else if(num<(~FZX+1))
 	 {
 		i=~num+1;
+	  if(YuanMa-FZX)
 		i=((i-FZX)/(YuanMa-FZX))*80000;  //流量计算80KP 的差压系数   3617000
+	  else
+		i=((i-FZX)/1)*80000; 
 		 num=i;
 		num=~num+1;
 	  }
@@ -1279,9 +1302,7 @@ int32_t YS_LJ(int32_t num){
 	LJI+=num;
 	while(LJI>  1800000)  {LJI-=1800000; LJ++; }
 	while(LJI<(-1800000)) {LJI+=1800000; LJ--; } 
-    if	(LJ>(999999)||LJ<(-999999))
-		 LJ=0;  
-	     else;
+    if	(LJ>(999999)||LJ<(-999999)) LJ=0;  else;
 	
 //	LJ+=num/100/5/60/60;//  小数点-2   1秒  1分 1时
 
@@ -1455,8 +1476,6 @@ int16_t TP1000_wd_(int32_t u)   //计算
 	}
  return u;
 }
-
-
 
 
 

@@ -170,7 +170,7 @@
 						}
 				  if (run==1)	
 					{
-						 Made_Data();		//AD转换	
+			//			 Made_Data();		//AD转换	
 						 //if(se30)
 						 {LJLL_Data();se30=0;}			//=1累计使能  30秒
 						cnt++;

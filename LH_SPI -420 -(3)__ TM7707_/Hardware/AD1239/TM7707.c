@@ -433,14 +433,14 @@ u8 TM7705_WaitDRDY(void)
 {
 	uint32_t i;
 
-	for (i = 0; i < 500000; i++)
+	for (i = 0; i < 70001; i++)
 	{
 		if(TM)
 		  {  if (DRDY1_IS_LOW()) {return 1;}	else; }	
 		else
 		  {  if (DRDY2_IS_LOW()) {return 1;}	else; }
 	}
-	if(i>499999){
+	if(i>70000){
 		
 		S_7705=0;
 		
