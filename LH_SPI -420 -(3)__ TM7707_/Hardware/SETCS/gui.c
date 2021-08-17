@@ -1431,7 +1431,9 @@ int32_t TP1000_ohm(int32_t u)
     
     u1=u*i	;
     u2=u0-u1;
-    ohm=(u1*r2)/u2*100+SZ_WD_B;	//50
+	if(u2*100+SZ_WD_B)
+      ohm=(u1*r2)/u2*100+SZ_WD_B;	//50
+	else ohm=(u1*r2)/1;
 
 	
 return	ohm;
