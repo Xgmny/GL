@@ -120,7 +120,7 @@ void Can_Send_Msg(u32 mid,u8* msg,u8 len)
   while((CAN_TransmitStatus(CAN1, mbox)==CAN_TxStatus_Failed)&&(i<0XFFF))i++;	//等待发送结束
   //if(i>=0XFFF)return 1;
   //return 0;	*/	
-
+LED0=!LED0;
 }
 //can口接收数据查询
 //buf:数据缓存区;	 

@@ -445,7 +445,6 @@ u8 TM7705_WaitDRDY(void)
 		S_7705=0;
 		
 		_7707_REST();
-		LED0=!LED0;
 		error++;
 		return 0;
 		

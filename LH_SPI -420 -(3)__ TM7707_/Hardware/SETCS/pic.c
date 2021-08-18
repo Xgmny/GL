@@ -174,8 +174,16 @@ else
 	if(gd<6 && gd>=0)GUI_ShowString(8,3+10*gd++,"Resistance:",11,8,1);	else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"[]Angle:",8,8,1);		else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(8,3+10*gd++,"EEPROM Bit:",11,8,1);		else gd++;
-	if(gd<6 && gd>=0)GUI_ShowString(8,3+10*gd++,"EEPROM Num:",11,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(8,3+10*gd++, "EEPROM Num:",11,8,1);		else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(38,3+10*gd++,"Error:",6,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(14,3+10*gd++,"ESR B,E,W:",10,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"ESR LEC:",8,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"ESR TEC:",8,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"ESR REC:",8,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"MCR 0-7:",8,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(20,3+10*gd++,"RF0R FMP:",9,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(32,3+10*gd++,"F_SIZE:",7,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(44,3+10*gd++,"F_ID:",5,8,1);		else gd++;
 }	
 
 }

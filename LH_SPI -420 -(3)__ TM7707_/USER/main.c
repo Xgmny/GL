@@ -156,21 +156,30 @@
 				//						GUI_ShowNum(34,24,QJs,7,16,1); 
 										GUI_ShowString(70,16,lwd_pa ,4,16,1);	//허실	jdl				
 										GUI_ShowString(4,33,jdl,6,16,1);	//
-										GUI_ShowNum(64,33,WD_Ohm ,6,16,1);
+										GUI_ShowNum(64,33,0000,6,16,1);
 									  }
 								    else
 									   {				
-										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd,5,8,1); 	else gd++;
-										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd_pa ,4,8,1);	else gd++;
-										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lsl,8,8,1);		else gd++;
-										if(gd<6 && gd>=0)GUI_ShowNum_WD(81,3+10*gd++,WD_Ohm ,6,8,1); else gd++;
-										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,jdl,6,8,1);		else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd,5,8,1); 			else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd_pa ,4,8,1);		else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lsl,8,8,1);			else gd++;
+										if(gd<6 && gd>=0)GUI_ShowNum_WD(81,3+10*gd++,WD_Ohm ,6,8,1); 		else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,jdl,6,8,1);			else gd++;
 								//	 	if(gd<6 && gd>=0)GUI_ShowNum(75,47,QJs,7,8,1); //허실	jdl
-										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,NIAN ,3,8,1); else gd++;
-										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,JNW,8,8,1); 	else gd++;
+										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,NIAN ,3,8,1); 			else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,JNW,8,8,1); 			else gd++;
 										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,error ,3,8,1);			else gd++;
-										gd=Gd;						
-									    }
+										if(gd<6 && gd>=0)GUI_ShowNum(87,3+10*gd++,((*(u32*)0x40006418))&0x00000007 ,1,8,1);else gd++;//CAN_ESR BEW
+										if(gd<6 && gd>=0)GUI_ShowNum(87,3+10*gd++,((*(u32*)0x40006418)>>4)&0x00000007 ,1,8,1);else gd++; // 
+										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,((*(u32*)0x40006418)>>16)&0x000000FF ,3,8,1);else gd++; // 
+										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,((*(u32*)0x40006418)>>24)&0x000000FF ,3,8,1);else gd++; //
+										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,(CAN1->MCR)&0x000000FF ,3,8,1);else gd++; //
+										if(gd<6 && gd>=0)GUI_ShowNum(87,3+10*gd++,(CAN1->RF0R)&0x00000003 ,1,8,1);else gd++; // 
+										if(gd<6 && gd>=0)GUI_ShowNum(63,3+10*gd++,((*(u32*)0x1FFFF7E0))&0x0000FFFF ,8,8,1);else gd++; // 
+										if(gd<6 && gd>=0)GUI_ShowNum(63,3+10*gd++,((*(u32*)0x1FFFF7E8))&0x0000FFFF ,8,8,1);else gd++; //    
+										
+										   gd=Gd;						
+									    }											
 									}
 							  }else ms1000++;
 							
