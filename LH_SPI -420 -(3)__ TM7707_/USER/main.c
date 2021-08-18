@@ -31,6 +31,7 @@
 	int32_t LJ;
 	int32_t LL;
 	u8 ms1000=0;
+	int8_t Gd,Gd_y;
 	u16 A;
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
 	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
@@ -39,14 +40,14 @@
    extern int32_t WD_Ohm,WD;
    extern u32 NIAN;
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
-   extern u8 idata,date8[],error;
+   extern u8 idata,date8[],error,JNW[];
    extern u16 QJs;
    u8 rxd_bz,canbuf_rxd[8],run;
 	
  int main(void)
  {	
-	 
-	u8 cnt=0,old_key=0,hmqh;
+	int8_t gd;
+	u8 cnt=0,old_key=0,hmqh,yei;
 	u8 canbuf_txd[8]={0x00,0x00,0x32,0x30,0x30,0x30,0x2e,0x30};
 
 	delay_init();	    	 //延时函数初始化	
@@ -128,12 +129,18 @@
 							{
 								if((key==0)&(old_key==3))
 								{
+									Gd_y =0;
 									if (hmqh>=1)
 										{	hmqh=0;FIRST();}
 									else
 											{hmqh=1;FIRST_2();}
 								}else;
-							if(ms1000==2)
+								////////////
+								if(hmqh && key==2) {if(Gd_y>30){Gd--;FIRST_2();gd=Gd;} else Gd_y=0;}
+								else;
+								if(hmqh && key==1) {if(Gd_y>30){Gd++;if(Gd>0)Gd=0;FIRST_2();gd=Gd;} else Gd_y++;}
+								else;
+								if(ms1000==2)
 							  {	
 								  ms1000=0;
 								if (!hmqh)	
@@ -143,22 +150,27 @@
 						             GUI_ShowString(34,45,cyl,8,16,1);	
 								}
 								else{
-									#if(0)
-									GUI_ShowString(4, 16,lwd,5,16,1); 
-			//						GUI_ShowNum(34,24,QJs,7,16,1); 
-									GUI_ShowString(70,16,lwd_pa ,4,16,1);	//倾角	jdl				
-									GUI_ShowString(4,33,jdl,6,16,1);	//
-									GUI_ShowNum(64,33,WD_Ohm ,6,16,1);
-									#else
-									GUI_ShowString(75, 2,lwd,5,8,1); 
-									GUI_ShowString(75,11,lwd_pa ,4,8,1);	//
-									GUI_ShowString(75,20,lsl,8,8,1);
-									GUI_ShowNum_WD(81,29,WD_Ohm ,6,8,1);
-									GUI_ShowString(75,38,jdl,6,8,1);	//
-							//	 	GUI_ShowNum(75,47,QJs,7,8,1); //倾角	jdl
-									GUI_ShowNum(75,56,error ,3,8,1);
-									
-									#endif
+									if(Gd_y<30)
+									  {
+										GUI_ShowString(4, 16,lwd,5,16,1); 
+				//						GUI_ShowNum(34,24,QJs,7,16,1); 
+										GUI_ShowString(70,16,lwd_pa ,4,16,1);	//倾角	jdl				
+										GUI_ShowString(4,33,jdl,6,16,1);	//
+										GUI_ShowNum(64,33,WD_Ohm ,6,16,1);
+									  }
+								    else
+									   {				
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd,5,8,1); 	else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd_pa ,4,8,1);	else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lsl,8,8,1);		else gd++;
+										if(gd<6 && gd>=0)GUI_ShowNum_WD(81,3+10*gd++,WD_Ohm ,6,8,1); else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,jdl,6,8,1);		else gd++;
+								//	 	if(gd<6 && gd>=0)GUI_ShowNum(75,47,QJs,7,8,1); //倾角	jdl
+										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,NIAN ,3,8,1); else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,JNW,8,8,1); 	else gd++;
+										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,error ,3,8,1);			else gd++;
+										gd=Gd;						
+									    }
 									}
 							  }else ms1000++;
 							
@@ -170,7 +182,7 @@
 						}
 				  if (run==1)	
 					{
-			//			 Made_Data();		//AD转换	
+						 Made_Data();		//AD转换	
 						 //if(se30)
 						 {LJLL_Data();se30=0;}			//=1累计使能  30秒
 						cnt++;
