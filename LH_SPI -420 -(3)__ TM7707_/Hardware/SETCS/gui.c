@@ -49,7 +49,45 @@
 12060,12447,12835,13222,13608,13995,14382,14768,15155,15541,//40
 15927,16313,16699,17085,17470,17856,18241,18627,19012,19397,//50
 };
+/*******************************************************************
+ * @name       :void GUI_DrawPoint(u8 x,u8 y,u8 color)  点
+ * @date       :2018-08-27
+ * @function   :draw a point in LCD screen
+ * @parameters :x:the x coordinate of the point
+                y:the y coordinate of the point
+								color:the color value of the point
+								      1-white
+											0-black
+ * @retvalue   :None
+********************************************************************/
+void GUI_Draw_sin(u8 h,u8 color)
+{
+	int8_t y=0;
+	int16_t x=0,i=4;
+	u16 p;
+//	    OLED_Clear(0); 
+ for(p=0;p<100;p++){
+     for(x=0;x<128;x++)
+		{
+		y=sin(((float)x-p%128)/5)*i;
+		y=y+h*8;
+		 OLED_Set_Pixel(x,y,color);
+		y=cos(((float)x-p%128)/5)*i;
+		y=y+h*8;
+		 OLED_Set_Pixel(x,y,color);
+		}
+		
+	     OLED_Display();delay_ms(10);
+		
+	 for(x=0;x<128;x++)
+		{
+		y=sin(((float)x-p%128)/5)*i;
+		y=y+h*8;
+		 OLED_Set_Pixel(x,y,0);
 
+		}
+	}
+}
 /*******************************************************************
  * @name       :void GUI_DrawPoint(u8 x,u8 y,u8 color)  点
  * @date       :2018-08-27
@@ -68,7 +106,7 @@ void GUI_DrawPoint(u8 x,u8 y,u8 color)
 }
 
 /*******************************************************************
- * @name       :void GUI_Fill(u8 sx,u8 sy,u8 ex,u8 ey,u8 color)
+ * @name       :void GUI_Fill(u8 sx,u8 sy,u8 ex,u8 ey,u8 color)满
  * @date       :2018-08-27 
  * @function   :fill the specified area
  * @parameters :sx:the bebinning x coordinate of the specified area
@@ -146,7 +184,7 @@ void GUI_DrawLine(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)
 } 
 
 /*****************************************************************************
- * @name       :void GUI_DrawRectangle(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)
+ * @name       :void GUI_DrawRectangle(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)画矩形
  * @date       :2018-08-27 
  * @function   :Draw a rectangle
  * @parameters :x1:the bebinning x coordinate of the rectangle
@@ -167,7 +205,7 @@ void GUI_DrawRectangle(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)
 }  
 
 /*****************************************************************************
- * @name       :void GUI_FillRectangle(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)
+ * @name       :void GUI_FillRectangle(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)长方形
  * @date       :2018-08-27
  * @function   :Filled a rectangle
  * @parameters :x1:the bebinning x coordinate of the filled rectangle
@@ -185,7 +223,7 @@ void GUI_FillRectangle(u8 x1, u8 y1, u8 x2, u8 y2,u8 color)
 }
  
 /*****************************************************************************
- * @name       :static void _draw_circle_8(u8 xc, u8 yc, u8 x, u8 y, u8 color)
+ * @name       :static void _draw_circle_8(u8 xc, u8 yc, u8 x, u8 y, u8 color)圆圈
  * @date       :2018-08-27 
  * @function   :8 symmetry circle drawing algorithm (internal call)
  * @parameters :xc:the x coordinate of the Circular center 
@@ -210,7 +248,7 @@ static void _draw_circle_8(u8 xc, u8 yc, u8 x, u8 y, u8 color)
 }
 
 /*****************************************************************************
- * @name       :void GUI_DrawCircle(u8 xc, u8 yc, u8 color, u8 r)
+ * @name       :void GUI_DrawCircle(u8 xc, u8 yc, u8 color, u8 r)画圆形
  * @date       :2018-08-27
  * @function   :Draw a circle of specified size at a specified location
  * @parameters :xc:the x coordinate of the Circular center 
@@ -243,7 +281,7 @@ void GUI_DrawCircle(u8 xc, u8 yc, u8 color, u8 r)
 }
 
 /*****************************************************************************
- * @name       :void GUI_FillCircle(u8 xc, u8 yc, u8 color, u8 r)
+ * @name       :void GUI_FillCircle(u8 xc, u8 yc, u8 color, u8 r)填充画圆形
  * @date       :2018-08-27
  * @function   :Fill a circle of specified size at a specified location
  * @parameters :xc:the x coordinate of the Circular center 
@@ -301,7 +339,7 @@ void GUI_DrawTriangel(u8 x0,u8 y0,u8 x1,u8 y1,u8 x2,u8 y2,u8 color)
 }
 
 /*****************************************************************************
- * @name       :static void _swap(u8 *a, u8 *b)
+ * @name       :static void _swap(u8 *a, u8 *b)交换
  * @date       :2018-08-27
  * @function   :Exchange two numbers(internal call)
  * @parameters :a:the address of the first number 

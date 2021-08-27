@@ -90,9 +90,42 @@ void WBZD_Init(void) // 中断引脚初始化
 
 
 //****************************************************************************
+void TIM3_PWM_init(u16 arr,u16 psc)
+{
+    GPIO_InitTypeDef  			GPIO_TimeBaseStructure;
+    TIM_TimeBaseInitTypeDef  	TIM_TimeBaseStructure;
+	TIM_OCInitTypeDef    		TIM_OCInitStructure;
+
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //时钟使能
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);//使能引脚
+	
+    GPIO_TimeBaseStructure.GPIO_Pin = GPIO_Pin_6;   //LED  GPIO
+ 	GPIO_TimeBaseStructure.GPIO_Mode  = GPIO_Mode_AF_PP ;//设置上拉输入
+	GPIO_TimeBaseStructure.GPIO_Speed=GPIO_Speed_50MHz;
+ 	GPIO_Init(GPIOA,&GPIO_TimeBaseStructure);
+
+	TIM_DeInit (TIM3);
+	TIM_TimeBaseStructure.TIM_Period = arr; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值	
+	TIM_TimeBaseStructure.TIM_Prescaler =1; //设置用来作为TIMx时钟频率除数的预分频值
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
+	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure); //根据指定的参数初始化TIMx的时间基数单位
+	
+	TIM_OCInitStructure.TIM_OCMode=TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OutputState=TIM_OCIdleState_Set;
+	TIM_OCInitStructure.TIM_Pulse=psc;//占空比
+	TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_High;
+    TIM_OC1Init(TIM3,&TIM_OCInitStructure);
+	
+	TIM_OC1PreloadConfig(TIM3,TIM_OCPreload_Enable);
+	TIM_ARRPreloadConfig (TIM3,ENABLE);
+	
+	TIM_Cmd(TIM3, ENABLE);  //使能TIMx					 
+}
 //****************************************************************************
 void TIM4_init(u16 arr,u16 psc)
 {
+
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 
@@ -208,7 +241,7 @@ void LJLL_Data(void)
 		  {
 				N_A(NIAN/16+1,kl,4);  //
 				NIAN+=16;
-		        AT24CXX_Write(0x01f0,kl,4);
+		        AT24CXX_Write(0x01f0,kl,4);         //记第几位
 				AT24CXX_Write(0x0200+NIAN,ljl,8);  //写累计量
 			    JNS=0;
 		        N_A(JNS,JNW,8);

@@ -49,18 +49,19 @@
 	int8_t gd;
 	u8 cnt=0,old_key=0,hmqh,yei;
 	u8 canbuf_txd[8]={0x00,0x00,0x32,0x30,0x30,0x30,0x2e,0x30};
-
+   
 	delay_init();	    	 //延时函数初始化	
+	OLED_Init();
+	GUI_ShowCHinese(0,15,32,"科瑞仪表",1);
    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
 	uart_init(9600);	 	//串口初始化为115200
 	LED_Init();		  		//初始化与LED连接的硬件接口
 	KEY_Init();				//按键初始化		
 	AT24CXX_Init();			//IIC初始化 
 	TM7707_init( );
-	OLED_Init();
+	
 	FIRST(); ljks=1;hmqh=0;
 	TIM4_init(1999,7199);//定时器4 200毫秒
-//	WBZD_Init();
 
 	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);//CAN初始,波特率250Kbps 
 									//最后参数  mode:0,普通模式;1,回环模式; //  
@@ -145,6 +146,7 @@
 								  ms1000=0;
 								if (!hmqh)	
 								{	
+									
 									 GUI_ShowString(34, 3,lll,8,16,1); // 流量
 						             GUI_ShowString(34,24,ljl,8,16,1);	//ljl   lsl
 						             GUI_ShowString(34,45,cyl,8,16,1);	

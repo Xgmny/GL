@@ -11,6 +11,7 @@ extern u8 ms200;
 
 void WBZD_Init(void);
 void TIM3_init(u16 arr,u16 psc);
+void TIM3_PWM_init(u16 arr,u16 psc);
 void TIM4_init(u16 arr,u16 psc);
 void PVD_init(void);
 void Made_Data(void);

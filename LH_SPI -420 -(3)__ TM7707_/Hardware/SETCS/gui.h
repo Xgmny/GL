@@ -4,7 +4,7 @@
 
 
 
-
+void GUI_Draw_sin(u8 h,u8 color);
 void GUI_DrawPoint(u8 x, u8 y, u8 color);
 void GUI_Fill(u8 sx,u8 sy,u8 ex,u8 ey,u8 color);
 void GUI_DrawLine(u8 x1, u8 y1, u8 x2, u8 y2,u8 color);

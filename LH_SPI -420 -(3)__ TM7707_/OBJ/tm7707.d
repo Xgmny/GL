@@ -32,3 +32,4 @@
 ..\obj\tm7707.o: ..\FWLib\inc\misc.h
 ..\obj\tm7707.o: ..\SYSTEM\delay\delay.h
 ..\obj\tm7707.o: ..\Hardware\LED\led.h
+..\obj\tm7707.o: ..\Hardware\SETCS\gui.h

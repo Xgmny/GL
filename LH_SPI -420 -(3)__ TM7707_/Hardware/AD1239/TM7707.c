@@ -1,5 +1,6 @@
 #include "TM7707.h"
 #include "led.h"
+#include "gui.h"
 
 u8 kan,S_7705=5,error;
 u8 TM;  //7705_1  TM=1    7705_2  TM=0 
@@ -187,7 +188,8 @@ void TM7707_init(void) //初始化
 //	TM7705_WriteByte(0x50);    TM7705_WriteByte(0x50);//ain1  
 _7707_REST();
 
-delay_ms(600);
+GUI_Draw_sin(7,1);
+//delay_ms(1600);
 //	  write_byte1(0X20);  write_byte1(0X25);  //滤波器高寄存器   大电流
 	
 }
