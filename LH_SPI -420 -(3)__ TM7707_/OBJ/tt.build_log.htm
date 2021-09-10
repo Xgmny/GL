@@ -22,39 +22,30 @@ Dialog DLL:      TARMSTM.DLL V1.66.0.0
  
 <h2>Project:</h2>
 D:\2122\Èí¼þ\GitHub2122\GL\LH_SPI -420 -(3)__ TM7707_\USER\Template.uvprojx
-Project File Date:  07/27/2021
+Project File Date:  09/06/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\2122\Keil\ARM\ARMCC\Bin'
 Build target 'Template'
-compiling main.c...
+compiling mport.c...
+compiling timer.c...
 ..\Hardware\AD1239\TM7707.h(38): warning:  #1295-D: Deprecated declaration read_byte1 - give arg types
   u8 read_byte1 ();
 ..\Hardware\AD1239\TM7707.h(57): warning:  #1295-D: Deprecated declaration DIO_IN - give arg types
   void DIO_IN( );
 ..\Hardware\AD1239\TM7707.h(58): warning:  #1295-D: Deprecated declaration DIO_OUT - give arg types
   void DIO_OUT( );
-main.c(50): warning:  #177-D: variable "yei"  was declared but never referenced
-  	u8 cnt=0,old_key=0,hmqh,yei;
-main.c: 4 warnings, 0 errors
-compiling gui.c...
-..\Hardware\SETCS\gui.c(1454): warning:  #177-D: variable "ii"  was declared but never referenced
-  	double u0,i,ii, u1,u2,r2;//ii   Vs    2.498/16777125=148    1.1822  1.3158  1.249
-..\Hardware\SETCS\gui.c(1501): warning:  #177-D: variable "i"  was declared but never referenced
-  	u8 i=0 ,ii=0;
-..\Hardware\SETCS\gui.c(1501): warning:  #177-D: variable "ii"  was declared but never referenced
-  	u8 i=0 ,ii=0;
-..\Hardware\SETCS\gui.c(1502): warning:  #177-D: variable "b"  was declared but never referenced
-  	u16 b=0,bb;
-..\Hardware\SETCS\gui.c(1502): warning:  #177-D: variable "bb"  was declared but never referenced
-  	u16 b=0,bb;
-..\Hardware\SETCS\gui.c(40): warning:  #177-D: variable "WD_1"  was declared but never referenced
-  	static int32_t WD_1;
-..\Hardware\SETCS\gui.c: 6 warnings, 0 errors
+..\Hardware\TIMER\timer.c(173): warning:  #111-D: statement is unreachable
+  EXTI->IMR|=0X80;
+..\Hardware\TIMER\timer.c(279): warning:  #111-D: statement is unreachable
+  	EXTI_ClearITPendingBit(EXTI_Line16);
+..\Hardware\TIMER\timer.c(21): warning:  #177-D: variable "buf"  was declared but never referenced
+  static uint8_t buf[3];
+..\Hardware\TIMER\timer.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=33794 RO-data=8158 RW-data=508 ZI-data=1047220  
+Program Size: Code=34546 RO-data=8158 RW-data=516 ZI-data=1047220  
 FromELF: creating hex file...
-"..\OBJ\tt.axf" - 0 Error(s), 10 Warning(s).
+"..\OBJ\tt.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -68,7 +59,7 @@ Package Vendor: Keil
   D:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

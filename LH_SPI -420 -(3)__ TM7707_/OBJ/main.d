@@ -49,3 +49,4 @@
 ..\obj\main.o: ..\Hardware\AD1239\TM7707.h
 ..\obj\main.o: ..\Hardware\MODBUS\mport.h
 ..\obj\main.o: ..\Hardware\IIC\IIC__.h
+..\obj\main.o: ..\Hardware\AD1239\GP8302.h

@@ -17,7 +17,7 @@
 #include "TM7707.h"
 #include "mport.h"
 #include "IIC__.h"
-
+#include "GP8302.h"
 
 
     u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
@@ -58,8 +58,9 @@
 	LED_Init();		  		//初始化与LED连接的硬件接口
 	KEY_Init();				//按键初始化		
 	AT24CXX_Init();			//IIC初始化 
+	GP8302_Init();
 	TM7707_init( );
-	
+
 	FIRST(); ljks=1;hmqh=0;
 	TIM4_init(1999,7199);//定时器4 200毫秒
 
@@ -194,7 +195,7 @@
 				  if (run==1)	
 					{
 						 Made_Data();		//AD转换	
-						 //if(se30)
+						 if(se30)
 						 {LJLL_Data();se30=0;}			//=1累计使能  30秒
 						cnt++;
 						if (cnt>=255) cnt=0;
@@ -207,6 +208,7 @@
 						canbuf_txd[6]=LJ>>8;
 						canbuf_txd[7]=LJ;
 						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
+						
 					}
 				ms200=0;  
 			}

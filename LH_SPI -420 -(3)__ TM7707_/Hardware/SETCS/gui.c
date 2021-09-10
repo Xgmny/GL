@@ -5,6 +5,7 @@
 #include "delay.h"
 #include "gui.h"
 #include <math.h>
+#include "GP8302.h"
 #define FZX  0    //消除 
 #define ZFX  0    //消除
 #define FZ (SZ_QC_F*10)     //消除 
@@ -1383,6 +1384,7 @@ zf 正负号
 void YS_YS(int32_t num){
 	int32_t cc,ccll;
 	u8 zf;
+	static u16 dianliu;
 #if 0
 	   //                                    零点校正 负				零点校正 正
  	  if(num&0x800000){  num|=0xff000000;} else{ zf=0;} //24位负  变32位负
@@ -1404,7 +1406,10 @@ void YS_YS(int32_t num){
 		 ccll=num;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,lll);
-	
+		
+
+//		 GP8302_Read((3135*(ccll/200)/1000)+788); //819    DA8302
+
 	     num=ccll;
 	  
 		 num=YS_LJ(num);    //累计

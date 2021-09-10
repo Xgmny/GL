@@ -7,7 +7,7 @@
 #include "TM7707.h"
 #include "protocol.h"
 #include "mport.h"
-
+#include "GP8302.h"
 
 	extern u8 lll[];
 	extern u8 ljl[];
@@ -146,8 +146,14 @@ void TIM4_init(u16 arr,u16 psc)
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;  //从优先级3级
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
 	NVIC_Init(&NVIC_InitStructure);  //初始化NVIC寄存器
-
-	TIM_Cmd(TIM4, ENABLE);  //使能TIMx					 
+	TIM_Cmd(TIM4, ENABLE);  //使能TIMx	
+	
+	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;  //USART中断
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;  //先占优先级0级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;  //从优先级3级
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
+	NVIC_Init(&NVIC_InitStructure);  //初始化NVIC寄存器
+    USART_Cmd(USART2, ENABLE);
 }
 
 /***************************************************************************************
@@ -176,10 +182,17 @@ void TIM4_IRQHandler(void)
 	
 {
 	static u8 secn;
+	static u16 dianliu;
+	static u8 js;
 
     if(TIM_GetITStatus(TIM4,TIM_IT_Update)!= RESET)
 	{    //判断是否是TIM4的update中断
 //					 Made_Data();		//AD转换	
+		//	if(dianliu>0x0FFF)dianliu=0x0FFF;
+			dianliu=(3135*(js/200.0))+788;
+				GP8302_Read(dianliu); //819
+			if (slj30==149)  js+=50;  else;
+			if (js>200)      js=0;  else;
 		
 		TIM_ClearITPendingBit(TIM4,TIM_IT_Update);//使能中断
         ms200=1;

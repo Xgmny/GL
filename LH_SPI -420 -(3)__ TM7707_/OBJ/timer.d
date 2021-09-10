@@ -41,3 +41,4 @@
 ..\obj\timer.o: ..\Hardware\MODBUS\protocol.h
 ..\obj\timer.o: ..\Hardware\MODBUS\mport.h
 ..\obj\timer.o: ..\Hardware\MODBUS\mcheck.h
+..\obj\timer.o: ..\Hardware\AD1239\GP8302.h

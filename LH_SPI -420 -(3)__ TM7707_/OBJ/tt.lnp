@@ -21,6 +21,7 @@
 "..\obj\spi.o"
 "..\obj\24c64.o"
 "..\obj\tm7707.o"
+"..\obj\gp8302 .o"
 "..\obj\stm32f10x_usart.o"
 "..\obj\misc.o"
 "..\obj\stm32f10x_can.o"

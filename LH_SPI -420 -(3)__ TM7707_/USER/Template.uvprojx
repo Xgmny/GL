@@ -515,6 +515,11 @@
               <FileType>1</FileType>
               <FilePath>..\Hardware\AD1239\TM7707.c</FilePath>
             </File>
+            <File>
+              <FileName>GP8302 .c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\AD1239\GP8302 .c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -84,7 +84,9 @@ void USART1_IRQHandler(void)
 
 
 void mp_init(u32 pclk2,u32 bound)
-{  	  
+{  	
+NVIC_InitTypeDef NVIC_InitStructure;
+	
 	RCC->APB2ENR|=1<<2;   //使能PORTA口时钟  
 	RCC->APB2ENR|=1<<14;  //使能串口时钟 
 	GPIOA->CRH&=0XFFFFF00F;//IO状态设置
@@ -97,7 +99,14 @@ void mp_init(u32 pclk2,u32 bound)
 	USART1->CR1|=1<<4;	  //开启串口总线空闲中断. 
 	//使能接收中断 
 	USART1->CR1|=1<<5;    //接收缓冲区非空中断使能	    	
-//	MY_NVIC_Init(3,3,USART1_IRQn,2);//组2，最低优先级  
+//	MY_NVIC_Init(2,2,USART1_IRQn,2);//组2，最低优先级  
+	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;  //USART中断
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;  //先占优先级0级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;  //从优先级3级
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
+	NVIC_Init(&NVIC_InitStructure);  //初始化NVIC寄存器
+    USART_Cmd(USART2, ENABLE);
+	
 }
 
 
