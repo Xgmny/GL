@@ -1365,12 +1365,13 @@ u8 zf;
 	 num=TP1000_ohm(num);
 	WD_Ohm=num;
 	 num=TP1000_wd_(num);
+		if(num<-600)  num=270; else;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
-	     NUM_A(num,4,1,zf,lwd);
+	  	     NUM_A(num,4,1,zf,lwd);
 	  
 	
 	 num=(num*-111+30900)/100;   //y=xk+b
-	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
+	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,3,0,zf,lwd_pa);
          WD=num;
 	return num;
@@ -1406,9 +1407,8 @@ void YS_YS(int32_t num){
 		 ccll=num;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,lll);
-		
 
-//		 GP8302_Read((3135*(ccll/200)/1000)+788); //819    DA8302
+	  GP8302(ccll); //819    DA8302
 
 	     num=ccll;
 	  
@@ -1430,7 +1430,7 @@ void YS_YS(int32_t num){
 	   
 	     num=QJs;//倾角
 	  if(num>18000)   {num= (36100-QJs); zf=1;} else zf=0;//负数转换正数
-     	 NUM_A(num,7,2,zf,jdl); 
+     	 NUM_A(num,5,2,zf,jdl); 
 
 	    
 	  

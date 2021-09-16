@@ -18,6 +18,7 @@
 #include "mport.h"
 #include "IIC__.h"
 #include "GP8302.h"
+#include "mport.h"
 
 
     u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
@@ -55,6 +56,8 @@
 	GUI_ShowCHinese(0,15,32,"科瑞仪表",1);
    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
 	uart_init(9600);	 	//串口初始化为115200
+	QingJiao_19200();
+	uart_init(19200);	 	//串口初始化为115200
 	LED_Init();		  		//初始化与LED连接的硬件接口
 	KEY_Init();				//按键初始化		
 	AT24CXX_Init();			//IIC初始化 
@@ -142,12 +145,12 @@
 								else;
 								if(hmqh && key==1) {if(Gd_y>30){Gd++;if(Gd>0)Gd=0;FIRST_2();gd=Gd;} else Gd_y++;}
 								else;
-								if(ms1000==2)
-							  {	
+							 if(ms1000==2)
+							   {	
 								  ms1000=0;
 								if (!hmqh)	
 								{	
-									
+//									GP8302_Read((3135*(js/200.0))+788);
 									 GUI_ShowString(34, 3,lll,8,16,1); // 流量
 						             GUI_ShowString(34,24,ljl,8,16,1);	//ljl   lsl
 						             GUI_ShowString(34,45,cyl,8,16,1);	

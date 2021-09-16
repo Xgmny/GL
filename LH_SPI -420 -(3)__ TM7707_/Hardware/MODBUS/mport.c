@@ -1,6 +1,7 @@
 #include "protocol.h"
 #include "mcheck.h" 
 #include "mport.h"
+#include "delay.h"
 
 u8 QJ[6] ,QJp=0,JDL[8];
 u16 QJs;
@@ -138,10 +139,32 @@ void QingJiao_F(void)//发  读取角度命令
 mp_send_data(fx,8)	;
   
 	QJp=0;
-
 }	
 
-
+void QingJiao_19200(void)//发  改波特率19200
+{
+    u8 fx[8];	
+		delay_ms(118);
+	fx[0]=0x02;
+	fx[1]=0x06;
+	fx[2]=0x00;
+	fx[3]=0x08;
+			fx[4]=0xA3;    		   //A0//A3
+			fx[5]=0xA3;			  //A0//A3
+			fx[6]=0x30;   	     //70//30
+			fx[7]=0xB2;			//43//B2
+//		fx[4]=0xA0;    		   //A0//A3
+//	    fx[5]=0xA0;			  //A0//A3
+//	    fx[6]=0x70;   	     //70//30
+//	    fx[7]=0x43;			//43//B2
+//			fx[4]=0xA2;    		   //A0//A3
+//		    fx[5]=0xA2;			  //A0//A3
+//		    fx[6]=0xF0;   	     //70//30
+//		    fx[7]=0xE2;			//43//B2	
+	
+mp_send_data(fx,8)	;
+	delay_ms(18);
+}
 
 
 

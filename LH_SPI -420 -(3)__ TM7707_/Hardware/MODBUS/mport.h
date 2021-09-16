@@ -20,6 +20,7 @@
 void mp_init(u32 pclk2,u32 bound);			//初始化接口
 void mp_send_data(u8* buf, u16 len);		//发送数据 
 void QingJiao_F(void);                      //倾角 接收数
+void QingJiao_19200(void);
 
 #endif
 

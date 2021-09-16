@@ -17,6 +17,7 @@ void SDA8302_OUT(void);
 void SDA8302_IN(void);
 
 u8 GP8302_Read(u16 ReadAddr);
+void GP8302(int32_t ReadAddr);
 
 
 

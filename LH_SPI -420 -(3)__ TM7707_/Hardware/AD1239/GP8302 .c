@@ -1,5 +1,30 @@
 #include "GP8302.h"
 
+extern int32_t  SZ_LL_Z,SZ_LL_F;
+int32_t lins;
+
+void GP8302(int32_t ReadAddr)
+{
+if(ReadAddr>500  &&  SZ_LL_Z!=0)
+	{
+	GP8302_Read((3135*((ReadAddr*10000)/SZ_LL_Z)/200000)+1567+788);	
+	}
+else if(ReadAddr<-500  &&  SZ_LL_F!=0)
+	{ 
+		
+	ReadAddr=(~ReadAddr)+1;
+//	lins=(((3135*(SZ_LL_F*10-ReadAddr))/SZ_LL_F/20)+788);
+    lins=((SZ_LL_F*10-ReadAddr)*3135);
+	lins/=SZ_LL_F;
+	lins/=20;
+	lins+=	789;
+	GP8302_Read(lins);	
+
+	}
+else GP8302_Read(1570+788);	
+}
+
+
 u8 GP8302_Read(u16 ReadAddr)
 {				  
 	u8 temp=0;		  	    																 

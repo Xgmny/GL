@@ -34,3 +34,4 @@
 ..\obj\mport.o: ..\SYSTEM\usart\usart.h
 ..\obj\mport.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\mport.o: ..\Hardware\MODBUS\mcheck.h
+..\obj\mport.o: ..\SYSTEM\delay\delay.h
