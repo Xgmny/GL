@@ -153,7 +153,24 @@
           <Name>(105=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>75</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134246050</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>D:\2122\杞欢\GitHub2122\GL\LH_SPI -420 -(3)__ TM7707_\USER\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\tt\main.c\75</Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
@@ -173,77 +190,77 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>YS_WD</ItemText>
+          <ItemText>SZ_LL_Z,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>JNS,0x0A</ItemText>
+          <ItemText>SZ_LL_F,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>JNW</ItemText>
+          <ItemText>lins,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>NIAN</ItemText>
+          <ItemText>ReadAddr,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Gd</ItemText>
+          <ItemText>num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Gd_y</ItemText>
+          <ItemText>WD,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>lll</ItemText>
+          <ItemText>WD_Ohm,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>x,0x0A</ItemText>
+          <ItemText>a,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>sin,0x0A</ItemText>
+          <ItemText>num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>12</count>
           <WinNumber>1</WinNumber>
-          <ItemText>i,0x0A</ItemText>
+          <ItemText>i</ItemText>
         </Ww>
         <Ww>
           <count>13</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ReadAddr,0x0A</ItemText>
+          <ItemText>SZ_LD_F-SZ_LD_Z,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>14</count>
           <WinNumber>1</WinNumber>
-          <ItemText>SZ_LL_Z,0x0A</ItemText>
+          <ItemText>SZ_LD_F,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>15</count>
           <WinNumber>1</WinNumber>
-          <ItemText>SZ_LL_F,0x0A</ItemText>
+          <ItemText>SZ_LD_Z,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>16</count>
           <WinNumber>1</WinNumber>
-          <ItemText>lins,0x0A</ItemText>
+          <ItemText>90000,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>17</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ReadAddr,0x0A</ItemText>
+          <ItemText>num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>18</count>
@@ -253,12 +270,12 @@
         <Ww>
           <count>19</count>
           <WinNumber>1</WinNumber>
-          <ItemText>WD,0x0A</ItemText>
+          <ItemText>SZ_LL_Z,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>20</count>
           <WinNumber>1</WinNumber>
-          <ItemText>WD_Ohm,0x0A</ItemText>
+          <ItemText>SZ_LL_F,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>

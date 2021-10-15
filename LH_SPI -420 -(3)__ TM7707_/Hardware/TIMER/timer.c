@@ -229,6 +229,8 @@ if(S_7705>=5){
 				a=TM7705_Read3Byte();
 //			TM7705_CalibSelf(1);
 		    QingJiao_F();//Çã½Ç
+			   delay_ms(7);
+
 		
 				YS_YS(a);
 				YS_YM(a);

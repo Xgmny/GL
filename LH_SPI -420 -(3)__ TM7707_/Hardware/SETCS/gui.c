@@ -16,7 +16,11 @@
 //#define YuanMa (8388607-3015000)//7707 5v 单极
 //#define YuanMa (13070000-8388607)//7707 5v 双极
 //#define YuanMa (13627000-8388607)//7707 5v 双极
-#define YuanMa   (13607555-8388607)//7707 2.5v 双极
+//#define YuanMa   (13607555-8388607)//7707 2.5v 双极 80
+//#define YuanMa   (6007000)//7707 2.5v 双极 
+#define YuanMa   (7160000-345300)//7707 2.5v 双极 90
+#define MANMA 90000
+
 //#define YuanMa   (11408800-8400570)//7707 2.5v 双极小差压器200KPa
 
     static int32_t LJI;   //0.1<累计 累加变量
@@ -1255,7 +1259,7 @@ int32_t YS_LL(int32_t num){
   double i;
 	int32_t iz,zi;
 
-	   num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/80000)+num; //零点 0.000
+	   num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/MANMA)+num; //零点 0.000
 	if((int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100)
 	  {iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;}  //切除
 	else 
@@ -1311,24 +1315,24 @@ return num;
 int32_t YS_CY(int32_t num){
   double i;
 	
-	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/80000)+num; //零点  0.000
+	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/MANMA)+num; //零点  0.000
 	
 	if((num>=ZFX))
 	{
 	   i=num;
 	 if(YuanMa-ZFX)
-	    i=((i-ZFX)/(YuanMa-ZFX))*80000;
+	    i=((i-ZFX)/(YuanMa-ZFX))*MANMA;
 	 else
-		i=((i-ZFX)/1)*80000;
+		i=((i-ZFX)/1)*MANMA;
 	   num=i;
 	}
 	else if(num<(~FZX+1))
 	 {
 		i=~num+1;
 	  if(YuanMa-FZX)
-		i=((i-FZX)/(YuanMa-FZX))*80000;  //流量计算80KP 的差压系数   3617000
+		i=((i-FZX)/(YuanMa-FZX))*MANMA;  //流量计算80KP 的差压系数   3617000
 	  else
-		i=((i-FZX)/1)*80000; 
+		i=((i-FZX)/1)*MANMA; 
 		 num=i;
 		num=~num+1;
 	  }
@@ -1365,7 +1369,7 @@ u8 zf;
 	 num=TP1000_ohm(num);
 	WD_Ohm=num;
 	 num=TP1000_wd_(num);
-		if(num<-600)  num=270; else;
+		if(num<-600 || num>800)  num=250; else;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	  	     NUM_A(num,4,1,zf,lwd);
 	  
