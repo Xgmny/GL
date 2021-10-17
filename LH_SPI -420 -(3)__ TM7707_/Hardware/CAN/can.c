@@ -132,25 +132,18 @@ u8 Can_Receive_Msg(u8 *buf)
 	CanRxMsg RxMessage;
     if( CAN_MessagePending(CAN1,CAN_FIFO0)==0)return 0;		//没有接收到数据,直接退出 
     CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);//读取数据	
-    for(i=0;i<8;i++)
-    buf[i]=RxMessage.Data[i];  
-	return RxMessage.DLC;	
+    if(RxMessage.ExtId==myid)
+	{
+		for(i=0;i<8;i++)
+    			buf[i]=RxMessage.Data[i];  
+		return RxMessage.DLC;
+	}
+	else 	
+		return 0;	
 }
 
 
-u8 Can_Receive_Gai(void)
-{
-  	CanRxMsg RxMessage;
-	u8 i=0;
-		  CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);
-	      if(RxMessage.ExtId==myid)
-		{
-			for(i=0;i<8;i++)
-				canbuf_rxd[i]=RxMessage.Data[i];
-			return 1;
-        }
-		return 0;
-}
+
 
 
 

@@ -43,6 +43,7 @@
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
    extern u8 idata,date8[],error,JNW[];
    extern u16 QJs;
+   extern u32 myid;
    u8 rxd_bz,canbuf_rxd[8],run;
 	
  int main(void)
@@ -97,7 +98,7 @@
 						}
 				}	
 				else 
-					CAN_SAVE();
+				{if(run==2)CAN_SAVE();}
 			}
 		}
 		if (run<2)
