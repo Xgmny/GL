@@ -98,7 +98,7 @@
 						}
 				}	
 				else 
-				{if(run==2)CAN_SAVE();}
+				CAN_SAVE();
 			}
 		}
 		if (run<2)

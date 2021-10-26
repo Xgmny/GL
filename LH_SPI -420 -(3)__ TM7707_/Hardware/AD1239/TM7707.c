@@ -560,7 +560,7 @@ uint32_t TM7705_ReadReg(uint8_t _RegID)
 */
 void TM7705_CalibSelf(uint8_t _ch)
 {
-	if (_ch == 1)
+	if (_ch == 1)             //双极性 7-8脚
 	{
 		/* 自校准CH1 */
 	TM7705_WriteByte(0x10);    TM7705_WriteByte(0x20);//ain1
@@ -568,8 +568,18 @@ void TM7705_CalibSelf(uint8_t _ch)
 	TM7705_WriteByte(0x50);    TM7705_WriteByte(0x10);//ain1
 		TM7705_WriteByte(REG_SETUP | WRITE | CH_1);	/* 写通信寄存器，下一步是写设置寄存器，通道1 */		
 		TM7705_WriteByte(MD_CAL_SELF | __CH1_GAIN_BIPOLAR_BUF | FSYNC_0);/* 启动自校准 */
-
 	}
+//		if (_ch == 1)         //单极性 6-11脚
+//	{
+//		/* 自校准CH1 */
+//	TM7705_WriteByte(0x11);    TM7705_WriteByte(0x06);//ain1  第二路 单极性
+//	TM7705_WriteByte(0x20);    TM7705_WriteByte(0x2f);//ain1
+//	TM7705_WriteByte(0x50);    TM7705_WriteByte(0xf0);//ain1
+//			TM7705_WriteByte(REG_SETUP | WRITE | CH_2);	/* 写通信寄存器，下一步是写设置寄存器，通道1 */		
+//	TM7705_WriteByte(MD_CAL_SELF | __CH2_GAIN2_UNIPOLAR_BUF| FSYNC_0);/* 启动自校准 */
+
+//	}
+	
 	else if (_ch == 2)
 	{
 		/* 自校准CH2 */

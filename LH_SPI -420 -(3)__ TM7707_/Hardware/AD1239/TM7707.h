@@ -15,6 +15,7 @@
 
 #define __CH1_GAIN_BIPOLAR_BUF	(GAIN_64 | BIPOLAR | BUF_EN)
 #define __CH2_GAIN_BIPOLAR_BUF	(GAIN_2 | BIPOLAR | BUF_EN)
+#define __CH2_GAIN2_UNIPOLAR_BUF	(GAIN_1 | UNIPOLAR | BUF_EN)
 	#define RESET_0()	(GPIO_ResetBits(GPIOB,GPIO_Pin_12))
 	#define RESET_1()	(GPIO_SetBits(GPIOB,GPIO_Pin_12))
 	#define CS1_0()		GPIO_ResetBits(GPIOB,GPIO_Pin_10)

@@ -1359,7 +1359,7 @@ void YS_YM(int32_t num){
   if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 //          num/=10;
 	     NUM_A(num,7,0,zf,lsl);
-
+   
 }
 //****************************************************
 int32_t YS_WD(int32_t num){
@@ -1370,7 +1370,7 @@ u8 zf;
 	 num=TP1000_ohm(num);
 	WD_Ohm=num;
 	 num=TP1000_wd_(num);
-		if(num<-600 || num>800)  num=250; else;
+		if(num<-600 || num>800)  num=133; else;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	  	     NUM_A(num,4,1,zf,lwd);
 	  
@@ -1400,8 +1400,8 @@ void YS_YS(int32_t num){
 	  num=num-8388607;
 	if(num>8388607){num-=8388607;num=~num;num++;}else;
 #endif	
-//	     BFB = (num*10) /YuanMa;     //差压百分比
-//	     if(BFB>9)BFB=9;else;
+  //  //	     BFB = (num*10) /YuanMa;     //差压百分比
+  // //	     if(BFB>9)BFB=9;else;
 	        
 		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
          B1++;  if(B1>9){B1=0;B=1;}  else;
