@@ -1260,7 +1260,7 @@ int32_t YS_LL(int32_t num){
   double i;
 	int32_t iz,zi;
 
-	   num=((SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/(MANMA/100))/100)+num; //零点 0.000
+	   num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/MANMA)+num; //零点 0.000
 	if((int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100)
 	  {iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;}  //切除
 	else 
@@ -1316,7 +1316,7 @@ return num;
 int32_t YS_CY(int32_t num){
   double i;
 	
-	num=((SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/(MANMA/100))/100)+num; //零点  0.000
+	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/MANMA)+num; //零点  0.000
 	
 	if((num>=ZFX))
 	{
@@ -1370,13 +1370,12 @@ u8 zf;
 	 num=TP1000_ohm(num);
 	WD_Ohm=num;
 	 num=TP1000_wd_(num);
-		if(num<-600 || num>800)  num=SZ_WD_O; else;
+		if(num<-600 || num>800)  num=133; else;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	  	     NUM_A(num,4,1,zf,lwd);
-
-
-	 // num=(num*-111+30900)/100;   //y=xk+b   之前k为111   后为233
-	  num=(num*(-1*SZ_WD_B)+SZ_WD_O*SZ_WD_B)/100;   //y=xk+b   之前k为111   后为233
+	  
+	
+	 num=(num*-233+30900)/100;   //y=xk+b   之前k为111   155
 	   num=num*-1;  
 	  WD=num;
 	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数

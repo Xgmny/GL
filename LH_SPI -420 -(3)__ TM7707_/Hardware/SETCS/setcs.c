@@ -527,17 +527,17 @@ void SET_COME(void)
 					if (col==48) dd[wz]=tem;
 					row+=8;wz++;smode=1;
 					if(col==0)
-						{	if(wz==3) 
+						{	if(wz==1) 
 								{row+=8;wz++;}
-							else;
-								
-							if(wz>=5)
-							{row=79;col+=16;wz=0;}
-									
+							else
+								{
+									if(wz>=5)
+										{row=79;col+=16;wz=0;}
+									}		
 						}
 					else
 						{
-							if ((col==16)&(wz==4))
+							if ((col==16)&(wz==3))
 									{row+=8;wz++;}
 							if (((col==32)|(col==48))&(wz==4)) 
 								{row+=8;wz++;}
