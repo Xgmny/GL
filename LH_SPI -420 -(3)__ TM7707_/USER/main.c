@@ -70,7 +70,7 @@
 
 	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);//CAN初始,波特率250Kbps 
 									//最后参数  mode:0,普通模式;1,回环模式; //  
-//   IWDG_Init(4,6250);      //狗10s
+  // IWDG_Init(4,6250);      //狗10s
 	 run=1;      //运行
 //	LED0=1;        
  	while(1)
@@ -216,6 +216,7 @@
 					}
 				ms200=0;  
 			}
-		}	
+		}	IWDG->KR=0XAAAA;//reload
 	}
+	
 }

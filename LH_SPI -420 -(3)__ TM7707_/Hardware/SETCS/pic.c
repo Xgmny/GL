@@ -85,7 +85,7 @@ void FIVE(void)
 void SIX(void)
 {	
 	OLED_Clear(0);             //清屏（全黑）
-	GUI_ShowCHinese(0,0,16,"温度零点：",1);
+	GUI_ShowCHinese(0,0,16,"零点温度：",1);
 	GUI_ShowCHinese(0,16,16,"温度系数：",1);
 	GUI_ShowCHinese(16,32,16,"度以上：",1);
 	GUI_ShowCHinese(16,48,16,"度以下：",1);

@@ -40,8 +40,9 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0188,kl,5);AT24CXX_Write(0x0190,kl,5);AT24CXX_Write(0x0198,kl,5);
 		AT24CXX_Write(0x01a0,kl,5);AT24CXX_Write(0x01a8,kl,5);AT24CXX_Write(0x01b0,kl,5);
 		AT24CXX_Write(0x01b8,kl,5);AT24CXX_Write(0x01c0,kl,5);AT24CXX_Write(0x01c8,kl,5);
+		kl[0]=0x30;kl[1]=0x32;kl[2]=0x35;kl[3]=0x2e;
 		AT24CXX_Write(0x0050,kl,5);//WDXS
-		kl[0]=0x2B;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;kl[5]=0x30;
+		kl[0]=0x2B;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x2E;kl[5]=0x30;
 		AT24CXX_Write(0x0058,kl,6);//WDLD
 		kl[0]=0x2B;kl[1]=0x30;kl[2]=0x30;kl[4]=0x2E;kl[3]=0x30;kl[5]=0x30;
 		AT24CXX_Write(0x0060,kl,6);//WDZ
@@ -239,7 +240,7 @@ void AT24CXX_Write(u16 WriteAddr,u8 *pBuffer,u16 NumToWrite)
 //w 位数     a指针地址   读d24c64内在地址  右高
 int32_t  A_N_24C64 (u8 w,u8 *a,u16 d)
 {
- int32_t  n ,nn;
+ int32_t  n=0 ,nn=0;
 	u32 bei=1;
  	AT24CXX_Read(d,a,w);
 	 for(;w>0;w--)
@@ -260,8 +261,8 @@ void BL_24c64(void){
 	u8 kl[8];
 	
 
-	    SZ_WD_B = A_N_24C64(6,kl,0x0058);    //温度补偿
-	    SZ_WD_O = A_N_24C64(5,kl,0x0050);    //温度电阻补偿
+	    SZ_WD_B = (A_N_24C64(6,kl,0x0058))/10;    //温度补偿系数
+	    SZ_WD_O = A_N_24C64(5,kl,0x0050);    //0点温度
 		SZ_LD_Z = A_N_24C64(5,kl,0x0110);     //零点
 	    SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
         SZ_LL_Z = A_N_24C64(6,kl,0X01D0);    //流量上线
