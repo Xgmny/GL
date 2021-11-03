@@ -287,17 +287,17 @@ void SET_COME(void)
 				{
 					case 0x02:{	
 								SIX();page=6;wz=0;addr=0x0050;  //温度设置
-									AT24CXX_Read(addr,ss,5);
+									AT24CXX_Read(addr,ss,4);
 									addr+=8;
-									AT24CXX_Read(addr,ld,6);
+									AT24CXX_Read(addr,ld,5);
 									addr+=8;
-									AT24CXX_Read(addr,qc,6);
+									AT24CXX_Read(addr,qc,4);
 									addr+=8;
-									AT24CXX_Read(addr,dd,6);
-									GUI_ShowString(79,0,ss,5,16,1);
-									GUI_ShowString(79,16,ld,6,16,1);
-									GUI_ShowString(79,32,qc,6,16,1);
-									GUI_ShowString(79,48,dd,6,16,1);
+									AT24CXX_Read(addr,dd,4);
+									GUI_ShowString(79,0,ss,4,16,1);
+									GUI_ShowString(79,16,ld,5,16,1);
+									GUI_ShowString(79,32,qc,4,16,1);
+									GUI_ShowString(79,48,dd,4,16,1);
 
 						
 								    row=79;col=0;tem=ss[wz];smode=1;}break;
@@ -518,7 +518,7 @@ void SET_COME(void)
 							{row=24;wz=0;tem=ss[wz];}
 					GUI_ShowChar(row,38,tem,16,1);
 				}
-			if (page==6)
+			if (page==6) //温度设置光标
 				{
 					GUI_ShowChar(row,col,tem,16,1);
 					if (col==0) ss[wz]=tem;
@@ -526,25 +526,22 @@ void SET_COME(void)
 					if (col==32) qc[wz]=tem;
 					if (col==48) dd[wz]=tem;
 					row+=8;wz++;smode=1;
-					if(col==0)
-						{	if(wz==1) 
-								{row+=8;wz++;}
-							else
-								{
-									if(wz>=5)
-										{row=79;col+=16;wz=0;}
-									}		
-						}
-					else
-						{
-							if ((col==16)&(wz==3))
-									{row+=8;wz++;}
-							if (((col==32)|(col==48))&(wz==4)) 
-								{row+=8;wz++;}
-							if (wz>=6)
-								{row=79;col+=16;wz=0;}
-							if(col>=64) col=0;
-							}		
+		
+						if (col==0){
+							if (wz==99)  {row+=8;wz++;}			else;
+							if (wz>=4)	 {row=79;col+=16;wz=0;}	else;
+						   }	
+						if (col==16){
+							if (wz==3)  {row+=8;wz++;}			else;
+							if (wz>=5)	{row=79;col+=16;wz=0;}	else;
+						   }	
+						
+						if ((col==32)|(col==48)){
+							if (wz==1)  {row+=8;wz++;}			else;
+							if (wz>=4)	{row=79;col+=16;wz=0;}	else;
+							}	
+						if(col>=64) col=0;
+								
 						if (col==0) tem=ss[wz];
 						if (col==16) tem=ld[wz];
 						if (col==32) tem=qc[wz];

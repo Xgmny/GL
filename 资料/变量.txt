@@ -1,0 +1,67 @@
+全局变量:
+
+YuanMa   80KP的AD采样数
+MANMA    设置为满量程(80000)Pa  固定值
+main
+        u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};                     
+	u8 lwd_pa[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
+	u8 lll[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
+	u8 ljl[8]={0x2b,0x33,0x32,0x30,0x30,0x32,0x2e,0x30};
+	u8 lsl[8]={0x2b,0x33,0x32,0x2e,0x30,0x32};
+	u8 cyl[8]={0x2d,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
+	u8 jdl[8]={0x2b,0x33,0x32,0x2e,0x30,0x32};
+	int32_t LJ;
+	int32_t LL;
+	int8_t Gd,Gd_y;
+	u16 A;
+	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
+	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
+	int16_t SZ_WD_B ,SZ_WD_O;        温度系数; 温度0点
+	int32_t  SZ_LL_Z,SZ_LL_F;
+        u8 rxd_bz,canbuf_rxd[8],run;        
+
+
+setcs.h
+        static int col;		显示屏Y方向坐标(光标)
+	static int row;		显示屏X方向坐标(光标)
+	static u8 page; 	设置修改/保存的标志位 函数入口         
+	static u8 smode;	光标闪烁
+	static u8 wz; 		数组位
+
+24c64
+
+                SZ_WD_KZ= A_N_24C64(5,kl,0x0060);
+		SZ_WD_KF= A_N_24C64(5,kl,0x0068);
+	        SZ_WD_B = (A_N_24C64(6,kl,0x0058))/10;  //温补系数
+	        SZ_WD_O = A_N_24C64(5,kl,0x0050);      //温度补偿
+		SZ_LD_Z = A_N_24C64(5,kl,0x0110);      //零点
+	        SZ_QC_Z = A_N_24C64(5,kl,0x0118);      // 切除
+                SZ_LL_Z = A_N_24C64(6,kl,0X01D0);      //流量上线
+
+		SZ_JZ_Z[0]=A_N_24C64(5,kl,0x0120);	//<10%
+		SZ_JZ_Z[1]=A_N_24C64(5,kl,0x0128);	//<~20%
+		SZ_JZ_Z[2]=A_N_24C64(5,kl,0x0130);	//<~30%
+		SZ_JZ_Z[3]=A_N_24C64(5,kl,0x0138);	//<~40%
+		SZ_JZ_Z[4]=A_N_24C64(5,kl,0x0140);	//<~50%
+		SZ_JZ_Z[5]=A_N_24C64(5,kl,0x0148);	//<~60%
+		SZ_JZ_Z[6]=A_N_24C64(5,kl,0x0150);	//<~70%
+		SZ_JZ_Z[7]=A_N_24C64(5,kl,0x0158);	//<~80%
+		SZ_JZ_Z[8]=A_N_24C64(5,kl,0x0160);	//<~90%
+		SZ_JZ_Z[9]=A_N_24C64(5,kl,0x0168);	//>90%	
+	
+		SZ_LD_F = A_N_24C64(5,kl,0x0170);     //零点
+	    SZ_QC_F = A_N_24C64(5,kl,0x0178);   // 切除
+        SZ_LL_F = A_N_24C64(6,kl,0X01D8);    //流量上线
+
+		SZ_JZ_F[0]=A_N_24C64(5,kl,0x0180);	//<10%
+		SZ_JZ_F[1]=A_N_24C64(5,kl,0x0188);	//<~20%
+		SZ_JZ_F[2]=A_N_24C64(5,kl,0x0190);	//<~30%
+		SZ_JZ_F[3]=A_N_24C64(5,kl,0x0198);	//<~40%
+		SZ_JZ_F[4]=A_N_24C64(5,kl,0x01A0);	//<~50%
+		SZ_JZ_F[5]=A_N_24C64(5,kl,0x01A8);	//<~60%
+		SZ_JZ_F[6]=A_N_24C64(5,kl,0x01B0);	//<~70%
+		SZ_JZ_F[7]=A_N_24C64(5,kl,0x01B8);	//<~80%
+		SZ_JZ_F[8]=A_N_24C64(5,kl,0x01C0);	//<~90%
+		SZ_JZ_F[9]=A_N_24C64(5,kl,0x01C8);	//>90%	
+		
+		LJ = A_N_24C64(8,ljl,0x0200+NIAN);  //累计量

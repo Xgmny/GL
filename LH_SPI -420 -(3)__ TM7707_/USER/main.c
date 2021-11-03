@@ -36,7 +36,7 @@
 	u16 A;
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
 	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
-	int16_t SZ_WD_B ,SZ_WD_O;
+	int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	int32_t  SZ_LL_Z,SZ_LL_F;
    extern int32_t WD_Ohm,WD;
    extern u32 NIAN;
@@ -70,7 +70,7 @@
 
 	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);//CAN初始,波特率250Kbps 
 									//最后参数  mode:0,普通模式;1,回环模式; //  
-//   IWDG_Init(4,6250);      //狗10s
+  // IWDG_Init(4,6250);      //狗10s
 	 run=1;      //运行
 //	LED0=1;        
  	while(1)
@@ -216,6 +216,7 @@
 					}
 				ms200=0;  
 			}
-		}	
+		}	IWDG->KR=0XAAAA;//reload
 	}
+	
 }

@@ -40,7 +40,7 @@
 
 	extern u16 SZ_JZ_Z[], SZ_JZ_F[];                     //   %比校正
 	extern u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
-    extern int16_t SZ_WD_B ,SZ_WD_O;
+    extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	extern int32_t  SZ_LL_Z,SZ_LL_F;		
            int32_t WD,WD_Ohm;
 	static int32_t WD_1;
@@ -1260,7 +1260,7 @@ int32_t YS_LL(int32_t num){
   double i;
 	int32_t iz,zi;
 
-	   num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/MANMA)+num; //零点 0.000
+	   num=((SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/(MANMA/100))/100)+num; //零点 0.000
 	if((int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100)
 	  {iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;}  //切除
 	else 
@@ -1316,7 +1316,7 @@ return num;
 int32_t YS_CY(int32_t num){
   double i;
 	
-	num=(SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/MANMA)+num; //零点  0.000
+	num=((SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/(MANMA/100))/100)+num; //零点  0.000
 	
 	if((num>=ZFX))
 	{
@@ -1344,9 +1344,12 @@ int32_t YS_CY(int32_t num){
 //****************************************************
 int32_t YS_LJ(int32_t num){
 	LJI+=num;
-	while(LJI>  1800000)  {LJI-=1800000; LJ++; }
-	while(LJI<(-1800000)) {LJI+=1800000; LJ--; } 
-    if	(LJ>(999999)||LJ<(-999999)) LJ=0;  else;
+	while(LJI>  1800000) 
+						{LJI-=1800000; LJ++; }
+	while(LJI<(-1800000)) 
+						{LJI+=1800000; LJ--; } 
+    if	(LJ>(999999)||LJ<(-999999))
+									LJ=0;  else;
 	
 //	LJ+=num/100/5/60/60;//  小数点-2   1秒  1分 1时
 
@@ -1368,15 +1371,16 @@ u8 zf;
 //	if(num>8388607){num-=8388607;num=~num;num++;}else;
 	    
 	 num=TP1000_ohm(num);
-	WD_Ohm=num;
+	 WD_Ohm=num;
 	 num=TP1000_wd_(num);
-		if(num<-600 || num>800)  num=133; else;
-	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
-	  	     NUM_A(num,4,1,zf,lwd);
-	  
-	
-	 num=(num*-233+30900)/100;   //y=xk+b   之前k为111   155
-	   num=num*-1;  
+	 if(num<-600 || num>800)  num=25; 
+	 else num+=SZ_WD_B;//补偿;
+	 
+	 if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
+	 NUM_A(num,4,1,zf,lwd);
+	 // num=(num*-111+30900)/100;   //y=xk+b   之前k为111   后为233
+	  num=(num*(-1*SZ_WD_B)+25*SZ_WD_B)/100;   //y=xk+b   之前k为111   后为233
+	  num=num*-1;  
 	  WD=num;
 	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,3,0,zf,lwd_pa);
