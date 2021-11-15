@@ -20,7 +20,7 @@ void AT24CXX_Init(void)
     WP=0;
 	delay_ms(2);
 	AT24CXX_Read(0X0100,kl,4);
-	if((kl[0]!=0x39)|(kl[1]!=0x36)|(kl[2]!=0x4f)|(kl[3]!=0x4b))
+	if((kl[0]!=0x38)|(kl[1]!=0x36)|(kl[2]!=0x4f)|(kl[3]!=0x4b))
 	{
 		kl[0]=0x38;kl[1]=0x36;kl[2]=0x4f;kl[3]=0x4b;
 		AT24CXX_Write(0X0100,kl,4);
@@ -261,8 +261,8 @@ void BL_24c64(void){
 	
         SZ_WD_KZ= A_N_24C64(5,kl,0x0060);
 		SZ_WD_KF= A_N_24C64(5,kl,0x0068);
-	    SZ_WD_B = (A_N_24C64(6,kl,0x0058))/10;    //温度补偿系数
-	    SZ_WD_O = A_N_24C64(5,kl,0x0050);    //0点温度
+	    SZ_WD_O = A_N_24C64(5,kl,0x0058);    //温度补偿系数
+	    SZ_WD_B = A_N_24C64(5,kl,0x0050);    //0点温度
 		SZ_LD_Z = A_N_24C64(5,kl,0x0110);     //零点
 	    SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
         SZ_LL_Z = A_N_24C64(6,kl,0X01D0);    //流量上线

@@ -19,7 +19,9 @@
 //#define YuanMa   (13607555-8388607)//7707 2.5v 双极 80      5218948
 //#define YuanMa   (6007000)//7707 2.5v 双极 
 //#define YuanMa   (5866948)//7707 2.5v 双极 80
-#define YuanMa   (7160000-345300)//7707 2.5v 双极 90  6814700
+#define YuanMa   (6380761-255854)//90KPa-0Kpa   KKD28-1701
+//#define YuanMa   (7160000-345300)//7707 2.5v 双极 90  6814700
+
 #define MANMA 90000
 
 //#define YuanMa   (11408800-8400570)//7707 2.5v 双极小差压器200KPa
@@ -1373,15 +1375,17 @@ u8 zf;
 	 num=TP1000_ohm(num);
 	 WD_Ohm=num;
 	 num=TP1000_wd_(num);
-	 if(num<-600 || num>800)  num=25; 
-	 else num+=SZ_WD_B;//补偿;
+	 num+=SZ_WD_O;//零点补偿
+	 if(num<-600 || num>800)  num=250; 
+	 else ;//补偿;
 	 
 	 if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	 NUM_A(num,4,1,zf,lwd);
+	 
 	 // num=(num*-111+30900)/100;   //y=xk+b   之前k为111   后为233
-	  num=(num*(-1*SZ_WD_B)+25*SZ_WD_B)/100;   //y=xk+b   之前k为111   后为233
-	  num=num*-1;  
-	  WD=num;
+	 if(SZ_WD_B!=0) {num=(num*(-1*SZ_WD_B)+250*SZ_WD_B)/100;   num=num*-1;} //y=xk+b   之前k为111   后为233
+	 else num=0;
+	  WD=num;  //WD温度补偿
 	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,3,0,zf,lwd_pa);
          
@@ -1485,8 +1489,8 @@ int32_t TP1000_ohm(int32_t u)
     
     u1=u*i	;
     u2=u0-u1;
-	if(u2*100+SZ_WD_B)
-      ohm=(u1*r2)/u2*100+SZ_WD_B;	//50
+	if(u2*100+0)//0 欧姆补偿
+      ohm=(u1*r2)/u2*100+0;	//50
 	else ohm=(u1*r2)/1;
 
 	
