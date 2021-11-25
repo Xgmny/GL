@@ -42,5 +42,7 @@ void NUM_A(u32 n, u8 i, u8 d, u8 zf, u8*aa);
 int32_t TP1000_ohm(int32_t u);
 int16_t TP1000_wd(int32_t u);
 int16_t TP1000_wd_(int32_t u);
+
+void CY_zero(void);
 #endif
 

@@ -146,7 +146,7 @@ void CAN_Answer(void)
 	Ctxd[4]=shu[2];Ctxd[5]=shu[3];Ctxd[6]=shu[4];
 	Can_Send_Msg(myid,Ctxd,8);//·¢ËÍ8¸ö×Ö½Ú 
 	delay_ms(50);			
-	AT24CXX_Read(0x0050,shu,5);//WK
+	AT24CXX_Read(0x0050,shu,4);//WK
 	Ctxd[0]=0X57;Ctxd[1]=0X4b;Ctxd[2]=shu[0];Ctxd[3]=0x2e;
 	Ctxd[4]=shu[2];Ctxd[5]=shu[3];Ctxd[6]=shu[4];Ctxd[7]=0x30;Ctxd[7]=0x20;
 	Can_Send_Msg(myid,Ctxd,8);
@@ -243,8 +243,8 @@ void CAN_SAVE(void)
 			{
 				switch (canbuf_rxd[1])
 					{
-						case 'K':{AT24CXX_Write(0x0050,cc,5);}break;
-						case 'B':{AT24CXX_Write(0x0058,cc,6);}break;
+						case 'K':{AT24CXX_Write(0x0050,cc,4);}break;
+						case 'B':{AT24CXX_Write(0x0058,cc,5);}break;
 						default:{};break;
 					}
 			}
@@ -253,8 +253,8 @@ void CAN_SAVE(void)
 	if(canbuf_rxd[0]=='L')
 			{
 				for(n0=0;n0<8;n0++)
-			cc[n0]=0x30;
-		cc[6]=0x2e;
+			    cc[n0]=0x30;
+		        cc[6]=0x2e;
 		AT24CXX_Write(0x0200+NIAN,cc,8);
 		LJ=0;		
 	}

@@ -36,3 +36,5 @@
 ..\obj\gui.o: ..\Hardware\SETCS\gui.h
 ..\obj\gui.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\gui.o: ..\Hardware\AD1239\GP8302.h
+..\obj\gui.o: ..\Hardware\24CXX\24c64.h
+..\obj\gui.o: ..\Hardware\IIC\myiic.h

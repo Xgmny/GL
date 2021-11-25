@@ -30,8 +30,8 @@
 	u8 jdl[8]={0x2b,0x33,0x32,0x2e,0x30,0x32};
 	
 	int32_t LJ;
-	int32_t LL;
-	u8 ms1000=0;
+	int32_t LL,CY,WenDu;
+	u8 ms1000=0,K1=0,K2=0;
 	int8_t Gd,Gd_y;
 	u16 A;
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
@@ -105,7 +105,6 @@
 		{
 			if(ms200==1)			//200毫秒
 			{
-
 				key=KEY_Scan();
 				if (key==4) 
 					{
@@ -155,6 +154,11 @@
 									 GUI_ShowString(34, 3,lll,8,16,1); // 流量
 						             GUI_ShowString(34,24,ljl,8,16,1);	//ljl   lsl
 						             GUI_ShowString(34,45,cyl,8,16,1);	
+									
+									if(key==1)K1++;  else K1=0; //K1
+									if(key==2)K2++;  else K2=0; //K2
+									if(K1==10) CY_zero();
+									if(K2==20) LJ_zero();
 								}
 								else{
 									if(Gd_y<30)
@@ -205,12 +209,19 @@
 						if (cnt>=255) cnt=0;
 						canbuf_txd[0]=cnt;
 
-						canbuf_txd[2]=LL/100>>8;
-						canbuf_txd[3]=LL/100;
-						canbuf_txd[4]=LJ>>24;
-						canbuf_txd[5]=LJ>>16;
-						canbuf_txd[6]=LJ>>8;
-						canbuf_txd[7]=LJ;
+//						canbuf_txd[2]=LL/100>>8;
+//						canbuf_txd[3]=LL/100;
+//						canbuf_txd[4]=LJ>>24;
+//						canbuf_txd[5]=LJ>>16;
+//						canbuf_txd[6]=LJ>>8;
+//						canbuf_txd[7]=LJ;
+						 
+						canbuf_txd[2]=CY>>8;
+						canbuf_txd[3]=CY;
+						canbuf_txd[4]=SZ_LD_Z>>8;
+						canbuf_txd[5]=SZ_LD_Z;
+						canbuf_txd[6]=WenDu>>8;
+						canbuf_txd[7]=WenDu;
 						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
 						
 					}

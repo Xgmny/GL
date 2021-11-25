@@ -261,8 +261,8 @@ void BL_24c64(void){
 	
         SZ_WD_KZ= A_N_24C64(5,kl,0x0060);
 		SZ_WD_KF= A_N_24C64(5,kl,0x0068);
-	    SZ_WD_O = A_N_24C64(5,kl,0x0058);    //温度补偿系数
-	    SZ_WD_B = A_N_24C64(5,kl,0x0050);    //0点温度
+	    SZ_WD_O = A_N_24C64(5,kl,0x0058);    //0点温度
+	    SZ_WD_B = A_N_24C64(4,kl,0x0050);    //温度补偿系数
 		SZ_LD_Z = A_N_24C64(5,kl,0x0110);     //零点
 	    SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
         SZ_LL_Z = A_N_24C64(6,kl,0X01D0);    //流量上线
@@ -296,7 +296,15 @@ void BL_24c64(void){
 		LJ = A_N_24C64(8,ljl,0x0200+NIAN);  //累计量
 }	
 
-
+//累计清0
+void LJ_zero(void){
+u8 n,cc[8];	
+				for(n=0;n<8;n++)
+			    cc[n]=0x30;
+		        cc[6]=0x2e;
+		AT24CXX_Write(0x0200+NIAN,cc,8);
+		LJ=0;	
+}
 
 
 

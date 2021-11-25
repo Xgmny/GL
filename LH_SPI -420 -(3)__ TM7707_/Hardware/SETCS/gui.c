@@ -6,9 +6,10 @@
 #include "gui.h"
 #include <math.h>
 #include "GP8302.h"
-#define FZX  0    //消除 
+#include "24c64.h" 
+#define FZX  0    //消除 CY
 #define ZFX  0    //消除
-#define FZ (SZ_QC_F*10)     //消除 
+#define FZ (SZ_QC_F*10)     //消除 LL
 #define ZF (SZ_QC_Z*10)     //消除
 
 //#define YuanMa (8388607-4113000)   //80Kp    无二极管5050000   有二极管 3617000   TM7707 3717000
@@ -27,6 +28,7 @@
 //#define YuanMa   (11408800-8400570)//7707 2.5v 双极小差压器200KPa
 
     static int32_t LJI;   //0.1<累计 累加变量
+	extern int32_t CY,WenDu;
 		   u8 BFB;        //校正
 	extern u8 lwd[];
 	extern u8 lwd_pa[];
@@ -1375,6 +1377,7 @@ u8 zf;
 	 num=TP1000_ohm(num);
 	 WD_Ohm=num;
 	 num=TP1000_wd_(num);
+	 WenDu=num; 
 	 num+=SZ_WD_O;//零点补偿
 	 if(num<-600 || num>800)  num=250; 
 	 else ;//补偿;
@@ -1440,6 +1443,7 @@ void YS_YS(int32_t num){
 		
 		 num=cc;
 		 num=YS_CY(num);
+	     CY=num;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,cyl);
 	   
@@ -1471,7 +1475,7 @@ void NUM_A(u32 n, u8 i, u8 d, u8 zf, u8*aa){  //数 ,位,小数点, 正负号,变量地址
 int32_t TP1000_ohm(int32_t u)
 {
   int32_t  ohm;
-	double u0,i,ii, u1,u2,r2;//ii   Vs    2.498/16777125=148    1.1822  1.3158  1.249
+	double u0,i, u1,u2,r2;//ii   Vs    2.498/16777125=148    1.1822  1.3158  1.249
 							// 2.5/16777126=0.0000001490116119 
 #if(0)
 	 i=0.000000244140625;
@@ -1518,7 +1522,7 @@ int16_t TP1000_wd(int32_t u)  //查表
 }
 int16_t TP1000_wd_(int32_t u)   //计算
 {
-	u8 i=0 ,ii=0;
+	u8 i=0 ;
 	u16 b=0,bb;
 	
 	if(u>=100000)
@@ -1538,4 +1542,23 @@ int16_t TP1000_wd_(int32_t u)   //计算
 }
 
 
+//差压零点自动校准
+void CY_zero(void)
+{
+  u8  kl[8],*kll;
+	if(CY+SZ_LD_Z>=0){
+		
+		SZ_LD_Z=CY+SZ_LD_Z;
+		NUM_A(SZ_LD_Z,5,3,0,kl);
+		kll=&kl[1];
+		AT24CXX_Write(0x0110,kll,5);
+	}
+	else{
+	    
+		SZ_LD_F=(~CY+1)+SZ_LD_F;
+		NUM_A(SZ_LD_F,5,3,0,kl);
+		kll=&kl[1];
+		AT24CXX_Write(0x0170,kll,5);
+		}
+}
 

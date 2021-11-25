@@ -30,6 +30,7 @@ void AT24CXX_Init(void); //≥ı ºªØIIC
 //void A_N_24C64(void);
 int32_t  A_N_24C64 (u8 w,u8 *a,u16 d);
 void BL_24c64(void);
+void LJ_zero(void);
 #endif
 
 

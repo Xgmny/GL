@@ -1,5 +1,5 @@
 Dependencies for Project 'Template', Target 'Template': (DO NOT MODIFY !)
-F (.\main.c)(0x618082EE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x619DB183)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (stm32f10x.h)(0x4D783CB5)
 I (..\CORE\core_cm3.h)(0x4D523B59)
 I (D:\2122\Keil\ARM\ARMCC\include\stdint.h)(0x60361528)
@@ -33,11 +33,11 @@ I (..\Hardware\LED\led.h)(0x60FABDE9)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
 I (..\SYSTEM\delay\delay.h)(0x555AC82A)
 I (..\Hardware\KEY\key.h)(0x60FBCA0D)
-I (..\Hardware\24CXX\24c64.h)(0x60AB06A3)
+I (..\Hardware\24CXX\24c64.h)(0x619747F8)
 I (..\Hardware\IIC\myiic.h)(0x60F7D42E)
 I (..\Hardware\WDG\wdg.h)(0x604A15FD)
 I (..\Hardware\TIMER\timer.h)(0x612852DC)
-I (..\Hardware\SETCS\gui.h)(0x611DFBF8)
+I (..\Hardware\SETCS\gui.h)(0x619744B5)
 I (..\SYSTEM\usart\usart.h)(0x60DAB468)
 I (D:\2122\Keil\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (..\USMART\usmart.h)(0x5501A38C)
@@ -275,7 +275,7 @@ I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
 I (..\SYSTEM\delay\delay.h)(0x555AC82A)
-F (..\Hardware\KEY\key.c)(0x613C06FE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d)
+F (..\Hardware\KEY\key.c)(0x61974716)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d)
 I (..\Hardware\KEY\key.h)(0x60FBCA0D)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
 I (..\USER\stm32f10x.h)(0x4D783CB5)
@@ -369,9 +369,9 @@ I (..\FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
-I (..\Hardware\SETCS\gui.h)(0x611DFBF8)
+I (..\Hardware\SETCS\gui.h)(0x619744B5)
 I (..\SYSTEM\delay\delay.h)(0x555AC82A)
-I (..\Hardware\24CXX\24c64.h)(0x60AB06A3)
+I (..\Hardware\24CXX\24c64.h)(0x619747F8)
 I (..\Hardware\IIC\myiic.h)(0x60F7D42E)
 I (..\Hardware\LED\led.h)(0x60FABDE9)
 I (..\SYSTEM\usart\usart.h)(0x60DAB468)
@@ -381,7 +381,7 @@ I (..\Hardware\MODBUS\protocol.h)(0x60E2AC52)
 I (..\Hardware\MODBUS\mport.h)(0x613C597D)
 I (..\Hardware\MODBUS\mcheck.h)(0x5993ED37)
 I (..\Hardware\AD1239\GP8302.h)(0x613EFE46)
-F (..\Hardware\SETCS\gui.c)(0x6191D230)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\gui.o --omf_browse ..\obj\gui.crf --depend ..\obj\gui.d)
+F (..\Hardware\SETCS\gui.c)(0x619CA7C8)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\gui.o --omf_browse ..\obj\gui.crf --depend ..\obj\gui.d)
 I (..\Hardware\SETCS\oled.h)(0x607D258B)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
 I (..\USER\stm32f10x.h)(0x4D783CB5)
@@ -415,9 +415,11 @@ I (..\FWLib\inc\misc.h)(0x4D783BB4)
 I (D:\2122\Keil\ARM\ARMCC\include\string.h)(0x599ECD2C)
 I (..\Hardware\SETCS\oledfont.h)(0x611DA95A)
 I (..\SYSTEM\delay\delay.h)(0x555AC82A)
-I (..\Hardware\SETCS\gui.h)(0x611DFBF8)
+I (..\Hardware\SETCS\gui.h)(0x619744B5)
 I (D:\2122\Keil\ARM\ARMCC\include\math.h)(0x599ECD2E)
 I (..\Hardware\AD1239\GP8302.h)(0x613EFE46)
+I (..\Hardware\24CXX\24c64.h)(0x619747F8)
+I (..\Hardware\IIC\myiic.h)(0x60F7D42E)
 F (..\Hardware\SETCS\oled.c)(0x611DF58B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\oled.o --omf_browse ..\obj\oled.crf --depend ..\obj\oled.d)
 I (..\Hardware\SETCS\oled.h)(0x607D258B)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
@@ -484,7 +486,7 @@ I (..\FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
-I (..\Hardware\SETCS\gui.h)(0x611DFBF8)
+I (..\Hardware\SETCS\gui.h)(0x619744B5)
 I (..\Hardware\SETCS\pic.h)(0x60FAC287)
 F (..\Hardware\SETCS\iic.c)(0x60373AB9)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\iic.o --omf_browse ..\obj\iic.crf --depend ..\obj\iic.d)
 I (..\Hardware\SETCS\iic.h)(0x6057E38E)
@@ -517,7 +519,7 @@ I (..\FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
-F (..\Hardware\SETCS\setcs.c)(0x6180F5F4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\setcs.o --omf_browse ..\obj\setcs.crf --depend ..\obj\setcs.d)
+F (..\Hardware\SETCS\setcs.c)(0x61974716)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\setcs.o --omf_browse ..\obj\setcs.crf --depend ..\obj\setcs.d)
 I (..\Hardware\KEY\key.h)(0x60FBCA0D)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
 I (..\USER\stm32f10x.h)(0x4D783CB5)
@@ -549,8 +551,8 @@ I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
 I (..\Hardware\TIMER\timer.h)(0x612852DC)
-I (..\Hardware\SETCS\gui.h)(0x611DFBF8)
-I (..\Hardware\24CXX\24c64.h)(0x60AB06A3)
+I (..\Hardware\SETCS\gui.h)(0x619744B5)
+I (..\Hardware\24CXX\24c64.h)(0x619747F8)
 I (..\Hardware\IIC\myiic.h)(0x60F7D42E)
 I (..\Hardware\SETCS\pic.h)(0x60FAC287)
 I (..\Hardware\SETCS\setcs.h)(0x60FEA485)
@@ -618,8 +620,8 @@ I (..\FWLib\inc\stm32f10x_tim.h)(0x4D783BB4)
 I (..\FWLib\inc\stm32f10x_usart.h)(0x504F415F)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
-F (..\Hardware\24CXX\24c64.c)(0x61837CF2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\24c64.o --omf_browse ..\obj\24c64.crf --depend ..\obj\24c64.d)
-I (..\Hardware\24CXX\24c64.h)(0x60AB06A3)
+F (..\Hardware\24CXX\24c64.c)(0x61974716)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\24c64.o --omf_browse ..\obj\24c64.crf --depend ..\obj\24c64.d)
+I (..\Hardware\24CXX\24c64.h)(0x619747F8)
 I (..\Hardware\IIC\myiic.h)(0x60F7D42E)
 I (..\SYSTEM\sys\sys.h)(0x60EEA2F2)
 I (..\USER\stm32f10x.h)(0x4D783CB5)
@@ -684,7 +686,7 @@ I (..\FWLib\inc\stm32f10x_wwdg.h)(0x4D783BB4)
 I (..\FWLib\inc\misc.h)(0x4D783BB4)
 I (..\SYSTEM\delay\delay.h)(0x555AC82A)
 I (..\Hardware\LED\led.h)(0x60FABDE9)
-I (..\Hardware\SETCS\gui.h)(0x611DFBF8)
+I (..\Hardware\SETCS\gui.h)(0x619744B5)
 F (..\Hardware\AD1239\GP8302 .c)(0x61400322)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ..\USER -I ..\CORE -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\Hardware\24CXX -I ..\Hardware\CAN -I ..\Hardware\KEY -I ..\Hardware\IIC -I ..\Hardware\LED -I ..\Hardware\SPI -I ..\Hardware\WDG -I ..\USMART -I ..\FWLib\inc -I ..\Hardware\TIMER -I ..\Hardware\SETCS -I ..\Hardware\SPI -I ..\Hardware\AD1239 -I ..\Hardware\MALLOC -I ..\Hardware\MODBUS-I.\RTE\_Template-ID:\2122\Keil\2122\Keil\STM32F1xx_DFP\2.3.0\Device\Include-ID:\2122\Keil\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o "..\obj\gp8302 .o" --omf_browse "..\obj\gp8302 .crf" --depend "..\obj\gp8302 .d")
 I (..\Hardware\AD1239\GP8302.h)(0x613EFE46)
 I (..\SYSTEM\delay\delay.h)(0x555AC82A)
