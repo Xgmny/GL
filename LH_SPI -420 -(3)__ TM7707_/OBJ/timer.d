@@ -3,7 +3,7 @@
 ..\obj\timer.o: ..\SYSTEM\sys\sys.h
 ..\obj\timer.o: ..\USER\stm32f10x.h
 ..\obj\timer.o: ..\CORE\core_cm3.h
-..\obj\timer.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\timer.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\timer.o: ..\USER\system_stm32f10x.h
 ..\obj\timer.o: ..\USER\stm32f10x_conf.h
 ..\obj\timer.o: ..\FWLib\inc\stm32f10x_adc.h
@@ -36,7 +36,7 @@
 ..\obj\timer.o: ..\Hardware\IIC\myiic.h
 ..\obj\timer.o: ..\Hardware\LED\led.h
 ..\obj\timer.o: ..\SYSTEM\usart\usart.h
-..\obj\timer.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\timer.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\timer.o: ..\Hardware\AD1239\TM7707.h
 ..\obj\timer.o: ..\Hardware\MODBUS\protocol.h
 ..\obj\timer.o: ..\Hardware\MODBUS\mport.h

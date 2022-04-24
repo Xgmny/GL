@@ -3,7 +3,7 @@
 ..\obj\protocol.o: ..\SYSTEM\sys\sys.h
 ..\obj\protocol.o: ..\USER\stm32f10x.h
 ..\obj\protocol.o: ..\CORE\core_cm3.h
-..\obj\protocol.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\protocol.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\protocol.o: ..\USER\system_stm32f10x.h
 ..\obj\protocol.o: ..\USER\stm32f10x_conf.h
 ..\obj\protocol.o: ..\FWLib\inc\stm32f10x_adc.h
@@ -32,6 +32,6 @@
 ..\obj\protocol.o: ..\FWLib\inc\misc.h
 ..\obj\protocol.o: ..\Hardware\MODBUS\mport.h
 ..\obj\protocol.o: ..\SYSTEM\usart\usart.h
-..\obj\protocol.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\protocol.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\protocol.o: ..\Hardware\MODBUS\mcheck.h
 ..\obj\protocol.o: ..\Hardware\MALLOC\malloc.h

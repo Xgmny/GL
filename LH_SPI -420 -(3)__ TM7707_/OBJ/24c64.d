@@ -4,7 +4,7 @@
 ..\obj\24c64.o: ..\SYSTEM\sys\sys.h
 ..\obj\24c64.o: ..\USER\stm32f10x.h
 ..\obj\24c64.o: ..\CORE\core_cm3.h
-..\obj\24c64.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\24c64.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\24c64.o: ..\USER\system_stm32f10x.h
 ..\obj\24c64.o: ..\USER\stm32f10x_conf.h
 ..\obj\24c64.o: ..\FWLib\inc\stm32f10x_adc.h

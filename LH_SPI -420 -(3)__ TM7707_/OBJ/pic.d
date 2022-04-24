@@ -3,7 +3,7 @@
 ..\obj\pic.o: ..\SYSTEM\sys\sys.h
 ..\obj\pic.o: ..\USER\stm32f10x.h
 ..\obj\pic.o: ..\CORE\core_cm3.h
-..\obj\pic.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\pic.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\pic.o: ..\USER\system_stm32f10x.h
 ..\obj\pic.o: ..\USER\stm32f10x_conf.h
 ..\obj\pic.o: ..\FWLib\inc\stm32f10x_adc.h

@@ -4,7 +4,7 @@
 ..\obj\gp8302 .o: ..\SYSTEM\sys\sys.h
 ..\obj\gp8302 .o: ..\USER\stm32f10x.h
 ..\obj\gp8302 .o: ..\CORE\core_cm3.h
-..\obj\gp8302 .o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\gp8302 .o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\gp8302 .o: ..\USER\system_stm32f10x.h
 ..\obj\gp8302 .o: ..\USER\stm32f10x_conf.h
 ..\obj\gp8302 .o: ..\FWLib\inc\stm32f10x_adc.h

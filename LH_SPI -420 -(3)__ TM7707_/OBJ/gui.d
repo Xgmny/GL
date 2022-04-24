@@ -3,7 +3,7 @@
 ..\obj\gui.o: ..\SYSTEM\sys\sys.h
 ..\obj\gui.o: ..\USER\stm32f10x.h
 ..\obj\gui.o: ..\CORE\core_cm3.h
-..\obj\gui.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\gui.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\gui.o: ..\USER\system_stm32f10x.h
 ..\obj\gui.o: ..\USER\stm32f10x_conf.h
 ..\obj\gui.o: ..\FWLib\inc\stm32f10x_adc.h
@@ -30,11 +30,11 @@
 ..\obj\gui.o: ..\FWLib\inc\stm32f10x_usart.h
 ..\obj\gui.o: ..\FWLib\inc\stm32f10x_wwdg.h
 ..\obj\gui.o: ..\FWLib\inc\misc.h
-..\obj\gui.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\string.h
+..\obj\gui.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\gui.o: ..\Hardware\SETCS\oledfont.h
 ..\obj\gui.o: ..\SYSTEM\delay\delay.h
 ..\obj\gui.o: ..\Hardware\SETCS\gui.h
-..\obj\gui.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\math.h
+..\obj\gui.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\gui.o: ..\Hardware\AD1239\GP8302.h
 ..\obj\gui.o: ..\Hardware\24CXX\24c64.h
 ..\obj\gui.o: ..\Hardware\IIC\myiic.h

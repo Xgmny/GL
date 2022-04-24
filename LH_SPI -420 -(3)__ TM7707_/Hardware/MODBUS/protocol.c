@@ -126,7 +126,7 @@ void mb_packsend_frame(m_frame_typedef *fx)
 //fx：指向需要打包的帧  
 void mb_mod(m_modbus_typedef  *fx)
 {  
-	u16 i;
+//	u16 i;
 	u16 calchkval=0;			//计算得到的校验值	
 	u16 framelen=0;				//打包后的帧长度
 	u8 sendbuf[8];				//发送缓冲区

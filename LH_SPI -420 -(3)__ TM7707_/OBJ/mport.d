@@ -3,7 +3,7 @@
 ..\obj\mport.o: ..\SYSTEM\sys\sys.h
 ..\obj\mport.o: ..\USER\stm32f10x.h
 ..\obj\mport.o: ..\CORE\core_cm3.h
-..\obj\mport.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\mport.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\mport.o: ..\USER\system_stm32f10x.h
 ..\obj\mport.o: ..\USER\stm32f10x_conf.h
 ..\obj\mport.o: ..\FWLib\inc\stm32f10x_adc.h
@@ -32,6 +32,6 @@
 ..\obj\mport.o: ..\FWLib\inc\misc.h
 ..\obj\mport.o: ..\Hardware\MODBUS\mport.h
 ..\obj\mport.o: ..\SYSTEM\usart\usart.h
-..\obj\mport.o: D:\2122\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\mport.o: D:\RoRo\Keil\Keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\mport.o: ..\Hardware\MODBUS\mcheck.h
 ..\obj\mport.o: ..\SYSTEM\delay\delay.h
