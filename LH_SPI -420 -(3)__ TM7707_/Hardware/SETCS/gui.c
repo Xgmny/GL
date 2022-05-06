@@ -29,7 +29,7 @@
 
     static int32_t LJI;   //0.1<累计 累加变量
 	extern int32_t CY,WenDu;
-		   u8 BFB;        //校正
+		     u8 BFB;        //校正
 	extern u8 lwd[];
 	extern u8 lwd_pa[];
 	extern u8 lll[];
@@ -37,6 +37,7 @@
 	extern u8 lsl[];
 	extern u8 cyl[];
 	extern u8 jdl[];
+	extern u8 Error;
 	extern int32_t LJ;
 	extern int32_t LL;
 	extern u8 B,B1;
@@ -47,7 +48,7 @@
     extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	extern int32_t  SZ_LL_Z,SZ_LL_F;		
            int32_t WD,WD_Ohm;
-	static int32_t WD_1;
+//	static int32_t WD_1;
 	static int32_t  PJ[10];
 	
 	u32 WinDu[51]=
@@ -1379,8 +1380,9 @@ u8 zf;
 	 num=TP1000_wd_(num);
 	 WenDu=num; 
 	 num+=SZ_WD_O;//零点补偿
-	 if(num<-600 || num>800)  num=250; 
-	 else ;//补偿;
+	 if(num<-600 || num>1000) { num=250; Error=Error|0x01;}  //断线错误判断
+	 else {Error=Error&(~0x01); }//错误解除 
+	 
 	 
 	 if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	 NUM_A(num,4,1,zf,lwd);
@@ -1395,15 +1397,12 @@ u8 zf;
 	return num;
 }
 /****************************************************
-
-
-
 zf 正负号
 ********************************************************/
 void YS_YS(int32_t num){
 	int32_t cc,ccll;
 	u8 zf;
-	static u16 dianliu;
+//	static u16 dianliu;
 #if 0
 	   //                                    零点校正 负				零点校正 正
  	  if(num&0x800000){  num|=0xff000000;} else{ zf=0;} //24位负  变32位负
@@ -1411,14 +1410,12 @@ void YS_YS(int32_t num){
 	  num=num-8388607;
 	if(num>8388607){num-=8388607;num=~num;num++;}else;
 #endif	
-  //  //	     BFB = (num*10) /YuanMa;     //差压百分比
+  // //	     BFB = (num*10) /YuanMa;     //差压百分比
   // //	     if(BFB>9)BFB=9;else;
 	        
 		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
          B1++;  if(B1>9){B1=0;B=1;}  else;
 		
-
-		 
 	     cc=num;
 //	     num+=WD;
 		 num=YS_LL(num);
@@ -1522,9 +1519,6 @@ int16_t TP1000_wd(int32_t u)  //查表
 }
 int16_t TP1000_wd_(int32_t u)   //计算
 {
-	u8 i=0 ;
-	u16 b=0,bb;
-	
 	if(u>=100000)
 	  {
 	    u-=100000;

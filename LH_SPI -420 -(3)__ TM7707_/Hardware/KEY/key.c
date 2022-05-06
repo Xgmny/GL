@@ -27,7 +27,7 @@ u8 KEY_Scan(void)
 			if(KEYA==0)//+
 				{
 				
-				if(KEYR==0)
+				if(KEYR==0)  //+ ×óÒÆ
 					aj=4;
 		           else 
 					   aj=1;

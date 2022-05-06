@@ -40,11 +40,11 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0188,kl,5);AT24CXX_Write(0x0190,kl,5);AT24CXX_Write(0x0198,kl,5);
 		AT24CXX_Write(0x01a0,kl,5);AT24CXX_Write(0x01a8,kl,5);AT24CXX_Write(0x01b0,kl,5);
 		AT24CXX_Write(0x01b8,kl,5);AT24CXX_Write(0x01c0,kl,5);AT24CXX_Write(0x01c8,kl,5);
-		kl[0]=0x30;kl[1]=0x31;kl[2]=0x31;kl[3]=0x31;
-		AT24CXX_Write(0x0050,kl,4);//WDXS
+		kl[0]=0x30;kl[1]=0x31;kl[2]=0x31;kl[3]=0x31;kl[4]=0x31;
+		AT24CXX_Write(0x0050,kl,5);//WDXS
 		kl[0]=0x2B;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
 		AT24CXX_Write(0x0058,kl,5);//WDLD
-		kl[0]=0x31;kl[1]=0x2E;kl[2]=0x30;kl[3]=0x30;
+		kl[0]=0x31;kl[1]=0x2E;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;
 		AT24CXX_Write(0x0060,kl,6);//WDZ
 		AT24CXX_Write(0x0070,kl,6);//QJZ
 		AT24CXX_Write(0x0068,kl,6);//WDF
@@ -56,7 +56,7 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x01e0,kl,8);
 		AT24CXX_Write(0x0200,kl,8);
 		kl[0]=0x30;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
-	    AT24CXX_Write(0x01f0,kl,8);         //计年
+	  AT24CXX_Write(0x01f0,kl,8);         //计年
 		AT24CXX_Write(0x0200+0x0008,kl,8);  //计数
 	}
 		delay_ms(2);
@@ -259,13 +259,13 @@ int32_t  A_N_24C64 (u8 w,u8 *a,u16 d)
 void BL_24c64(void){
 	u8 kl[8];
 	
-        SZ_WD_KZ= A_N_24C64(5,kl,0x0060);
+    SZ_WD_KZ= A_N_24C64(5,kl,0x0060);
 		SZ_WD_KF= A_N_24C64(5,kl,0x0068);
-	    SZ_WD_O = A_N_24C64(5,kl,0x0058);    //0点温度
-	    SZ_WD_B = A_N_24C64(4,kl,0x0050);    //温度补偿系数
+	  SZ_WD_O = A_N_24C64(5,kl,0x0058);    //0点温度
+	  SZ_WD_B = A_N_24C64(5,kl,0x0050);    //温度补偿系数
 		SZ_LD_Z = A_N_24C64(5,kl,0x0110);     //零点
-	    SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
-        SZ_LL_Z = A_N_24C64(6,kl,0X01D0);    //流量上线
+	  SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
+    SZ_LL_Z = A_N_24C64(6,kl,0X01D0);    //流量上线
 
 		SZ_JZ_Z[0]=A_N_24C64(5,kl,0x0120);	//<10%
 		SZ_JZ_Z[1]=A_N_24C64(5,kl,0x0128);	//<~20%
@@ -279,8 +279,8 @@ void BL_24c64(void){
 		SZ_JZ_Z[9]=A_N_24C64(5,kl,0x0168);	//>90%	
 	
 		SZ_LD_F = A_N_24C64(5,kl,0x0170);     //零点
-	    SZ_QC_F = A_N_24C64(5,kl,0x0178);   // 切除
-        SZ_LL_F = A_N_24C64(6,kl,0X01D8);    //流量上线
+	  SZ_QC_F = A_N_24C64(5,kl,0x0178);   // 切除
+    SZ_LL_F = A_N_24C64(6,kl,0X01D8);    //流量上线
 
 		SZ_JZ_F[0]=A_N_24C64(5,kl,0x0180);	//<10%
 		SZ_JZ_F[1]=A_N_24C64(5,kl,0x0188);	//<~20%

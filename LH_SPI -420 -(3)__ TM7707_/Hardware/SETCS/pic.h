@@ -16,5 +16,5 @@ void QJHM(void);
 void MENU(void);
 void CAN_SET(void);
 void FIRST_2(void);
-
+void OLED_error(char x);
 #endif

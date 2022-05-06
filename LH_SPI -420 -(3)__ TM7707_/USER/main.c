@@ -29,6 +29,7 @@
 	u8 cyl[8]={0x2d,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 jdl[8]={0x2b,0x33,0x32,0x2e,0x30,0x32};
 	
+	u8 Error=0;  //系统错误
 	int32_t LJ;
 	int32_t LL,CY,WenDu;
 	u8 ms1000=0,K1=0,K2=0;
@@ -51,7 +52,7 @@
 	int8_t gd;
 	u8 cnt=0,old_key=0,hmqh,yei;
 	u8 canbuf_txd[8]={0x00,0x00,0x32,0x30,0x30,0x30,0x2e,0x30};
-   
+  u8 OFF_error=1;
 	delay_init();	    	 //延时函数初始化	
 	OLED_Init();
 	GUI_ShowCHinese(0,15,32,"科瑞仪表",1);
@@ -74,8 +75,14 @@
 	 run=1;      //运行
 //	LED0=1;        
  	while(1)
-	{
-
+	{	
+    while( ( Error & OFF_error) )  { 
+					OLED_error(Error); 
+					Made_Data();  //AD检测
+					delay_ms(800);
+					if (4==KEY_Scan())OFF_error=0;else;
+					if(Error==0){NVIC_SystemReset();}else;
+		}//系统错误判断   重启
 		rxd_bz=Can_Receive_Msg(canbuf_rxd);//接收到有数据	
 		if (rxd_bz)   
 		   {
@@ -85,8 +92,7 @@
 				if((canbuf_rxd[1]=='U')&(canbuf_rxd[2]=='T'))
 				      {BL_24c64();run=1;cnt=0;FIRST();
 					     slj30=0;se30=0;ms200=0;}//运行
-					  
-			}
+      }
 			else
 			{
 				if (canbuf_rxd[0]=='$')

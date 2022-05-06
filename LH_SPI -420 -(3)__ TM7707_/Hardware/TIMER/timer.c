@@ -231,7 +231,6 @@ if(S_7705>=5){
 		    QingJiao_F();//Çã½Ç
 			   delay_ms(7);
 
-		
 				YS_YS(a);
 				YS_YM(a);
 			}

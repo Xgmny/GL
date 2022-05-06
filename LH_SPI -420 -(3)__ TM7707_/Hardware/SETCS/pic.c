@@ -143,7 +143,7 @@ void FIRST(void)
 }
 void FIRST_2(void)
 {	
-	u8 i,a;
+//	u8 i,a;
 	int8_t gd;
 		OLED_Clear(0);             //??(??)
 if(Gd_y<30)
@@ -185,6 +185,19 @@ else
 	if(gd<6 && gd>=0)GUI_ShowString(32,3+10*gd++,"F_SIZE:",7,8,1);		else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(44,3+10*gd++,"F_ID:",5,8,1);		else gd++;
 }	
-
 }
+void OLED_error(char x)
+{
+	OLED_Clear(0);             //清屏（全黑）
+	GUI_ShowCHinese(0,0,16,"错误",1);
+	switch (x)
+				{
+					case 0x01:{	GUI_ShowCHinese(16,24,16,"温度传感器线路故障",1);}break; //温度传感器接线错误
+					case 0x02:{	GUI_ShowCHinese(16,16,16,"差压传感器线路故障",1);}break;//差压传感器接线错误
+					case 0x03:{	GUI_ShowCHinese(16,16,16,"主板AD部分故障",1);}break;//温度传感器与差压传感器接线错误
+					case 0x04:{	}break;
+				}	
+}
+
+
 

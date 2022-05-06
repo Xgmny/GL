@@ -286,18 +286,18 @@ void SET_COME(void)
 				switch (wz)
 				{
 					case 0x02:{	
-								SIX();page=6;wz=0;addr=0x0050;  //温度设置
-									AT24CXX_Read(addr,ss,4);
+								SIX();page=6;wz=0;addr=0x0050;  //page=6温度设置
+									AT24CXX_Read(addr,ss,5);
 									addr+=8;
 									AT24CXX_Read(addr,ld,5);
 									addr+=8;
-									AT24CXX_Read(addr,qc,4);
+									AT24CXX_Read(addr,qc,5);
 									addr+=8;
-									AT24CXX_Read(addr,dd,4);
-									GUI_ShowString(79,0,ss,4,16,1);
+									AT24CXX_Read(addr,dd,5);
+									GUI_ShowString(79,0,ss,5,16,1);//显示温度数值
 									GUI_ShowString(79,16,ld,5,16,1);
-									GUI_ShowString(79,32,qc,4,16,1);
-									GUI_ShowString(79,48,dd,4,16,1);
+									GUI_ShowString(79,32,qc,5,16,1);
+									GUI_ShowString(79,48,dd,5,16,1);
 
 						
 								    row=79;col=0;tem=ss[wz];smode=1;}break;
@@ -339,7 +339,7 @@ void SET_COME(void)
 			}
 			else
 			{
-				if(page==6)
+				if(page==6) //保存??
 				{
 					if (xgbz==1)
 						{
@@ -366,7 +366,7 @@ void SET_COME(void)
 						{
 							if (xgbz==1)
 							{
-				                if(col==48) ld[wz]=tem;
+				        if(col==48) ld[wz]=tem;
 								if(col==32) ss[wz]=tem;
 								AT24CXX_Write(0x0070,ss,6);
 								AT24CXX_Write(0x0078,ld,6);
@@ -377,7 +377,7 @@ void SET_COME(void)
 						{
 							if (xgbz==1)
 							{
-				                ld[wz]=tem;
+				        ld[wz]=tem;
 								AT24CXX_Write(0x0108,ld,3);
 								myid=(ld[0]-0x30)*100+(ld[1]-0x30)*10+(ld[2]-0x30);
 								if (myid>255) myid=255;
@@ -521,32 +521,32 @@ void SET_COME(void)
 			if (page==6) //温度设置光标
 				{
 					GUI_ShowChar(row,col,tem,16,1);
-					if (col==0) ss[wz]=tem;
+					if (col==0)  ss[wz]=tem;
 					if (col==16) ld[wz]=tem;
 					if (col==32) qc[wz]=tem;
 					if (col==48) dd[wz]=tem;
-					row+=8;wz++;smode=1;
+					row+=8;wz++;smode=1;    //wz 行位   row光标显示位置
 		
 						if (col==0){
-							if (wz==99)  {row+=8;wz++;}			else;
-							if (wz>=4)	 {row=79;col+=16;wz=0;}	else;
+							if (wz==99)  {row+=8;wz++;}			else;   //跳过小数点
+							if (wz>=5)	 {row=79;col+=16;wz=0;}	else;
 						   }	
 						if (col==16){
-							if (wz==3)  {row+=8;wz++;}			else;
+							if (wz==3)  {row+=8;wz++;}			else;//跳过小数点
 							if (wz>=5)	{row=79;col+=16;wz=0;}	else;
 						   }	
 						
 						if ((col==32)|(col==48)){
 							if (wz==1)  {row+=8;wz++;}			else;
-							if (wz>=4)	{row=79;col+=16;wz=0;}	else;
+							if (wz>=5)	{row=79;col+=16;wz=0;}	else;
 							}	
 						if(col>=64) col=0;
 								
-						if (col==0) tem=ss[wz];
+						if (col==0)  tem=ss[wz];
 						if (col==16) tem=ld[wz];
 						if (col==32) tem=qc[wz];
 						if (col==48) tem=dd[wz];
-						GUI_ShowChar(row,col,tem,16,1);
+						GUI_ShowChar(row,col,tem,16,1);//光标显示位置   第几行     
 							
 					 }
 			if (page==7)
@@ -585,12 +585,12 @@ void SET_COME(void)
 			else
 				{
 					xgbz=1;
-					if(((page==8)|(page==6))&((col==16)|(col==32)|(col==48))&(wz==0))
+					if(((page==8)|(page==6))&((col==0)|(col==16)|(col==32)|(col==48))&(wz==0))   //"+"  ."-"号
 						{
-							if (tem==0x2b)
-								tem=0x2d;
+							if (tem==0x20)
+								tem=0x2d;   //是"-"
 							else
-								tem=0x2b;
+								tem=0x20;   //" "   2b  "+"
 						}
 					else
 					{
