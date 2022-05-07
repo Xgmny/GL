@@ -102,11 +102,11 @@ void SEV(void)
 void QJHM(void)
 {	
 	OLED_Clear(0);             //ÇåÆÁ£¨È«ºÚ£©
-	GUI_ShowCHinese(0,0,16,"Çã½Ç",1);
-	GUI_ShowCHinese(24,32,16,"¶È£º",1);
-	GUI_ShowString(0,32,"+30",3,16,1);
-	GUI_ShowString(0,48,"-30",3,16,1);
-	GUI_ShowCHinese(24,48,16,"¶È£º",1);
+
+	GUI_ShowCHinese(0,32,16,"²îÑ¹Âë£º",1);
+	
+	GUI_ShowCHinese(0,48,16,"²îÑ¹",1);
+	GUI_ShowString(32,48,"Pa:",3,16,1);
 }
 void FIRST(void)
 {

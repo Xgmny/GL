@@ -20,10 +20,11 @@
 //#define YuanMa   (13607555-8388607)//7707 2.5v 双极 80      5218948
 //#define YuanMa   (6007000)//7707 2.5v 双极 
 //#define YuanMa   (5866948)//7707 2.5v 双极 80
-#define YuanMa   (6380761-255854)//90KPa-0Kpa   KKD28-1701
+///#define YuanMa   (6380761-255854)//90KPa-0Kpa   KKD28-1701   		最后
+
 //#define YuanMa   (7160000-345300)//7707 2.5v 双极 90  6814700
 
-#define MANMA 90000
+///#define MANMA 80000  //Pa    最后
 
 //#define YuanMa   (11408800-8400570)//7707 2.5v 双极小差压器200KPa
 
@@ -45,8 +46,9 @@
 
 	extern u16 SZ_JZ_Z[], SZ_JZ_F[];                     //   %比校正
 	extern u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
-    extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
+  extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	extern int32_t  SZ_LL_Z,SZ_LL_F;		
+	extern int32_t  YuanMa ,  MANMA;   //
            int32_t WD,WD_Ohm;
 //	static int32_t WD_1;
 	static int32_t  PJ[10];
@@ -1277,7 +1279,7 @@ int32_t YS_LL(int32_t num){
 	  zi=(float)(FZ*FZ)/1;
  if(num>iz)	
 	{
-		 i=num;
+		i=num;
 	  if(YuanMa-ZFX) 
 		i=SZ_LL_Z*10*(sqrt((i-ZFX)/(YuanMa-ZFX)));  //流量计算 5063000
 	  else 

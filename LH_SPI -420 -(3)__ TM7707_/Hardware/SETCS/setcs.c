@@ -10,7 +10,7 @@ extern u32 NIAN ,WD,LJ;
 extern u32 myid;
 extern u8 ljks;
 extern u8 run;
-static u8 tem;
+static u8 tem;		//光标(值)
 u8 key;
 void CAN_Answer(void)	
 {
@@ -266,9 +266,9 @@ void SET_IN(void)
 
 void SET_COME(void)	
 {   
-	static u8 fx,xgbz,skey,lsk;
+	static u8 fx,xgbz,skey,lsk;   //xgbz=1 保存标志
 	static u16 addr;
-	static u8 ss[7],ld[8],qc[6],dd[6];
+	static u8 ss[8],ld[8],qc[8],dd[8];
 	
 	skey=key;
 	if(skey<4)
@@ -353,23 +353,28 @@ void SET_COME(void)
 							addr+=8;AT24CXX_Write(addr,qc,6);
 							addr+=8;AT24CXX_Write(addr,dd,6);
 						}
-						QJHM();row=79;col=16;smode=1;wz=0;page=8;xgbz=0;
-						AT24CXX_Read(0x0070,ss,6);
-						AT24CXX_Read(0x0078,ld,6);
-						GUI_ShowString(79,32,ss,6,16,1);
-						GUI_ShowString(79,48,ld,6,16,1);
-						col=32;row=79;tem=ss[wz];xgbz=0;
+						QJHM();row=63;col=32;smode=1;wz=0;page=8;xgbz=0;   //设置第2页
+//						AT24CXX_Read(0x0070,ss,6);
+//						AT24CXX_Read(0x0078,ld,6);
+						AT24CXX_Read(0x0080,qc,8);
+						AT24CXX_Read(0x0088,dd,8);
+						GUI_ShowString(63,32,qc,8,16,1);
+						GUI_ShowString(63,48,dd,8,16,1);
+						col=32;row=63;tem=qc[wz];xgbz=0;
 				}
 				else
 				{
-					if (page==8)
+					if (page==8)   //设置 2页
 						{
 							if (xgbz==1)
 							{
-				        if(col==48) ld[wz]=tem;
-								if(col==32) ss[wz]=tem;
-								AT24CXX_Write(0x0070,ss,6);
-								AT24CXX_Write(0x0078,ld,6);
+				        if(col==32) qc[wz]=tem;
+								if(col==48) dd[wz]=tem;
+//								AT24CXX_Write(0x0070,ss,6);   角度
+//								AT24CXX_Write(0x0078,ld,6);
+								AT24CXX_Write(0x0080,qc,8);
+								AT24CXX_Write(0x0088,dd,8);
+
 							}
 							MENU();row=113;col=4;smode=0;wz=0;page=0;	
 						}
@@ -487,7 +492,7 @@ void SET_COME(void)
 						if(col==32)
 						{	if(row==63) {row+=8;wz++;}}
 						else
-							{	if(row==55) {row+=8;wz++;}}
+							{	if(row==63) {row+=8;wz++;}}
 						if (row>=87)
 							{row=47;col+=16;wz=0;
 							if(col>=64) col=16;}
@@ -542,10 +547,10 @@ void SET_COME(void)
 							}	
 						if(col>=64) col=0;
 								
-						if (col==0)  tem=ss[wz];
-						if (col==16) tem=ld[wz];
-						if (col==32) tem=qc[wz];
-						if (col==48) tem=dd[wz];
+						if (col==0)  tem=ss[wz];//第1行
+						if (col==16) tem=ld[wz];//第2行
+						if (col==32) tem=qc[wz];//第3行
+						if (col==48) tem=dd[wz];//第4行
 						GUI_ShowChar(row,col,tem,16,1);//光标显示位置   第几行     
 							
 					 }
@@ -557,19 +562,17 @@ void SET_COME(void)
 					tem=ld[wz];
 					GUI_ShowChar(row,38,tem,16,1);
 				}
-			if (page==8)
+			if (page==8)//设置2页
 				{	
 					GUI_ShowChar(row,col,tem,16,1);
-					if (col==32) ss[wz]=tem;
-					if (col==48) ld[wz]=tem;
+					if (col==32) qc[wz]=tem;
+					if (col==48) dd[wz]=tem;
 					row+=8;wz++;smode=1;
-					if (wz==4) 
-						{row+=8;wz++;}
-					if (wz>=6)
-						{row=79;col+=16;wz=0;}
-					if(col>=64) col=32;
-					if (col==32) tem=ss[wz];
-					if (col==48) tem=ld[wz];
+	//				if (wz==4) {row+=8;wz++;}
+					if (wz>=8) {row=63;col+=16;wz=0;}
+					if (col>=64|wz>=8) col=32;
+					if (col==32) tem=qc[wz];
+					if (col==48) tem=dd[wz];
 					GUI_ShowChar(row,col,tem,16,1);
 				 }
 	    delay_ms(300);		//手感		
@@ -585,7 +588,7 @@ void SET_COME(void)
 			else
 				{
 					xgbz=1;
-					if(((page==8)|(page==6))&((col==0)|(col==16)|(col==32)|(col==48))&(wz==0))   //"+"  ."-"号
+					if(((page==6))&((col==0)|(col==16)|(col==32)|(col==48))&(wz==0))   //"+"  ."-"号
 						{
 							if (tem==0x20)
 								tem=0x2d;   //是"-"

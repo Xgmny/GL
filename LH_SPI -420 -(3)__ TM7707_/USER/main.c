@@ -38,7 +38,8 @@
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
 	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
 	int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
-	int32_t  SZ_LL_Z,SZ_LL_F;
+	int32_t  SZ_LL_Z,SZ_LL_F;										//   正反向量程  
+  int32_t  YuanMa ,  MANMA;   //
    extern int32_t WD_Ohm,WD;
    extern u32 NIAN;
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
@@ -99,7 +100,7 @@
 				{	
 					if (canbuf_rxd[1]=='Y')
 						{	run=2;
-								delay_ms(5);
+							delay_ms(5);
 							CAN_Answer();
 						}
 				}	
@@ -157,9 +158,9 @@
 								if (!hmqh)	
 								{	
 //									GP8302_Read((3135*(js/200.0))+788);
-									 GUI_ShowString(34, 3,lll,8,16,1); // 流量
-						             GUI_ShowString(34,24,ljl,8,16,1);	//ljl   lsl
-						             GUI_ShowString(34,45,cyl,8,16,1);	
+												GUI_ShowString(34, 3,lll,8,16,1);					 // 流量
+						            GUI_ShowString(34,24,ljl,8,16,1);					//ljl   lsl
+						            GUI_ShowString(34,45,cyl,8,16,1);	  			//差压
 									
 									if(key==1)K1++;  else K1=0; //K1
 									if(key==2)K2++;  else K2=0; //K2
@@ -192,7 +193,7 @@
 										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,((*(u32*)0x40006418)>>24)&0x000000FF ,3,8,1);else gd++; //
 										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,(CAN1->MCR)&0x000000FF ,3,8,1);else gd++; //
 										if(gd<6 && gd>=0)GUI_ShowNum(87,3+10*gd++,(CAN1->RF0R)&0x00000003 ,1,8,1);else gd++; // 
-										if(gd<6 && gd>=0)GUI_ShowNum(63,3+10*gd++,((*(u32*)0x1FFFF7E0))&0x0000FFFF ,8,8,1);else gd++; // 
+										if(gd<6 && gd>=0)GUI_ShowNum(63,3+10*gd++,((*(u32*)0x1FFFF7E0))&0x0000FFFF, 8,8,1);else gd++; // 
 										if(gd<6 && gd>=0)GUI_ShowNum(63,3+10*gd++,((*(u32*)0x1FFFF7E8))&0x0000FFFF ,8,8,1);else gd++; //    
 										
 										   gd=Gd;						
