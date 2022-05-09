@@ -9,7 +9,7 @@
 	extern u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
   extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
   extern int32_t  SZ_LL_Z,SZ_LL_F;		                 //   正反向量程  
-	extern int32_t  YuanMa ,  MANMA;   //
+	extern int32_t  YuanMa ,  MANMA,   Ma_xz;//
            u8  JNW[8] ;
 		   u32 JNS;
            u32 NIAN; 
@@ -21,7 +21,7 @@ void AT24CXX_Init(void)
     WP=0;
 	delay_ms(2);
 	AT24CXX_Read(0X0100,kl,4);
-	if((kl[0]!=0x38)|(kl[1]!=0x36)|(kl[2]!=0x4f)|(kl[3]!=0x4b))
+	if((kl[0]!=0x39)|(kl[1]!=0x36)|(kl[2]!=0x4f)|(kl[3]!=0x4b))
 	{
 		kl[0]=0x38;kl[1]=0x36;kl[2]=0x4f;kl[3]=0x4b;
 		AT24CXX_Write(0X0100,kl,4);
@@ -41,11 +41,11 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0188,kl,5);AT24CXX_Write(0x0190,kl,5);AT24CXX_Write(0x0198,kl,5);
 		AT24CXX_Write(0x01a0,kl,5);AT24CXX_Write(0x01a8,kl,5);AT24CXX_Write(0x01b0,kl,5);
 		AT24CXX_Write(0x01b8,kl,5);AT24CXX_Write(0x01c0,kl,5);AT24CXX_Write(0x01c8,kl,5);
-		kl[0]=0x30;kl[1]=0x31;kl[2]=0x31;kl[3]=0x31;kl[4]=0x31;
+		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;
 		AT24CXX_Write(0x0050,kl,5);//WDXS
-		kl[0]=0x2B;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
+		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
 		AT24CXX_Write(0x0058,kl,5);//WDLD
-		kl[0]=0x31;kl[1]=0x2E;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;
+		kl[0]=0x20;kl[1]=0x30;kl[2]=0x2E;kl[3]=0x30;kl[4]=0x30;
 		AT24CXX_Write(0x0060,kl,6);//WDZ
 		AT24CXX_Write(0x0070,kl,6);//QJZ  角度正
 		AT24CXX_Write(0x0068,kl,6);//WDF
@@ -54,6 +54,8 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0080,kl,8); //YuanMa
 		kl[0]=0x30;kl[1]=0x30;kl[2]=0x30;kl[3]=0x38;kl[4]=0x30;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
 		AT24CXX_Write(0x0088,kl,8);	//MANMA
+		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
+		AT24CXX_Write(0x0090,kl,8);	//0点原码修正
 		kl[0]=0x32;kl[1]=0x30;kl[2]=0x30;kl[4]=0x30;kl[3]=0x2e;kl[5]=0x30;kl[6]=0x30;
 		AT24CXX_Write(0x01D0,kl,6);		
 		AT24CXX_Write(0x01D8,kl,6);
@@ -264,7 +266,7 @@ int32_t  A_N_24C64 (u8 w,u8 *a,u16 d)
 void BL_24c64(void){
 	u8 kl[8];
 	
-		
+		Ma_xz		= A_N_24C64(8,kl,0x0090);		//0点原码修正
 	  YuanMa	= A_N_24C64(8,kl,0x0080);		//原码  满-0
 	  MANMA		= A_N_24C64(8,kl,0x0088);		//满度压力 Pa   MANMA
 	

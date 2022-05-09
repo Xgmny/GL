@@ -1345,7 +1345,7 @@ int32_t YS_CY(int32_t num){
 		num=~num+1;
 	  }
    else num=0;
-   
+ //  if(num>99|num<-99)Error=Error|0x02;else;  //²îÑ¹´«¸ĞÆ÷±¨´í
    return num;
 }
 //****************************************************

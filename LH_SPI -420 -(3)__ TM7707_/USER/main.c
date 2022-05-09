@@ -39,7 +39,7 @@
 	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
 	int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	int32_t  SZ_LL_Z,SZ_LL_F;										//   正反向量程  
-  int32_t  YuanMa ,  MANMA;   //
+  int32_t  YuanMa ,  MANMA , Ma_xz;   //
    extern int32_t WD_Ohm,WD;
    extern u32 NIAN;
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
@@ -77,6 +77,7 @@
 //	LED0=1;        
  	while(1)
 	{	
+
     while( ( Error & OFF_error) )  { 
 					OLED_error(Error); 
 					Made_Data();  //AD检测

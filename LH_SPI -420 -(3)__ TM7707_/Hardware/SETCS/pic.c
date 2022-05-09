@@ -193,8 +193,8 @@ void OLED_error(char x)
 	switch (x)
 				{
 					case 0x01:{	GUI_ShowCHinese(16,24,16,"温度传感器线路故障",1);}break; //温度传感器接线错误
-					case 0x02:{	GUI_ShowCHinese(16,16,16,"差压传感器线路故障",1);}break;//差压传感器接线错误
-					case 0x03:{	GUI_ShowCHinese(16,16,16,"主板AD部分故障",1);}break;//温度传感器与差压传感器接线错误
+					case 0x02:{	GUI_ShowCHinese(16,24,16,"差压传感器线路故障",1);}break;//差压传感器接线错误
+					case 0x03:{	GUI_ShowCHinese(16,24,16,"主板AD部分故障",1);}break;//温度传感器与差压传感器接线错误
 					case 0x04:{	}break;
 				}	
 }
