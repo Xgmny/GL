@@ -39,7 +39,7 @@
 	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
 	int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	int32_t  SZ_LL_Z,SZ_LL_F;										//   正反向量程  
-  int32_t  YuanMa ,  MANMA , Ma_xz;   //
+  int32_t  YuanMa ,  MANMA , Ma_xz=0;   //
    extern int32_t WD_Ohm,WD;
    extern u32 NIAN;
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
@@ -78,7 +78,7 @@
  	while(1)
 	{	
 
-    while( ( Error & OFF_error) )  { 
+    while( ( Error && OFF_error) )  { 
 					OLED_error(Error); 
 					Made_Data();  //AD检测
 					delay_ms(800);
@@ -171,11 +171,20 @@
 								else{
 									if(Gd_y<30)
 									  {
+//											u16 man=0,ling=0;
+//											if(key==1)TM7705_LingDu(1);
+//											ling=TM7705_Read2Byte();
+//											if(key==2)TM7705_ManDu(1);	
+//											man=TM7705_Read2Byte();
 										GUI_ShowString(4, 16,lwd,5,16,1); 
 				//						GUI_ShowNum(34,24,QJs,7,16,1); 
-										GUI_ShowString(70,16,lwd_pa ,4,16,1);	//倾角	jdl				
-										GUI_ShowString(4,33,jdl,6,16,1);	//
-										GUI_ShowNum(64,33,0000,6,16,1);
+										GUI_ShowString(69,16,lwd_pa ,4,16,1);	//			
+											GUI_ShowString(3,37,lll,8,8,1);	//流量
+											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
+									//	GUI_ShowString(4,33,jdl	,6,16,1);	//jdl倾角	jdl	
+//										GUI_ShowNum(4,33,ling,6,16,1);
+//										GUI_ShowNum(62,33,man,6,16,1);
+										
 									  }
 								    else
 									   {				
@@ -217,20 +226,20 @@
 						if (cnt>=255) cnt=0;
 						canbuf_txd[0]=cnt;
 
-//						canbuf_txd[2]=LL/100>>8;
-//						canbuf_txd[3]=LL/100;
-//						canbuf_txd[4]=LJ>>24;
-//						canbuf_txd[5]=LJ>>16;
-//						canbuf_txd[6]=LJ>>8;
-//						canbuf_txd[7]=LJ;
+						canbuf_txd[2]=LL/100>>8;											//CAN正常使用
+						canbuf_txd[3]=LL/100;
+						canbuf_txd[4]=LJ>>24;
+						canbuf_txd[5]=LJ>>16;
+						canbuf_txd[6]=LJ>>8;
+						canbuf_txd[7]=LJ;
 						 
-						canbuf_txd[2]=CY>>8;
-						canbuf_txd[3]=CY;
-						canbuf_txd[4]=SZ_LD_Z>>8;
-						canbuf_txd[5]=SZ_LD_Z;
-						canbuf_txd[6]=WenDu>>8;
-						canbuf_txd[7]=WenDu;
-						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
+//						canbuf_txd[2]=CY>>8;												//温度测试使用
+//						canbuf_txd[3]=CY;
+//						canbuf_txd[4]=SZ_LD_Z>>8;
+//						canbuf_txd[5]=SZ_LD_Z;
+//						canbuf_txd[6]=WenDu>>8;
+//						canbuf_txd[7]=WenDu;
+//						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
 						
 					}
 				ms200=0;  

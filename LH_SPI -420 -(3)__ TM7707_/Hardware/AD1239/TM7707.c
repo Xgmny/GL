@@ -693,6 +693,36 @@ void _7707_REST(void)
 	TM=0;
 	 TM7705_CalibSelf(2);
 }	
+void TM7705_ManDu(uint8_t _ch)
+{
+	if (_ch == 1)             //双极性 7-8脚
+	{
+		/* 自校准CH1 */
+	TM7705_WriteByte(0x10);    TM7705_WriteByte(0xE0);//ain1
+	}
+	else if (_ch == 2)
+	{
+		/* 自校准CH2 */
+	TM7705_WriteByte(0x10);    TM7705_WriteByte(0xE0);//ain1
+	}
+	TM7705_WriteByte(0x78);
+}
 
+void TM7705_LingDu(uint8_t _ch)
+{
+	if (_ch == 1)             //双极性 7-8脚
+	{
+		/* 自校准CH1 */
+	TM7705_WriteByte(0x10);    TM7705_WriteByte(0xE0);//ain1
+	}
+	else if (_ch == 2)
+	{
+		/* 自校准CH2 */
+	TM7705_WriteByte(0x10);    TM7705_WriteByte(0xE0);//ain1
+	}
+	delay_ms(500);
+	
+	TM7705_WriteByte(0x68); 
+}
 /***************************** 安富莱电子 www.armfly.com (END OF FILE) *********************************/
 

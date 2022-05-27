@@ -10,6 +10,7 @@ extern u32 NIAN ,WD,LJ;
 extern u32 myid;
 extern u8 ljks;
 extern u8 run;
+extern  int32_t  YuanMa ,  MANMA , Ma_xz;   //
 static u8 tem;		//光标(值)
 u8 key;
 void CAN_Answer(void)	
@@ -313,12 +314,12 @@ void SET_COME(void)
 									ONE();page=1;xgbz=0;
 									fx=0;	GUI_ShowCHinese(0,0,16,"正",1);	
 									addr=0x0110;wz=0;
-									AT24CXX_Read(addr,ss,5);
+									AT24CXX_Read(addr,ss,6);
 									addr+=8;
 									AT24CXX_Read(addr,ld,5);
 									addr+=8;
 									AT24CXX_Read(addr,qc,5);
-									GUI_ShowString(47,16,ss,5,16,1);
+									GUI_ShowString(47,16,ss,6,16,1);
 									GUI_ShowString(47,32,ld,5,16,1);
 									GUI_ShowString(47,48,qc,5,16,1);
 									col=16;row=47;tem=ss[wz];
@@ -327,12 +328,12 @@ void SET_COME(void)
 									ONE();page=1;xgbz=0;
 									fx=1;GUI_ShowCHinese(0,0,16,"反",1);
 									addr=0x0170;wz=0;
-									AT24CXX_Read(addr,ss,5);
+									AT24CXX_Read(addr,ss,6);
 									addr+=8;
 									AT24CXX_Read(addr,ld,5);
 									addr+=8;
 									AT24CXX_Read(addr,qc,5);
-									GUI_ShowString(47,16,ss,5,16,1);
+									GUI_ShowString(47,16,ss,6,16,1);
 									GUI_ShowString(47,32,ld,5,16,1);
 									GUI_ShowString(47,48,qc,5,16,1);
 									col=16;row=47;tem=ss[wz];
@@ -372,7 +373,7 @@ void SET_COME(void)
 						    GUI_ShowString(63,16,ld,8,16,1);
 								GUI_ShowString(63,32,qc,8,16,1);
 								GUI_ShowString(63,48,dd,8,16,1);
-								col=16;row=63;tem=qc[wz];xgbz=0;
+								col=16;row=63;tem=qc[wz];xgbz=0;tem=ld[0];
 					     }
 					else{	MENU();row=113;col=4;smode=0;wz=0;page=0;	}//跳回主页面
 				}
@@ -389,6 +390,9 @@ void SET_COME(void)
 								AT24CXX_Write(0x0090,ld,8);
 								AT24CXX_Write(0x0080,qc,8);
 								AT24CXX_Write(0x0088,dd,8);
+		            Ma_xz		= A_N_24C64(8,ld,0x0090);		//0点原码修正
+								YuanMa	= A_N_24C64(8,qc,0x0080);		//原码  满-0
+								MANMA		= A_N_24C64(8,dd,0x0088);		//满度压力 Pa   MANMA
 
 							}
 							MENU();row=113;col=4;smode=0;wz=0;page=0;	
@@ -438,7 +442,8 @@ void SET_COME(void)
 							if (page==4)
 								{if(fx==0) addr=0x0158;
 									else addr=0x01b8;}	
-							AT24CXX_Write(addr,ss,5);
+						if(page==1)	AT24CXX_Write(addr,ss,6);// 零点
+						else	AT24CXX_Write(addr,ss,5);
 							addr+=8;AT24CXX_Write(addr,ld,5);
 							addr+=8;AT24CXX_Write(addr,qc,5);
 						}
@@ -508,9 +513,8 @@ void SET_COME(void)
 						{	if(row==63) {row+=8;wz++;}}
 						else
 							{	if(row==63) {row+=8;wz++;}}
-						if (row>=87)
-							{row=47;col+=16;wz=0;
-							if(col>=64) col=16;}
+						if (row>=95&&col==16)	{row=47;col+=16;wz=0;	if(col>=64) col=16;}//第一行   换行	
+						if (row>=87&&col!=16)	{row=47;col+=16;wz=0;	if(col>=64) col=16;}//第二三行   换行
 						if (col==16) tem=ss[wz];
 						if (col==32) tem=ld[wz];
 						if (col==48) tem=qc[wz];
@@ -557,7 +561,7 @@ void SET_COME(void)
 						   }	
 						
 						if ((col==32)|(col==48)){
-							if (wz==2)  {row+=8;wz++;}			else;
+							if (wz==3)  {row+=8;wz++;}			else;
 							if (wz>=5)	{row=79;col+=16;wz=0;}	else;
 							}	
 						if(col>=64) col=0;

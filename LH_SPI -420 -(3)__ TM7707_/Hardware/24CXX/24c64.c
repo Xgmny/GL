@@ -21,15 +21,15 @@ void AT24CXX_Init(void)
     WP=0;
 	delay_ms(2);
 	AT24CXX_Read(0X0100,kl,4);
-	if((kl[0]!=0x39)|(kl[1]!=0x36)|(kl[2]!=0x4f)|(kl[3]!=0x4b))
+	if((kl[0]!=0x38)|(kl[1]!=0x36)|(kl[2]!=0x4f)|(kl[3]!=0x4b))
 	{
 		kl[0]=0x38;kl[1]=0x36;kl[2]=0x4f;kl[3]=0x4b;
 		AT24CXX_Write(0X0100,kl,4);
 		kl[0]=0x30;kl[1]=0x30;kl[2]=0x30;
 		AT24CXX_Write(0X0108,kl,3);
-		kl[0]=0x30;kl[2]=0x30;kl[1]=0x2e;kl[3]=0x30;kl[4]=0x30;//零点切除
-		AT24CXX_Write(0x0110,kl,5);
-		AT24CXX_Write(0x0170,kl,5);
+		kl[0]=0x30;kl[1]=0x30;kl[2]=0x2e;kl[3]=0x30;kl[4]=0x30;kl[5]=0x30;//零点切除
+		AT24CXX_Write(0x0110,kl,6);
+		AT24CXX_Write(0x0170,kl,6);
 		kl[1]=0x30;kl[2]=0x2e;
 		AT24CXX_Write(0x0118,kl,5);
 		AT24CXX_Write(0x0178,kl,5);
@@ -45,12 +45,12 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0050,kl,5);//WDXS
 		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
 		AT24CXX_Write(0x0058,kl,5);//WDLD
-		kl[0]=0x20;kl[1]=0x30;kl[2]=0x2E;kl[3]=0x30;kl[4]=0x30;
+		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
 		AT24CXX_Write(0x0060,kl,6);//WDZ
-		AT24CXX_Write(0x0070,kl,6);//QJZ  角度正
 		AT24CXX_Write(0x0068,kl,6);//WDF
+		AT24CXX_Write(0x0070,kl,6);//QJZ  角度正
 		AT24CXX_Write(0x0078,kl,6);//QJF   角度负
-		kl[0]=0x30;kl[1]=0x38;kl[2]=0x33;kl[3]=0x38;kl[4]=0x38;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
+		kl[0]=0x30;kl[1]=0x36;kl[2]=0x33;kl[3]=0x34;kl[4]=0x34;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
 		AT24CXX_Write(0x0080,kl,8); //YuanMa
 		kl[0]=0x30;kl[1]=0x30;kl[2]=0x30;kl[3]=0x38;kl[4]=0x30;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
 		AT24CXX_Write(0x0088,kl,8);	//MANMA
@@ -270,11 +270,11 @@ void BL_24c64(void){
 	  YuanMa	= A_N_24C64(8,kl,0x0080);		//原码  满-0
 	  MANMA		= A_N_24C64(8,kl,0x0088);		//满度压力 Pa   MANMA
 	
-    SZ_WD_KZ= A_N_24C64(5,kl,0x0060);		//     >=25度 
-		SZ_WD_KF= A_N_24C64(5,kl,0x0068);		//     <25
+    SZ_WD_KZ= A_N_24C64(5,kl,0x0060);		//     >25度 
+		SZ_WD_KF= A_N_24C64(5,kl,0x0068);		//     >35
 	  SZ_WD_O = A_N_24C64(5,kl,0x0058);   //0点温度
 	  SZ_WD_B = A_N_24C64(5,kl,0x0050);   //温度补偿系数
-		SZ_LD_Z = A_N_24C64(5,kl,0x0110);   //零点
+		SZ_LD_Z = A_N_24C64(6,kl,0x0110);   //零点
 	  SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
     SZ_LL_Z = A_N_24C64(6,kl,0X01D0);   //正量程
 
@@ -289,7 +289,7 @@ void BL_24c64(void){
 		SZ_JZ_Z[8]=A_N_24C64(5,kl,0x0160);	//<~90%
 		SZ_JZ_Z[9]=A_N_24C64(5,kl,0x0168);	//>90%	
 	
-		SZ_LD_F = A_N_24C64(5,kl,0x0170);   //零点
+		SZ_LD_F = A_N_24C64(6,kl,0x0170);   //零点
 	  SZ_QC_F = A_N_24C64(5,kl,0x0178);   // 切除
     SZ_LL_F = A_N_24C64(6,kl,0X01D8);   //反量程
 

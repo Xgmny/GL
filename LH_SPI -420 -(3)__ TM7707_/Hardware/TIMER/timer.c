@@ -14,10 +14,11 @@
 	extern u8 lsl[];
 	extern u8 cyl[];
 	
-extern u32 JNS;
+extern u32 JNS, Ma_xz;
 extern u16 NIAN;
 extern u8 JNW[], TM, S_7705;
 extern int32_t LJ;
+
 static uint8_t buf[3];
 //static int32_t a,b;
  u8 C,B=0,B1=0,kl[8]; //中断次数
@@ -208,7 +209,7 @@ void TIM4_IRQHandler(void)
 //llks=1时累加累计流量=0停止
 void Made_Data(void)
 {
-	int32_t a,b;
+	int32_t a,b,c,d;
 	u8 pp=0;
 if(S_7705>=5){
  
@@ -217,7 +218,7 @@ if(S_7705>=5){
 			{
 				TM7705_WriteByte(0x38);
 				b=TM7705_Read3Byte();
-				YS_WD(b);
+			//	YS_WD(b);
 			}
 			else pp=1;
 
@@ -230,9 +231,10 @@ if(S_7705>=5){
 //			TM7705_CalibSelf(1);
 		    QingJiao_F();//倾角
 			   delay_ms(7);
-
+         a+=Ma_xz;  
 				YS_YS(a);
 				YS_YM(a);
+				YS_WD(b);
 			}
 		    else ;
 }else S_7705++;  //7707初始化延时

@@ -31,7 +31,7 @@ void ONE(void)
 	GUI_ShowCHinese(16,0,16,"向修正参数：",1);
 	GUI_ShowCHinese(3,16,16,"零点：",1);
 	GUI_ShowCHinese(3,32,16,"切除：",1);
-	GUI_ShowString(96,16,"KPa",3,16,1);
+	GUI_ShowString(102,16,"KPa",3,16,1);
 //	GUI_ShowString(105,19,"3",1,8,1);
 	GUI_ShowString(96,32,"m /h",4,16,1);
 	GUI_ShowString(105,35,"3",1,8,1);
@@ -87,12 +87,14 @@ void SIX(void)
 	OLED_Clear(0);             //清屏（全黑）
 	GUI_ShowCHinese(0,0,16,"温补系数：",1);
 	GUI_ShowCHinese(0,16,16,"温度补偿：",1);
-	GUI_ShowCHinese(16,32,16,"度以上：",1);
+	GUI_ShowCHinese(32,32,16,"补偿：",1);
+	GUI_ShowCHinese(32,48,16,"补偿：",1);
+
 	GUI_ShowCHinese(16,48,16,"度以下：",1);
-	GUI_ShowString(0,32,"25",2,16,1);
-	//GUI_ShowString(32,32,"C",1,16,1);
-	GUI_ShowString(0,48,"25",2,16,1);
-	//GUI_ShowString(32,48,"C",1,16,1);
+	GUI_ShowString(0,32,">25",3,16,1);
+	GUI_ShowString(24,32,"C",1,16,1);
+	GUI_ShowString(0,48,">35",3,16,1);
+	GUI_ShowString(24,48,"C",1,16,1);
 }
 void SEV(void)
 {	
@@ -102,7 +104,7 @@ void SEV(void)
 void QJHM(void)
 {	
 	OLED_Clear(0);             //清屏（全黑）
-
+  GUI_ShowCHinese(0,16,16,"零点码：",1);
 	GUI_ShowCHinese(0,32,16,"差压码：",1);
 	
 	GUI_ShowCHinese(0,48,16,"差压",1);
@@ -153,11 +155,14 @@ GUI_DrawLine(WIDTH/2-1,5,WIDTH/2-1,HEIGHT-6,1);
 GUI_DrawLine(0,HEIGHT/2,WIDTH-1,HEIGHT/2,1);	
 	GUI_ShowCHinese(16,0,16,"温度",1);
 	GUI_ShowCHinese(78,0,16,"温差",1);
-	GUI_ShowCHinese(16,48,16,"角度",1);
-	GUI_ShowCHinese(78,48,16,"角差",1);
-	GUI_ShowString(46,14,"o",1,8,1);
-	GUI_ShowString(52,16,"C",1,16,1);
+	GUI_ShowCHinese(5,48,16,"流量",1);
+	GUI_ShowCHinese(70,48,16,"差压",1);
+//	GUI_ShowString(46,14,"o",1,8,1);
+	GUI_ShowString(52,14,"C",1,16,1);
 	GUI_ShowString(107,16,"Pa",2,16,1);
+GUI_ShowString(37,48,"m/h",3,16,1);
+GUI_ShowString(45,48,"3",1,8,1);
+GUI_ShowString(105,48,"Pa",2,16,1);
 }
 else
 {   
@@ -189,12 +194,12 @@ else
 void OLED_error(char x)
 {
 	OLED_Clear(0);             //清屏（全黑）
-	GUI_ShowCHinese(0,0,16,"错误",1);
+	GUI_ShowCHinese(40,0,16,"叉错误",1);//贑"!"
 	switch (x)
 				{
-					case 0x01:{	GUI_ShowCHinese(16,24,16,"温度传感器线路故障",1);}break; //温度传感器接线错误
-					case 0x02:{	GUI_ShowCHinese(16,24,16,"差压传感器线路故障",1);}break;//差压传感器接线错误
-					case 0x03:{	GUI_ShowCHinese(16,24,16,"主板AD部分故障",1);}break;//温度传感器与差压传感器接线错误
+					case 0x01:{	GUI_ShowCHinese(16,24,16,"温度传感器线路故障尶",1);}break; //温度传感器接线错误   "尶!号"
+					case 0x02:{	GUI_ShowCHinese(16,24,16,"差压传感器线路故障尶",1);}break;//差压传感器接线错误
+					case 0x03:{	GUI_ShowCHinese(16,24,16,"主板模块故障尶",1);}break;//温度传感器与差压传感器接线错误
 					case 0x04:{	}break;
 				}	
 }

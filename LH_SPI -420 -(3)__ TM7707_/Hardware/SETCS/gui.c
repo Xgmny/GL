@@ -763,14 +763,14 @@ void GUI_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 Size,u8 mode)
 		if(enshow==0&&t<(len-1))
 		{
 			
-			if(temp==0&&t<2)      //0写空格
-			{
-				
-				GUI_ShowChar(x+csize*(t),y,' ',Size,mode);//改过 -1
-				continue;
-			} 
-			else{	enshow=1;
-	        }
+//			if(temp==0&&t<2)      //0写空格
+//			{
+//				
+//				GUI_ShowChar(x+csize*(t),y,' ',Size,mode);//改过 -1
+//				continue;
+//			} 
+//			else{	enshow=1;
+//	        }
 			
 		}
 //*************************************************************************
@@ -1345,7 +1345,7 @@ int32_t YS_CY(int32_t num){
 		num=~num+1;
 	  }
    else num=0;
- //  if(num>99|num<-99)Error=Error|0x02;else;  //差压传感器报错
+ 
    return num;
 }
 //****************************************************
@@ -1374,6 +1374,8 @@ void YS_YM(int32_t num){
 //****************************************************
 int32_t YS_WD(int32_t num){
 u8 zf;
+u32 buc=0,wds=0;
+
 //	  num=num-8388607;
 //	if(num>8388607){num-=8388607;num=~num;num++;}else;
 	    
@@ -1384,15 +1386,24 @@ u8 zf;
 	 num+=SZ_WD_O;//零点补偿
 	 if(num<-600 || num>1000) { num=250; Error=Error|0x01;}  //断线错误判断
 	 else {Error=Error&(~0x01); }//错误解除 
-	 
-	 
-	 if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	 NUM_A(num,4,1,zf,lwd);
-	 
+	 wds=num;
+	 buc=SZ_WD_B;
 	 // num=(num*-111+30900)/100;   //y=xk+b   之前k为111   后为233
-	 if(SZ_WD_B!=0) {num=(num*(-1*SZ_WD_B)+250*SZ_WD_B)/100;   num=num*-1;} //y=xk+b   之前k为111   后为233
-	 else num=0;
-	  WD=num;  //WD温度补偿
+//	 if(SZ_WD_B!=0) {num=(num*(-1*SZ_WD_B)+250*SZ_WD_B)/100;   num=num*-1;} //y=xk+b   之前k为111   后为233
+//	 else num=0;
+	   
+	 	 if(SZ_WD_B!=0) {num=(num*(SZ_WD_B)-250*SZ_WD_B)/100;   } //y=xk+b   之前k为111   后为233
+	   else num=0;
+     if(SZ_WD_KZ!=0 && wds>250)//温度<35  >25
+		    {	
+				  if(wds>350){num+=(250*SZ_WD_KZ/100);}
+				  else num+=(SZ_WD_KZ*(wds-250))/100;	}else;
+		 if(SZ_WD_KZ!=0 && wds>350)						//温度>35 
+				{	num+=(SZ_WD_KZ*(wds-350))/100;	}else;
+	
+	//		num=((CY/5000)*num/10)+num;
+			 WD=num;  //WD温度补偿
 	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,3,0,zf,lwd_pa);
          
@@ -1417,7 +1428,11 @@ void YS_YS(int32_t num){
 	        
 		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
          B1++;  if(B1>9){B1=0;B=1;}  else;
-		
+				
+				if	(PJ[0]==PJ[1]&&PJ[2]==PJ[3]&&PJ[4]==PJ[5]&&PJ[6]==PJ[7]&&PJ[8]==PJ[9])//差压传感器报错
+						{ Error=Error|0x02;}
+			 else {Error=Error&~0x02; } 
+			 
 	     cc=num;
 //	     num+=WD;
 		 num=YS_LL(num);
@@ -1545,16 +1560,16 @@ void CY_zero(void)
 	if(CY+SZ_LD_Z>=0){
 		
 		SZ_LD_Z=CY+SZ_LD_Z;
-		NUM_A(SZ_LD_Z,5,3,0,kl);
+		NUM_A(SZ_LD_Z,6,3,0,kl);
 		kll=&kl[1];
-		AT24CXX_Write(0x0110,kll,5);
+		AT24CXX_Write(0x0110,kll,6);
 	}
 	else{
 	    
 		SZ_LD_F=(~CY+1)+SZ_LD_F;
-		NUM_A(SZ_LD_F,5,3,0,kl);
+		NUM_A(SZ_LD_F,6,3,0,kl);
 		kll=&kl[1];
-		AT24CXX_Write(0x0170,kll,5);
+		AT24CXX_Write(0x0170,kll,6);
 		}
 }
 
