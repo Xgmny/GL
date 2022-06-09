@@ -184,7 +184,7 @@ void CAN_SAVE(void)
 		cc[n0]=canbuf_rxd[n0+2];
 	if (run==1)
 	{
-		if((canbuf_rxd[0]=='S')&(canbuf_rxd[1]=='T'))	
+		if((canbuf_rxd[0]=='S')&(canbuf_rxd[1]=='T'))	//
 			{
 				if (canbuf_rxd[2]=='O') 
 					ljks=0;
@@ -200,7 +200,7 @@ void CAN_SAVE(void)
 			{
 				switch (canbuf_rxd[1])
 					{
-						case 'L':{AT24CXX_Write(0x0110,cc,5);}break;
+						case 'L':{AT24CXX_Write(0x0110,cc,6);}break;
 						case 'Q':{AT24CXX_Write(0x0118,cc,5);}break;
 						case '0':{AT24CXX_Write(0x0120,cc,5);}break;
 						case '1':{AT24CXX_Write(0x0128,cc,5);}break;
@@ -222,7 +222,7 @@ void CAN_SAVE(void)
 			{
 				switch (canbuf_rxd[1])
 					{
-						case 'L':{AT24CXX_Write(0x0170,cc,5);}break;
+						case 'L':{AT24CXX_Write(0x0170,cc,6);}break;
 						case 'Q':{AT24CXX_Write(0x0178,cc,5);}break;
 						case '0':{AT24CXX_Write(0x0180,cc,5);}break;
 						case '1':{AT24CXX_Write(0x0188,cc,5);}break;

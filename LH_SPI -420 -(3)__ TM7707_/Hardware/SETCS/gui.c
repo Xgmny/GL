@@ -43,13 +43,14 @@
 	extern int32_t LL;
 	extern u8 B,B1;
 	extern u16 QJs;
+	extern u8 ljks; //累计开关
 
 	extern u16 SZ_JZ_Z[], SZ_JZ_F[];                     //   %比校正
 	extern u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
   extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	extern int32_t  SZ_LL_Z,SZ_LL_F;		
 	extern int32_t  YuanMa ,  MANMA;   //
-           int32_t WD,WD_Ohm;
+         int32_t WD,WD_Ohm,WD_M;
 //	static int32_t WD_1;
 	static int32_t  PJ[10];
 	
@@ -742,7 +743,7 @@ void GUI_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 Size,u8 mode)
 //    num=~num+1;
 //	}
 //	else;
-	
+//	
 /********************************************************************************/	
 	
   if(Size == 16)
@@ -1374,7 +1375,8 @@ void YS_YM(int32_t num){
 //****************************************************
 int32_t YS_WD(int32_t num){
 u8 zf;
-u32 buc=0,wds=0;
+u32 buc=0;
+int32_t wds=0;
 
 //	  num=num-8388607;
 //	if(num>8388607){num-=8388607;num=~num;num++;}else;
@@ -1399,13 +1401,14 @@ u32 buc=0,wds=0;
 		    {	
 				  if(wds>350){num+=(250*SZ_WD_KZ/100);}
 				  else num+=(SZ_WD_KZ*(wds-250))/100;	}else;
-		 if(SZ_WD_KZ!=0 && wds>350)						//温度>35 
-				{	num+=(SZ_WD_KZ*(wds-350))/100;	}else;
-	
-	//		num=((CY/5000)*num/10)+num;
+		 if(SZ_WD_KF!=0 && wds>350)						//温度>35 
+				{	num+=(SZ_WD_KF*(wds-350))/100;	}else;
+
+			    //num+=(5*(((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力下源码补偿
+				   WD_M=((((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力数值补偿
 			 WD=num;  //WD温度补偿
 	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
-	     NUM_A(num,3,0,zf,lwd_pa);
+	     NUM_A(num,4,0,zf,lwd_pa);
          
 	return num;
 }
@@ -1444,7 +1447,7 @@ void YS_YS(int32_t num){
 
 	     num=ccll;
 	  
-		 num=YS_LJ(num);    //累计
+	if(!ljks)  num=YS_LJ(num);  else;  //累计停止
 //	     num+=WD;
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,1,zf,ljl);

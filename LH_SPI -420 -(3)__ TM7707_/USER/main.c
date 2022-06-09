@@ -40,7 +40,7 @@
 	int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
 	int32_t  SZ_LL_Z,SZ_LL_F;										//   正反向量程  
   int32_t  YuanMa ,  MANMA , Ma_xz=0;   //
-   extern int32_t WD_Ohm,WD;
+   extern int32_t WD_Ohm,WD,WD_M;
    extern u32 NIAN;
    extern u8 key,se30,sec3,sec,ljks,slj3,slj30,have;
    extern u8 idata,date8[],error,JNW[];
@@ -130,7 +130,7 @@
 									else 
 									{
 										BL_24c64();  //??????????
-										run=1;  cnt=0; FIRST(); }
+										run=1;  cnt=0; hmqh=0 ;FIRST(); }//退出设置
 									}
 							}			
 						}		
@@ -178,7 +178,8 @@
 //											man=TM7705_Read2Byte();
 										GUI_ShowString(4, 16,lwd,5,16,1); 
 				//						GUI_ShowNum(34,24,QJs,7,16,1); 
-										GUI_ShowString(69,16,lwd_pa ,4,16,1);	//			
+										GUI_ShowString(69,16,lwd_pa ,5,8,1);	//	
+										GUI_ShowNum(69,24,WD_M,5,8,1);	//压力温度补偿
 											GUI_ShowString(3,37,lll,8,8,1);	//流量
 											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
 									//	GUI_ShowString(4,33,jdl	,6,16,1);	//jdl倾角	jdl	
@@ -239,7 +240,7 @@
 //						canbuf_txd[5]=SZ_LD_Z;
 //						canbuf_txd[6]=WenDu>>8;
 //						canbuf_txd[7]=WenDu;
-//						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
+						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
 						
 					}
 				ms200=0;  

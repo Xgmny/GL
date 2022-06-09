@@ -41,7 +41,7 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0188,kl,5);AT24CXX_Write(0x0190,kl,5);AT24CXX_Write(0x0198,kl,5);
 		AT24CXX_Write(0x01a0,kl,5);AT24CXX_Write(0x01a8,kl,5);AT24CXX_Write(0x01b0,kl,5);
 		AT24CXX_Write(0x01b8,kl,5);AT24CXX_Write(0x01c0,kl,5);AT24CXX_Write(0x01c8,kl,5);
-		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;
+		kl[0]=0x2D;kl[1]=0x30;kl[2]=0x30;kl[3]=0x38;kl[4]=0x30;
 		AT24CXX_Write(0x0050,kl,5);//WDXS
 		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
 		AT24CXX_Write(0x0058,kl,5);//WDLD

@@ -232,9 +232,10 @@ if(S_7705>=5){
 		    QingJiao_F();//«„Ω«
 			   delay_ms(7);
          a+=Ma_xz;  
-				YS_YS(a);
-				YS_YM(a);
 				YS_WD(b);
+				 YS_YS(a);
+				YS_YM(a);
+
 			}
 		    else ;
 }else S_7705++;  //7707≥ı ºªØ—” ±
