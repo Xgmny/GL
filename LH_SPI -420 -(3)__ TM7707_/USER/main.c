@@ -26,7 +26,8 @@
 	u8 lll[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 ljl[8]={0x2b,0x33,0x32,0x30,0x30,0x32,0x2e,0x30};
 	u8 lsl[8]={0x2b,0x33,0x32,0x2e,0x30,0x32};
-	u8 cyl[8]={0x2d,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
+	u8 cyl[8]={0x20,0x30,0x30,0x30,0x2e,0x30,0x30,0x30};
+	u8 cyl_0[8]={0x20,0x30,0x30,0x30,0x2e,0x30,0x30,0x30};
 	u8 jdl[8]={0x2b,0x33,0x32,0x2e,0x30,0x32};
 	
 	u8 Error=0;  //系统错误
@@ -159,14 +160,18 @@
 								if (!hmqh)	
 								{	
 //									GP8302_Read((3135*(js/200.0))+788);
-												GUI_ShowString(34, 3,lll,8,16,1);					 // 流量
-						            GUI_ShowString(34,24,ljl,8,16,1);					//ljl   lsl
-						            GUI_ShowString(34,45,cyl,8,16,1);	  			//差压
+														GUI_ShowString(34, 3,lll,8,16,1);					 // 流量
+									
+										if(ljks)GUI_ShowString(34,24,ljl,8,16,1);					//ljl   lsl
+										else    GUI_ShowString(34,24,ljl,8,16,0);					//ljl   lsl
+									
+										if(LL==0)GUI_ShowString(34,45,cyl_0,8,16,1);	  			//差压
+									  else      GUI_ShowString(34,45,cyl,8,16,1);
 									
 									if(key==1)K1++;  else K1=0; //K1
 									if(key==2)K2++;  else K2=0; //K2
 									if(K1==10) CY_zero();
-									if(K2==20) LJ_zero();
+									if(K2==20 && Ma_xz==-1) LJ_zero();
 								}
 								else{
 									if(Gd_y<30)
@@ -240,6 +245,9 @@
 //						canbuf_txd[5]=SZ_LD_Z;
 //						canbuf_txd[6]=WenDu>>8;
 //						canbuf_txd[7]=WenDu;
+						 
+						 
+						 
 						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
 						
 					}

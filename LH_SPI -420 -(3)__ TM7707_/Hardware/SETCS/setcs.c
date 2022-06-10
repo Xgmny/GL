@@ -6,13 +6,14 @@
 #include "setcs.h"
 #include "can.h"
 #include "delay.h"
+
 extern u32 NIAN ,WD,LJ;
 extern u32 myid;
-extern u8 ljks;
 extern u8 run;
 extern  int32_t  YuanMa ,  MANMA , Ma_xz;   //
 static u8 tem;		//¹â±ê(Öµ)
-u8 key;
+			u8 key;
+			u8 ljks=1;
 void CAN_Answer(void)	
 {
 	u8 shu[8],Ctxd[8];

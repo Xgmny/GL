@@ -91,9 +91,9 @@ void SIX(void)
 	GUI_ShowCHinese(32,48,16,"²¹³¥£º",1);
 
 	GUI_ShowCHinese(16,48,16,"¶ÈÒÔÏÂ£º",1);
-	GUI_ShowString(0,32,">25",3,16,1);
+	GUI_ShowString(0,32,">35",3,16,1);
 	GUI_ShowString(24,32,"C",1,16,1);
-	GUI_ShowString(0,48,">35",3,16,1);
+	GUI_ShowString(0,48,">45",3,16,1);
 	GUI_ShowString(24,48,"C",1,16,1);
 }
 void SEV(void)

@@ -1397,12 +1397,12 @@ int32_t wds=0;
 	   
 	 	 if(SZ_WD_B!=0) {num=(num*(SZ_WD_B)-250*SZ_WD_B)/100;   } //y=xk+b   之前k为111   后为233
 	   else num=0;
-     if(SZ_WD_KZ!=0 && wds>250)//温度<35  >25
+     if(SZ_WD_KZ!=0 && wds>350)//温度<45  >35
 		    {	
-				  if(wds>350){num+=(250*SZ_WD_KZ/100);}
-				  else num+=(SZ_WD_KZ*(wds-250))/100;	}else;
-		 if(SZ_WD_KF!=0 && wds>350)						//温度>35 
-				{	num+=(SZ_WD_KF*(wds-350))/100;	}else;
+				  if(wds>350){num+=(350*SZ_WD_KZ/100);}
+				  else num+=(SZ_WD_KZ*(wds-350))/100;	}else;
+		 if(SZ_WD_KF!=0 && wds>450)						//温度>45 
+				{	num+=(SZ_WD_KF*(wds-450))/100;	}else;
 
 			    //num+=(5*(((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力下源码补偿
 				   WD_M=((((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力数值补偿
@@ -1418,7 +1418,7 @@ zf 正负号
 void YS_YS(int32_t num){
 	int32_t cc,ccll;
 	u8 zf;
-//	static u16 dianliu;
+//	static int32_t LJL_;
 #if 0
 	   //                                    零点校正 负				零点校正 正
  	  if(num&0x800000){  num|=0xff000000;} else{ zf=0;} //24位负  变32位负
@@ -1447,10 +1447,17 @@ void YS_YS(int32_t num){
 
 	     num=ccll;
 	  
-	if(!ljks)  num=YS_LJ(num);  else;  //累计停止
+	if(ljks)
+        	{
+						num=YS_LJ(num);    //累计停止
+		       if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
+	         NUM_A(num,7,1,zf,ljl);
+	       	}
+	else    ;	
+		
 //	     num+=WD;
-	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
-	     NUM_A(num,7,1,zf,ljl);
+		
+
 //TP1000阻值	
 //		 num=cc;
 //	     num=TP1000_ohm(num);

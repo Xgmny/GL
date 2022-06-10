@@ -3,11 +3,11 @@
 <title>Static Call Graph - [..\OBJ\tt.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\tt.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Jun 09 16:48:57 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Jun 10 15:13:21 2022
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+__rt_entry_main &rArr; main &rArr; TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 <P>
 <H3>
 Functions with no stack information
@@ -208,7 +208,7 @@ Global Symbols
 
 <P><STRONG><a name="[55]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -887,12 +887,11 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9a]"></a>GUI_Draw_sin</STRONG> (Thumb, 400 bytes, Stack size 80 bytes, gui.o(i.GUI_Draw_sin))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pixel
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Display
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
@@ -901,6 +900,7 @@ Global Symbols
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM7707_init
 </UL>
@@ -1159,7 +1159,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b5]"></a>Made_Data</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, timer.o(i.Made_Data))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = Made_Data &rArr; YS_WD &rArr; TP1000_ohm &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = Made_Data &rArr; YS_WD &rArr; TP1000_ohm &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;YS_YS
@@ -1617,7 +1617,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e2]"></a>TM7707_init</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, tm7707.o(i.TM7707_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
@@ -1629,15 +1629,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e3]"></a>TP1000_ohm</STRONG> (Thumb, 210 bytes, Stack size 88 bytes, gui.o(i.TP1000_ohm))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = TP1000_ohm &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = TP1000_ohm &rArr; __aeabi_d2iz
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmpeq
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;YS_WD
 </UL>
@@ -1682,13 +1682,13 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
 <P><STRONG><a name="[ea]"></a>YS_CY</STRONG> (Thumb, 374 bytes, Stack size 48 bytes, gui.o(i.YS_CY))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = YS_CY &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = YS_CY &rArr; __aeabi_d2iz
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;YS_YS
 </UL>
@@ -1700,8 +1700,7 @@ Global Symbols
 <P><STRONG><a name="[eb]"></a>YS_LL</STRONG> (Thumb, 1080 bytes, Stack size 72 bytes, gui.o(i.YS_LL))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = YS_LL &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
@@ -1712,21 +1711,22 @@ Global Symbols
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;YS_YS
 </UL>
 
-<P><STRONG><a name="[ba]"></a>YS_WD</STRONG> (Thumb, 368 bytes, Stack size 72 bytes, gui.o(i.YS_WD))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = YS_WD &rArr; TP1000_ohm &rArr; __aeabi_dmul
+<P><STRONG><a name="[ba]"></a>YS_WD</STRONG> (Thumb, 370 bytes, Stack size 72 bytes, gui.o(i.YS_WD))
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = YS_WD &rArr; TP1000_ohm &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TP1000_wd_
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TP1000_ohm
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NUM_A
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Made_Data
 </UL>
@@ -1768,16 +1768,16 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[f3]"></a>__ieee754_rem_pio2</STRONG> (Thumb, 828 bytes, Stack size 128 bytes, rred.o(i.__ieee754_rem_pio2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<BR>[Calls]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
@@ -1786,12 +1786,12 @@ Global Symbols
 <P><STRONG><a name="[f6]"></a>__kernel_cos</STRONG> (Thumb, 230 bytes, Stack size 48 bytes, cos_i.o(i.__kernel_cos))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = __kernel_cos &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
+<BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
@@ -1800,8 +1800,8 @@ Global Symbols
 <P><STRONG><a name="[f7]"></a>__kernel_poly</STRONG> (Thumb, 170 bytes, Stack size 24 bytes, poly.o(i.__kernel_poly))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = __kernel_poly &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
@@ -1810,14 +1810,14 @@ Global Symbols
 <P><STRONG><a name="[f8]"></a>__kernel_sin</STRONG> (Thumb, 224 bytes, Stack size 64 bytes, sin_i.o(i.__kernel_sin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = __kernel_sin &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_fpclassify
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbn
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_underflow
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sin
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cos
@@ -1850,7 +1850,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a3]"></a>cos</STRONG> (Thumb, 148 bytes, Stack size 32 bytes, cos.o(i.cos))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = cos &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = cos &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
@@ -1903,9 +1903,9 @@ Global Symbols
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GP8802_Ack
 </UL>
 
-<P><STRONG><a name="[56]"></a>main</STRONG> (Thumb, 2034 bytes, Stack size 24 bytes, main.o(i.main))
+<P><STRONG><a name="[56]"></a>main</STRONG> (Thumb, 2112 bytes, Stack size 24 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
-<LI>Call Chain = main &rArr; TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<LI>Call Chain = main &rArr; TM7707_init &rArr; GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
@@ -1951,7 +1951,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a0]"></a>sin</STRONG> (Thumb, 150 bytes, Stack size 32 bytes, sin.o(i.sin))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2

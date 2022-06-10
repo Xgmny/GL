@@ -22,7 +22,7 @@ extern int32_t LJ;
 static uint8_t buf[3];
 //static int32_t a,b;
  u8 C,B=0,B1=0,kl[8]; //中断次数
- u8 have,ljks,slj3,slj30;
+ u8 have,slj3,slj30;
        
 u8 sec=0,ms200=0,sec3,se30;
 //通用定时器3中断初始化
@@ -231,9 +231,9 @@ if(S_7705>=5){
 //			TM7705_CalibSelf(1);
 		    QingJiao_F();//倾角
 			   delay_ms(7);
-         a+=Ma_xz;  
+         a+=Ma_xz;  //零点修正
 				YS_WD(b);
-				 YS_YS(a);
+				YS_YS(a);
 				YS_YM(a);
 
 			}
