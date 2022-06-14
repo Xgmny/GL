@@ -166,7 +166,7 @@
 										else    GUI_ShowString(34,24,ljl,8,16,0);					//ljl   lsl
 									
 										if(LL==0)GUI_ShowString(34,45,cyl_0,8,16,1);	  			//ฒ๎ัน
-									  else      GUI_ShowString(34,45,cyl,8,16,1);
+									  else     GUI_ShowString(34,45,cyl,8,16,1);
 									
 									if(key==1)K1++;  else K1=0; //K1
 									if(key==2)K2++;  else K2=0; //K2

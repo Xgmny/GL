@@ -1352,13 +1352,21 @@ int32_t YS_CY(int32_t num){
 //****************************************************
 int32_t YS_LJ(int32_t num){
 	LJI+=num;
-	while(LJI>  1800000) 
-						{LJI-=1800000; LJ++; }
-	while(LJI<(-1800000)) 
-						{LJI+=1800000; LJ--; } 
-    if	(LJ>(999999)||LJ<(-999999))
-									LJ=0;  else;
 	
+//	while(LJI>  1800000) 												//小数点后一位
+//						{LJI-=1800000; LJ++; }
+//	while(LJI<(-1800000)) 
+//						{LJI+=1800000; LJ--; } 
+//    if	(LJ>(999999)||LJ<(-999999))
+//									LJ=0;  else;
+	
+			while(LJI>  18000)                         //小数点后三位
+						{LJI-=18000; LJ++; }
+	while(LJI<(-1800000)) 
+						{LJI+=18000; LJ--; } 
+    if	(LJ>(9999)||LJ<(-9999))
+									LJ=0;  else;
+		
 //	LJ+=num/100/5/60/60;//  小数点-2   1秒  1分 1时
 
 	return LJ;
@@ -1451,7 +1459,7 @@ void YS_YS(int32_t num){
         	{
 						num=YS_LJ(num);    //累计停止
 		       if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
-	         NUM_A(num,7,1,zf,ljl);
+	         NUM_A(num,7,3,zf,ljl);
 	       	}
 	else    ;	
 		
