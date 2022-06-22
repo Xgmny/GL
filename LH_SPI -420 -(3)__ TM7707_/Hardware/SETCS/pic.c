@@ -170,11 +170,12 @@ else
 //	GUI_DrawLine(WIDTH/2-1,5,WIDTH/2-1,HEIGHT-6,1);
 //	for(a=1;a<7;a++)	GUI_DrawLine(0,a*i,WIDTH-1,a*i,1);
 	gd=Gd;
-	
+
+	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"Version:",8,8,1);		else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(2,3+10*gd,  "Temperature:",12,8,1);	else ;
 	if(gd<6 && gd>=0)GUI_ShowString(110,3+10*gd++,"$",1,8,1);			else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(8,3+10*gd, "Correction:",11,8,1);	else ;
-    if(gd<6 && gd>=0)GUI_ShowString(110,3+10*gd++,"Pa",2,8,1);			else gd++;
+  if(gd<6 && gd>=0)GUI_ShowString(110,3+10*gd++,"Pa",2,8,1);			else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(20,3+10*gd++,"Sampling:",9,8,1);	    else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(8,3+10*gd++,"Resistance:",11,8,1);	else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"[]Angle:",8,8,1);		else gd++;
@@ -188,7 +189,8 @@ else
 	if(gd<6 && gd>=0)GUI_ShowString(26,3+10*gd++,"MCR 0-7:",8,8,1);		else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(20,3+10*gd++,"RF0R FMP:",9,8,1);		else gd++;
 	if(gd<6 && gd>=0)GUI_ShowString(32,3+10*gd++,"F_SIZE:",7,8,1);		else gd++;
-	if(gd<6 && gd>=0)GUI_ShowString(44,3+10*gd++,"F_ID:",5,8,1);		else gd++;
+	if(gd<6 && gd>=0)GUI_ShowString(44,3+10*gd++,"F_ID:",5,8,1);		else {gd++;gd++;}
+
 }	
 }
 void OLED_error(char x)

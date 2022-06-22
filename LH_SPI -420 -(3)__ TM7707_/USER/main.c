@@ -20,8 +20,8 @@
 #include "GP8302.h"
 #include "mport.h"
 
-
-    u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
+  u8 Version[8]={0x32,0x32,0x2e,0x30,0x36,0x2e,0x32,0x32};
+  u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lwd_pa[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lll[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 ljl[8]={0x2b,0x33,0x32,0x30,0x30,0x32,0x2e,0x30};
@@ -33,7 +33,7 @@
 	u8 Error=0;  //系统错误
 	int32_t LJ;
 	int32_t LL,CY,WenDu;
-	u8 ms1000=0,K1=0,K2=0;
+	u8 ms1000=0,K1=0,K2=0,K13=0;
 	int8_t Gd,Gd_y;
 	u16 A;
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
@@ -169,9 +169,13 @@
 									  else     GUI_ShowString(34,45,cyl,8,16,1);
 									
 									if(key==1)K1++;  else K1=0; //K1
-									if(key==2)K2++;  else K2=0; //K2
-									if(K1==10) CY_zero();
-									if(K2==20 && Ma_xz==-1) LJ_zero();
+									if(key==6)K2++;  else K2=0; //K2
+									if(key==5)K13++; else K13=0;
+									
+									if(K1==9 && Ma_xz!=-1)  CY_zero();
+									if(K1==3 && Ma_xz==-1)  CY_zero_1();
+//								if(K2==5 && Ma_xz==-1)  LJ_zero();
+									if( K2==5 )             LJ_zero();
 								}
 								else{
 									if(Gd_y<30)
@@ -183,8 +187,13 @@
 //											man=TM7705_Read2Byte();
 										GUI_ShowString(4, 16,lwd,5,16,1); 
 				//						GUI_ShowNum(34,24,QJs,7,16,1); 
-										GUI_ShowString(69,16,lwd_pa ,5,8,1);	//	
-										GUI_ShowNum(69,24,WD_M,5,8,1);	//压力温度补偿
+										if(Ma_xz==-1)
+											{
+												GUI_ShowString(69,16,lwd_pa ,5,8,1);	//	
+												GUI_ShowNum(69,24,WD_M,5,8,1);	//压力温度补偿
+											}
+										else GUI_ShowString(69,16,lwd_pa ,5,16,1);	//
+										
 											GUI_ShowString(3,37,lll,8,8,1);	//流量
 											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
 									//	GUI_ShowString(4,33,jdl	,6,16,1);	//jdl倾角	jdl	
@@ -194,8 +203,9 @@
 									  }
 								    else
 									   {				
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,Version ,8,8,1);else gd++; // 版本号	 
 										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd,5,8,1); 			else gd++;
-										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd_pa ,4,8,1);		else gd++;
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd_pa ,5,8,1);		else gd++;
 										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lsl,8,8,1);			else gd++;
 										if(gd<6 && gd>=0)GUI_ShowNum_WD(81,3+10*gd++,WD_Ohm ,6,8,1); 		else gd++;
 										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,jdl,6,8,1);			else gd++;
@@ -209,8 +219,9 @@
 										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,((*(u32*)0x40006418)>>24)&0x000000FF ,3,8,1);else gd++; //
 										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,(CAN1->MCR)&0x000000FF ,3,8,1);else gd++; //
 										if(gd<6 && gd>=0)GUI_ShowNum(87,3+10*gd++,(CAN1->RF0R)&0x00000003 ,1,8,1);else gd++; // 
-										if(gd<6 && gd>=0)GUI_ShowNum(63,3+10*gd++,((*(u32*)0x1FFFF7E0))&0x0000FFFF, 8,8,1);else gd++; // 
-										if(gd<6 && gd>=0)GUI_ShowNum(63,3+10*gd++,((*(u32*)0x1FFFF7E8))&0x0000FFFF ,8,8,1);else gd++; //    
+										if(gd<6 && gd>=0)GUI_ShowNum(69,3+10*gd++,((*(u32*)0x1FFFF7E0))&0x0000FFFF, 8,8,1);else gd++; // 
+										if(gd<6 && gd>=0)GUI_ShowNum(69,3+10*gd++,((*(u32*)0x1FFFF7E8))>>8 ,8,8,1);else gd++; //  
+										if(gd<6 && gd>=0)GUI_ShowNum(69,3+10*gd++,((*(u32*)0x1FFFF7E8)) ,8,8,1);else gd++; // 	 
 										
 										   gd=Gd;						
 									    }											

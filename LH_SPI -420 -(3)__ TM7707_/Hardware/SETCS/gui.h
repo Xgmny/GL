@@ -44,5 +44,6 @@ int16_t TP1000_wd(int32_t u);
 int16_t TP1000_wd_(int32_t u);
 
 void CY_zero(void);
+void CY_zero_1(void);
 #endif
 

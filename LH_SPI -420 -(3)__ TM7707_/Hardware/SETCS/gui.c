@@ -1591,3 +1591,31 @@ void CY_zero(void)
 		}
 }
 
+//差压零点自动校准
+void CY_zero_1(void)
+{
+  u8  kl[8],*kll;
+	if(CY+SZ_LD_Z-SZ_LD_F>=0){
+		
+		SZ_LD_Z=CY+SZ_LD_Z-SZ_LD_F;
+		NUM_A(SZ_LD_Z,6,3,0,kl);
+		kll=&kl[1];
+		AT24CXX_Write(0x0110,kll,6);
+		
+		SZ_LD_F=0;
+		NUM_A(SZ_LD_F,6,3,0,kl);
+		AT24CXX_Write(0x0170,kll,6);
+	}
+	else{
+	    
+		SZ_LD_F=(~CY+1)+SZ_LD_F-SZ_LD_Z;
+		NUM_A(SZ_LD_F,6,3,0,kl);
+		kll=&kl[1];
+		AT24CXX_Write(0x0170,kll,6);
+		
+		SZ_LD_Z=0;
+		NUM_A(SZ_LD_Z,6,3,0,kl);
+		AT24CXX_Write(0x0110,kll,6);
+		}
+}
+
