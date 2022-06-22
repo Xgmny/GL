@@ -84,7 +84,7 @@ void CAN_Mode_Init(u8 tsjw,u8 tbs2,u8 tbs1,u16 brp,u8 mode)
  
 #if CAN_RX0_INT_ENABLE	//使能RX0中断
 //中断服务函数			    
-void USB_LP_CAN1_RX0_IRQHandler(void)
+void USB_LP_CAN1_RX0z_IRQHandler(void)
 {
   	CanRxMsg RxMessage;
 	int i=0;

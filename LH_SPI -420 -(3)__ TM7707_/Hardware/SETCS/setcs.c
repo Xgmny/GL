@@ -189,8 +189,9 @@ void CAN_SAVE(void)
 			{
 				if (canbuf_rxd[2]=='O') 
 					ljks=0;
-				else
+				else if(canbuf_rxd[2]=='A')		
 					ljks=1;
+				else;
 			}
 	}
 	else
