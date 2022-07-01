@@ -311,7 +311,7 @@ void BL_24c64(void){
 //¿€º∆«Â0
 void LJ_zero(void){
 u8 n;	
-				for(n=0;n<8;n++)
+				for(n=1;n<8;n++)
 			    ljl[n]=0x30;
 		        ljl[4]=0x2e;
 						ljl[0]=0x20;

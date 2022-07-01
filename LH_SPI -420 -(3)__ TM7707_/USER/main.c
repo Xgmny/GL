@@ -194,11 +194,11 @@
 												GUI_ShowNum(69,24,WD_M,5,8,1);	//压力温度补偿
 											}
 										else GUI_ShowString(69,16,lwd_pa ,5,16,1);	//
-										
-//											GUI_ShowString(3,37,lll,8,8,1);	//流量
-//											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
-										GUI_ShowNum(3,37,sto,5,8,1);	//流量
-										GUI_ShowNum(68,37,sta,5,8,1);	  			//差压
+											GUI_ShowString(3,37,lll,8,8,1);	//流量
+											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
+											
+//										GUI_ShowNum(3,37,sto,5,8,1);	//流量
+//										GUI_ShowNum(68,37,sta,5,8,1);	  			//差压
 									//	GUI_ShowString(4,33,jdl	,6,16,1);	//jdl倾角	jdl	
 //										GUI_ShowNum(4,33,ling,6,16,1);
 //										GUI_ShowNum(62,33,man,6,16,1);
@@ -261,13 +261,15 @@
 		//						canbuf_txd[7]=WenDu;
 								
 							  	Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
-						if(KEY_ljl==0)
+						 
+						if(KEY_ljl==0)     //累计量暂停清零
 						  {
 							 ljks=0; 
 							 Bx=1;
+							 ms1000=2;
 							 if(key==2)	 LJ_zero();  else;
 							}
-						else {	ljks=1; if(Bx==1)LJ_zero(); Bx=0;    }
+						else {	ljks=1; if(Bx==1)LJ_zero(); Bx=0;   ms1000=2; }
 						
 					}
 				ms200=0;  
