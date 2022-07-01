@@ -10,8 +10,10 @@
 extern u32 NIAN ,WD,LJ;
 extern u32 myid;
 extern u8 run;
+extern u16 sto,sta;
 extern  int32_t  YuanMa ,  MANMA , Ma_xz;   //
 static u8 tem;		//¹â±ê(Öµ)
+static u8 ljl[8];
 			u8 key;
 			u8 ljks=1;
 void CAN_Answer(void)	
@@ -188,9 +190,9 @@ void CAN_SAVE(void)
 		if((canbuf_rxd[0]=='S')&(canbuf_rxd[1]=='T'))	//
 			{
 				if (canbuf_rxd[2]=='O') 
-					ljks=0;
+				{ljks=0; sto++;}
 				else if(canbuf_rxd[2]=='A')		
-					ljks=1;
+				{ljks=1; sta++;}
 				else;
 			}
 	}
@@ -255,11 +257,13 @@ void CAN_SAVE(void)
 	}	
 	if(canbuf_rxd[0]=='L')
 			{
-				for(n0=0;n0<8;n0++)
-			    cc[n0]=0x30;
-		        cc[6]=0x2e;
-		AT24CXX_Write(0x0200+NIAN,cc,8);
-		LJ=0;		
+//				for(n0=0;n0<8;n0++)
+//			    ljl[n0]=0x30;
+//		        ljl[6]=0x2e;
+//		AT24CXX_Write(0x0200+NIAN,ljl,8);
+//		LJ=0;	
+			LJ_zero();
+		
 	}
 }
 void SET_IN(void)	

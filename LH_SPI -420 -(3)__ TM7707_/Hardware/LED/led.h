@@ -2,6 +2,7 @@
 #define __LED_H	 
 #include "sys.h"
 #define LED0 PCout(13)// PB5
+#define KEY_ljl PCin(13)
 
 
 void LED_Init(void);//≥ı ºªØ

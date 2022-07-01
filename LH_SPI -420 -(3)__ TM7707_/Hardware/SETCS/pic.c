@@ -99,7 +99,18 @@ void SIX(void)
 void SEV(void)
 {	
 	OLED_Clear(0);             //清屏（全黑）
-	GUI_ShowCHinese(21,15,16,"通讯地址：",1);
+	GUI_ShowCHinese(21,15,16,"通讯地址：",1);   //正常
+	
+	//	GUI_ShowCHinese(21,16,16,"副通讯地址：",1);
+//	for(i=0; i<13;i++)
+//    {
+//			GUI_DrawLine(i*5,13-i,WIDTH-1-(i*5),13-i,1);
+//		}
+//		GUI_ShowCHinese(21,16,16,"主通讯地址：",1);
+//	for(i=0; i<13;i++)
+//    {
+//			GUI_DrawLine(i*5,51+i,WIDTH-1-(i*5),51+i,1);
+//		}
 }
 void QJHM(void)
 {	

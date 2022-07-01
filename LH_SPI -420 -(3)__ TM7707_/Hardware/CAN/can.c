@@ -120,7 +120,7 @@ void Can_Send_Msg(u32 mid,u8* msg,u8 len)
   while((CAN_TransmitStatus(CAN1, mbox)==CAN_TxStatus_Failed)&&(i<0XFFF))i++;	//等待发送结束
   //if(i>=0XFFF)return 1;
   //return 0;	*/	
-LED0=!LED0;
+//LED0=!LED0;
 }
 //can口接收数据查询
 //buf:数据缓存区;	 
@@ -130,17 +130,30 @@ u8 Can_Receive_Msg(u8 *buf)
 {		   		   
  	u32 i;
 	CanRxMsg RxMessage;
-    if( CAN_MessagePending(CAN1,CAN_FIFO0)==0)return 0;		//没有接收到数据,直接退出 
-    CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);//读取数据	
-    if(RxMessage.ExtId==myid)
-	{
-		for(i=0;i<8;i++)
-    			buf[i]=RxMessage.Data[i];  
-		return RxMessage.DLC;
-	}
-	else 	
-		return 0;	
+	if( CAN_MessagePending(CAN1,CAN_FIFO0)==0)return 0;		//没有接收到数据,直接退出   CAN1->RF0R)&0x00000003
+	else  
+	    {
+	      CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);//读取数据	
+						if(RxMessage.ExtId==myid)
+							{
+								for(i=0;i<8;i++)
+											buf[i]=RxMessage.Data[i];  
+								return RxMessage.DLC;
+							}
+					else 	
+						return 0;	
+				}
 }
+	
+//		if( CAN_MessagePending(CAN1,CAN_FIFO0)==0)return 0;	//没有接收到数据,直接退出   CAN1->RF0R)&0x00000003
+//    else CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);//读取数据	
+//				{
+
+//						for(i=0;i<8;i++)
+//									buf[i]=RxMessage.Data[i];  
+//						return RxMessage.DLC;
+//				}
+//}
 
 
 

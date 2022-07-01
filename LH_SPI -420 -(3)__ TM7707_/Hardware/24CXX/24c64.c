@@ -10,6 +10,7 @@
   extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
   extern int32_t  SZ_LL_Z,SZ_LL_F;		                 //   正反向量程  
 	extern int32_t  YuanMa ,  MANMA,   Ma_xz;//
+	extern u32 myid;	
            u8  JNW[8] ;
 		   u32 JNS;
            u32 NIAN; 
@@ -309,11 +310,12 @@ void BL_24c64(void){
 
 //累计清0
 void LJ_zero(void){
-u8 n,cc[8];	
+u8 n;	
 				for(n=0;n<8;n++)
-			    cc[n]=0x30;
-		        cc[6]=0x2e;
-		AT24CXX_Write(0x0200+NIAN,cc,8);
+			    ljl[n]=0x30;
+		        ljl[4]=0x2e;
+						ljl[0]=0x20;
+		AT24CXX_Write(0x0200+NIAN,ljl,8);
 		LJ=0;	
 }
 

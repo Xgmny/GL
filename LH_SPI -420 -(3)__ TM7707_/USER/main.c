@@ -20,7 +20,7 @@
 #include "GP8302.h"
 #include "mport.h"
 
-  u8 Version[8]={0x32,0x32,0x2e,0x30,0x36,0x2e,0x32,0x32};
+  u8 Version[8]={0x32,0x32,0x2e,0x30,0x36,0x2e,0x32,0x33};
   u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lwd_pa[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lll[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
@@ -31,6 +31,7 @@
 	u8 jdl[8]={0x2b,0x33,0x32,0x2e,0x30,0x32};
 	
 	u8 Error=0;  //系统错误
+	u16 sto=0,sta=0;
 	int32_t LJ;
 	int32_t LL,CY,WenDu;
 	u8 ms1000=0,K1=0,K2=0,K13=0;
@@ -52,7 +53,7 @@
  int main(void)
  {	
 	int8_t gd;
-	u8 cnt=0,old_key=0,hmqh,yei;
+	u8 cnt=0,old_key=0,hmqh,yei,Bx=0;
 	u8 canbuf_txd[8]={0x00,0x00,0x32,0x30,0x30,0x30,0x2e,0x30};
   u8 OFF_error=1;
 	delay_init();	    	 //延时函数初始化	
@@ -194,8 +195,10 @@
 											}
 										else GUI_ShowString(69,16,lwd_pa ,5,16,1);	//
 										
-											GUI_ShowString(3,37,lll,8,8,1);	//流量
-											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
+//											GUI_ShowString(3,37,lll,8,8,1);	//流量
+//											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
+										GUI_ShowNum(3,37,sto,5,8,1);	//流量
+										GUI_ShowNum(68,37,sta,5,8,1);	  			//差压
 									//	GUI_ShowString(4,33,jdl	,6,16,1);	//jdl倾角	jdl	
 //										GUI_ShowNum(4,33,ling,6,16,1);
 //										GUI_ShowNum(62,33,man,6,16,1);
@@ -220,7 +223,7 @@
 										if(gd<6 && gd>=0)GUI_ShowNum(75,3+10*gd++,(CAN1->MCR)&0x000000FF ,3,8,1);else gd++; //
 										if(gd<6 && gd>=0)GUI_ShowNum(87,3+10*gd++,(CAN1->RF0R)&0x00000003 ,1,8,1);else gd++; // 
 										if(gd<6 && gd>=0)GUI_ShowNum(69,3+10*gd++,((*(u32*)0x1FFFF7E0))&0x0000FFFF, 8,8,1);else gd++; // 
-										if(gd<6 && gd>=0)GUI_ShowNum(69,3+10*gd++,((*(u32*)0x1FFFF7E8))>>8 ,8,8,1);else gd++; //  
+										if(gd<6 && gd>=0)GUI_ShowNum(69,3+10*gd++,((*(u32*)0x1FFFF7E8))>>16,8,8,1);else gd++; //  
 										if(gd<6 && gd>=0)GUI_ShowNum(69,3+10*gd++,((*(u32*)0x1FFFF7E8)) ,8,8,1);else gd++; // 	 
 										
 										   gd=Gd;						
@@ -241,30 +244,34 @@
 						 {LJLL_Data();se30=0;}			//=1累计使能  30秒
 						cnt++;
 						if (cnt>=255) cnt=0;
-						canbuf_txd[0]=cnt;
 
-						canbuf_txd[2]=LL/100>>8;											//CAN正常使用
-						canbuf_txd[3]=LL/100;
-						canbuf_txd[4]=LJ>>24;
-						canbuf_txd[5]=LJ>>16;
-						canbuf_txd[6]=LJ>>8;
-						canbuf_txd[7]=LJ;
-						 
-//						canbuf_txd[2]=CY>>8;												//温度测试使用
-//						canbuf_txd[3]=CY;
-//						canbuf_txd[4]=SZ_LD_Z>>8;
-//						canbuf_txd[5]=SZ_LD_Z;
-//						canbuf_txd[6]=WenDu>>8;
-//						canbuf_txd[7]=WenDu;
-						 
-						 
-						 
-						Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
+									canbuf_txd[0]=cnt;
+									canbuf_txd[2]=LL/100>>8;											//CAN正常使用
+									canbuf_txd[3]=LL/100;
+									canbuf_txd[4]=LJ>>24;
+									canbuf_txd[5]=LJ>>16;
+									canbuf_txd[6]=LJ>>8;
+									canbuf_txd[7]=LJ;
+								 
+		//						canbuf_txd[2]=CY>>8;												//温度测试使用
+		//						canbuf_txd[3]=CY;
+		//						canbuf_txd[4]=SZ_LD_Z>>8;
+		//						canbuf_txd[5]=SZ_LD_Z;
+		//						canbuf_txd[6]=WenDu>>8;
+		//						canbuf_txd[7]=WenDu;
+								
+							  	Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
+						if(KEY_ljl==0)
+						  {
+							 ljks=0; 
+							 Bx=1;
+							 if(key==2)	 LJ_zero();  else;
+							}
+						else {	ljks=1; if(Bx==1)LJ_zero(); Bx=0;    }
 						
 					}
 				ms200=0;  
 			}
 		}	IWDG->KR=0XAAAA;//reload
 	}
-	
 }
