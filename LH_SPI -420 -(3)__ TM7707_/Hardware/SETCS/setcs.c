@@ -248,7 +248,7 @@ void CAN_SAVE(void)
 			{
 				switch (canbuf_rxd[1])
 					{
-						case 'K':{AT24CXX_Write(0x0050,cc,4);}break;
+						case 'K':{AT24CXX_Write(0x0050,cc,4);}break;  //
 						case 'B':{AT24CXX_Write(0x0058,cc,5);}break;
 						default:{};break;
 					}
