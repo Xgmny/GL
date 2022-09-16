@@ -1362,7 +1362,7 @@ int32_t YS_LJ(int32_t num){
 	
 			while(LJI>  18000)                         //小数点后三位
 						{LJI-=18000; LJ++; }
-	while(LJI<(-1800000)) 
+	while(LJI<(-18000)) 
 						{LJI+=18000; LJ--; } 
     if	(LJ>(999999)||LJ<(-999999))
 									LJ=0;  else;
