@@ -515,8 +515,8 @@ void SET_COME(void)
 					row+=8;wz++;smode=1;
 					if(page==1)
 					{
-						if(col==32)
-						{	if(row==63) {row+=8;wz++;}}
+						if(col==48)
+						{	if(row==55) {row+=8;wz++;}}
 						else
 							{	if(row==63) {row+=8;wz++;}}
 						if (row>=95&&col==16)	{row=47;col+=16;wz=0;	if(col>=64) col=16;}//第一行   换行	
@@ -528,6 +528,7 @@ void SET_COME(void)
 					}						
 					if ((page==2)|(page==3)|(page==4))
 					{	
+						
 						if(row==88) {row+=8;wz++;}
 						if (row>=120)
 							{row=80;col+=16;wz=0;

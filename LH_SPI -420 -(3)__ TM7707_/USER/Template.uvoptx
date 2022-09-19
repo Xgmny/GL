@@ -181,7 +181,7 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>1363</LineNumber>
+          <LineNumber>514</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -190,7 +190,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\Hardware\SETCS\gui.c</Filename>
+          <Filename>..\Hardware\SETCS\setcs.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -295,6 +295,21 @@
           <count>19</count>
           <WinNumber>1</WinNumber>
           <ItemText>((CAN_TypeDef *) (((uint32_t)0x40000000) + 0x6400))-&gt;RF0R</ItemText>
+        </Ww>
+        <Ww>
+          <count>20</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>LJI,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>21</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>LJ,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>22</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>num,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
@@ -698,7 +713,7 @@
 
   <Group>
     <GroupName>FWLib</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
