@@ -2,8 +2,8 @@
 #define __GP8302_H__
 #include "delay.h"
 
-#define SDA_8302  PBout(3)
-#define SCL_8302  PBout(4)
+#define SDA_8302  PAout(0)
+#define SCL_8302  PAout(1)
 //≥ı ºªØIIC
 
 

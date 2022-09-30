@@ -46,10 +46,10 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0050,kl,5);//WDXS
 		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
 		AT24CXX_Write(0x0058,kl,5);//WDLD
-		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x2E;kl[4]=0x30;
-		AT24CXX_Write(0x0060,kl,6);//WDZ
-		AT24CXX_Write(0x0068,kl,6);//WDF
-		AT24CXX_Write(0x0070,kl,6);//QJZ  角度正
+		kl[0]=0x20;kl[1]=0x30;kl[2]=0x31;kl[3]=0x2E;kl[4]=0x30;
+		AT24CXX_Write(0x0060,kl,6);//WDZ    改为>35度调节
+		AT24CXX_Write(0x0068,kl,6);//WDF	  改为>45度调节
+		AT24CXX_Write(0x0070,kl,6);//QJZ   角度正
 		AT24CXX_Write(0x0078,kl,6);//QJF   角度负
 		kl[0]=0x30;kl[1]=0x36;kl[2]=0x33;kl[3]=0x34;kl[4]=0x34;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
 		AT24CXX_Write(0x0080,kl,8); //YuanMa

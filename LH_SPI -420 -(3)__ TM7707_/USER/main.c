@@ -20,7 +20,7 @@
 #include "GP8302.h"
 #include "mport.h"
 
-  u8 Version[8]={0x32,0x32,0x2e,0x30,0x39,0x2e,0x31,0x36};//版本号
+  u8 Version[8]={0x32,0x32,0x2e,0x30,0x39,0x2e,0x32,0x31};//版本号
   u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lwd_pa[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lll[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
@@ -74,13 +74,13 @@
 
 	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);//CAN初始,波特率250Kbps 
 									//最后参数  mode:0,普通模式;1,回环模式; //  
-  // IWDG_Init(4,6250);      //狗10s
+   IWDG_Init(4,6250);      //狗10s
 	 run=1;      //运行
 //	LED0=1;        
  	while(1)
 	{	
-
-    while( ( Error && OFF_error) )  { 
+ 
+    while( ( Error && OFF_error && Ma_xz!=-1) )  { 
 					OLED_error(Error); 
 					Made_Data();  //AD检测
 					delay_ms(800);

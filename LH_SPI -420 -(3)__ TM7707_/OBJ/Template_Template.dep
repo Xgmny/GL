@@ -1,5 +1,5 @@
 Dependencies for Project 'Template', Target 'Template': (DO NOT MODIFY !)
-F (.\main.c)(0x63243624)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x632A64ED)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (stm32f10x.h)(0x61AD998B)
 I (..\CORE\core_cm3.h)(0x61AD998B)
 I (D:\RoRo\Keil\Keil5\ARM\ARMCC\include\stdint.h)(0x5475F300)
@@ -50,7 +50,7 @@ I (..\Hardware\AD1239\CS1239.h)(0x61AD998B)
 I (..\Hardware\AD1239\TM7707.h)(0x628C9E55)
 I (..\Hardware\MODBUS\mport.h)(0x6209D3C9)
 I (..\Hardware\IIC\IIC__.h)(0x61AD998B)
-I (..\Hardware\AD1239\GP8302.h)(0x6209D3C9)
+I (..\Hardware\AD1239\GP8302.h)(0x632A6011)
 F (.\stm32f10x_it.c)(0x61AD998B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
 I (stm32f10x_it.h)(0x61AD998B)
 I (stm32f10x.h)(0x61AD998B)
@@ -380,7 +380,7 @@ I (..\Hardware\AD1239\TM7707.h)(0x628C9E55)
 I (..\Hardware\MODBUS\protocol.h)(0x61AD998B)
 I (..\Hardware\MODBUS\mport.h)(0x6209D3C9)
 I (..\Hardware\MODBUS\mcheck.h)(0x61AD998B)
-I (..\Hardware\AD1239\GP8302.h)(0x6209D3C9)
+I (..\Hardware\AD1239\GP8302.h)(0x632A6011)
 F (..\Hardware\SETCS\gui.c)(0x63243564)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\gui.o --omf_browse ..\obj\gui.crf --depend ..\obj\gui.d)
 I (..\Hardware\SETCS\oled.h)(0x61AD998B)
 I (..\SYSTEM\sys\sys.h)(0x61AD998B)
@@ -417,7 +417,7 @@ I (..\Hardware\SETCS\oledfont.h)(0x628AEFF5)
 I (..\SYSTEM\delay\delay.h)(0x61AD998B)
 I (..\Hardware\SETCS\gui.h)(0x62B2B85F)
 I (D:\RoRo\Keil\Keil5\ARM\ARMCC\include\math.h)(0x5475F2FE)
-I (..\Hardware\AD1239\GP8302.h)(0x6209D3C9)
+I (..\Hardware\AD1239\GP8302.h)(0x632A6011)
 I (..\Hardware\24CXX\24c64.h)(0x62134403)
 I (..\Hardware\IIC\myiic.h)(0x61AD998B)
 F (..\Hardware\SETCS\oled.c)(0x61AD998B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\oled.o --omf_browse ..\obj\oled.crf --depend ..\obj\oled.d)
@@ -620,7 +620,7 @@ I (..\FWLib\inc\stm32f10x_tim.h)(0x61AD998B)
 I (..\FWLib\inc\stm32f10x_usart.h)(0x61AD998B)
 I (..\FWLib\inc\stm32f10x_wwdg.h)(0x61AD998B)
 I (..\FWLib\inc\misc.h)(0x61AD998B)
-F (..\Hardware\24CXX\24c64.c)(0x62F4CB69)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\24c64.o --omf_browse ..\obj\24c64.crf --depend ..\obj\24c64.d)
+F (..\Hardware\24CXX\24c64.c)(0x6336AF46)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o ..\obj\24c64.o --omf_browse ..\obj\24c64.crf --depend ..\obj\24c64.d)
 I (..\Hardware\24CXX\24c64.h)(0x62134403)
 I (..\Hardware\IIC\myiic.h)(0x61AD998B)
 I (..\SYSTEM\sys\sys.h)(0x61AD998B)
@@ -687,8 +687,8 @@ I (..\FWLib\inc\misc.h)(0x61AD998B)
 I (..\SYSTEM\delay\delay.h)(0x61AD998B)
 I (..\Hardware\LED\led.h)(0x62BE69E8)
 I (..\Hardware\SETCS\gui.h)(0x62B2B85F)
-F (..\Hardware\AD1239\GP8302 .c)(0x6209D3C9)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o "..\obj\gp8302 .o" --omf_browse "..\obj\gp8302 .crf" --depend "..\obj\gp8302 .d")
-I (..\Hardware\AD1239\GP8302.h)(0x6209D3C9)
+F (..\Hardware\AD1239\GP8302 .c)(0x632C10BC)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I..\USER -I..\CORE -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\SYSTEM\usart -I..\Hardware\24CXX -I..\Hardware\CAN -I..\Hardware\KEY -I..\Hardware\IIC -I..\Hardware\LED -I..\Hardware\SPI -I..\Hardware\WDG -I..\USMART -I..\FWLib\inc -I..\Hardware\TIMER -I..\Hardware\SETCS -I..\Hardware\SPI -I..\Hardware\AD1239 -I..\Hardware\MALLOC -I..\Hardware\MODBUS-I "C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE"-I D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0-I D:\RoRo\Keil\Keil5\ARM\CMSIS\Include-D__UVISION_VERSION="514" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o "..\obj\gp8302 .o" --omf_browse "..\obj\gp8302 .crf" --depend "..\obj\gp8302 .d")
+I (..\Hardware\AD1239\GP8302.h)(0x632A6011)
 I (..\SYSTEM\delay\delay.h)(0x61AD998B)
 I (..\SYSTEM\sys\sys.h)(0x61AD998B)
 I (..\USER\stm32f10x.h)(0x61AD998B)
