@@ -58,20 +58,20 @@ void CAN_Mode_Init(u8 tsjw,u8 tbs2,u8 tbs1,u16 brp,u8 mode)
   	CAN_InitStructure.CAN_Prescaler=brp;            //分频系数(Fdiv)为brp+1	//
   	CAN_Init(CAN1, &CAN_InitStructure);            // 初始化CAN1 
 
- 	CAN_FilterInitStructure.CAN_FilterNumber=0;	  //过滤器0
-   	CAN_FilterInitStructure.CAN_FilterMode=CAN_FilterMode_IdMask; 
+ 	CAN_FilterInitStructure.CAN_FilterNumber=0;	  //过滤器0  指定了待初始化的过滤器，它的范围是 1 到 13
+   	CAN_FilterInitStructure.CAN_FilterMode=CAN_FilterMode_IdMask ;   //列表模式    CAN_FilterMode_IdList   掩码CAN_FilterMode_IdMask 
   	CAN_FilterInitStructure.CAN_FilterScale=CAN_FilterScale_32bit; //32位 
-  	CAN_FilterInitStructure.CAN_FilterIdHigh=0x0000;////32位ID
-  	CAN_FilterInitStructure.CAN_FilterIdLow=0x0000;
-  	CAN_FilterInitStructure.CAN_FilterMaskIdHigh=0x0000;//32位MASK
-  	CAN_FilterInitStructure.CAN_FilterMaskIdLow=0x0000;
+  	CAN_FilterInitStructure.CAN_FilterIdHigh=(0x11950400>>13) & 0xffff;////32位ID    0x0000   0xFFFF   0x1194  0x0401  0x8CA0  0x200C 
+  	CAN_FilterInitStructure.CAN_FilterIdLow=((0x11950400<<3) | 0x04) & 0xffff;
+  	CAN_FilterInitStructure.CAN_FilterMaskIdHigh= 0xFFFF;//32位MASK   119404XX +100    (0x11950400>>13) & 0xffff  ((0x11950400<<3) | 0x04) & 0xffff
+  	CAN_FilterInitStructure.CAN_FilterMaskIdLow=0xFF00;
   	CAN_FilterInitStructure.CAN_FilterFIFOAssignment=CAN_Filter_FIFO0;//过滤器0关联到FIFO0
  	  CAN_FilterInitStructure.CAN_FilterActivation=ENABLE; //激活过滤器0
 
   	CAN_FilterInit(&CAN_FilterInitStructure);//滤波器初始化
 #if CAN_RX0_INT_ENABLE
 	
-	  CAN_ITConfig(CAN1,CAN_IT_FMP0,ENABLE);//FIFO0消息挂号中断允许.		    
+	  CAN_ITConfig(CAN1,CAN_IT_FMP0,ENABLE);//FIFO0消息挂号中断允许.		   DISABLE      ENABLE
   
   	NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN1_RX0_IRQn;
   	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;     // 主优先级为1
@@ -86,15 +86,15 @@ void CAN_Mode_Init(u8 tsjw,u8 tbs2,u8 tbs1,u16 brp,u8 mode)
 //中断服务函数			    
 void USB_LP_CAN1_RX0z_IRQHandler(void)
 {
-  	CanRxMsg RxMessage;
-	int i=0;
-    CAN_Receive(CAN1, 0, &RxMessage);
-	if(RxMessage.ExtId==myid)
-		{
-			for(i=0;i<8;i++)
-				canbuf_rxd[i]=RxMessage.Data[i];
-			rxd_bz=1;
-			}		
+//  	CanRxMsg RxMessage;
+//	int i=0;
+//    CAN_Receive(CAN1, 0, &RxMessage);
+//	if(RxMessage.ExtId==myid)//判断CAN ID是否一致
+//		{
+//			for(i=0;i<8;i++)
+//				canbuf_rxd[i]=RxMessage.Data[i];
+//			rxd_bz=1;
+//			}		
 }
 #endif
 
@@ -110,7 +110,7 @@ void Can_Send_Msg(u32 mid,u8* msg,u8 len)
   CanTxMsg TxMessage;
   TxMessage.StdId=mid;//0x12;					 // 标准标识符 
   TxMessage.ExtId=mid;//0x12;				   // 设置扩展标示符 
-  TxMessage.IDE=CAN_Id_Extended;//Standard; // 标准帧
+  TxMessage.IDE=CAN_Id_Extended;//Standard; // 长ID
   TxMessage.RTR=CAN_RTR_Data;		 // 数据帧
   TxMessage.DLC=len;						// 要发送的数据长度
   for(i=0;i<len;i++)
@@ -134,7 +134,8 @@ u8 Can_Receive_Msg(u8 *buf)
 	else  
 	    {
 	      CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);//读取数据	
-						if(RxMessage.ExtId==myid)
+						if(RxMessage.ExtId==(myid|0x00010000))
+
 							{
 								for(i=0;i<8;i++)
 											buf[i]=RxMessage.Data[i];  

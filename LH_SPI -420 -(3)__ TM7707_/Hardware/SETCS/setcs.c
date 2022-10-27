@@ -9,7 +9,7 @@
 
 extern u32 NIAN ,WD,LJ;
 extern u32 myid;
-extern u8 run;
+extern u8 run,MNL;
 extern u16 sto,sta;
 extern  int32_t  YuanMa ,  MANMA , Ma_xz;   //
 static u8 tem;		//光标(值)
@@ -302,11 +302,18 @@ void SET_COME(void)
 									addr+=8;
 									AT24CXX_Read(addr,qc,5);
 									addr+=8;
-									AT24CXX_Read(addr,dd,5);
+									AT24CXX_Read(addr,dd,8);
+								
 									GUI_ShowString(79,0,ss,5,16,1);//显示温度数值
 									GUI_ShowString(79,16,ld,5,16,1);
 									GUI_ShowString(79,32,qc,5,16,1);
 									GUI_ShowString(79,48,dd,5,16,1);
+
+				      GUI_ShowString(0,48,dd+7,1,16,1);					//模拟量模式位		
+						  MNL=dd[7];
+													//模拟量标志符号
+						          //模拟量标志符号
+
 
 						
 								    row=79;col=0;tem=ss[wz];smode=1;}break;
@@ -360,7 +367,7 @@ void SET_COME(void)
 							AT24CXX_Write(addr,ss,5);
 							addr+=8;AT24CXX_Write(addr,ld,6);
 							addr+=8;AT24CXX_Write(addr,qc,6);
-							addr+=8;AT24CXX_Write(addr,dd,6);
+							addr+=8;AT24CXX_Write(addr,dd,8);
 						}
 						while(i){i--;
 											if(KEY_Scan()==1) 
@@ -411,7 +418,7 @@ void SET_COME(void)
 								AT24CXX_Write(0x0108,ld,3);
 								myid=(ld[0]-0x30)*100+(ld[1]-0x30)*10+(ld[2]-0x30);
 								if (myid>255) myid=255;
-								myid=0x11940400+myid;
+								myid=0x11940400+myid;  //16位 +10位
 		
 							}
 							MENU();row=113;col=4;smode=0;wz=0;page=0;	
@@ -567,10 +574,17 @@ void SET_COME(void)
 							if (wz>=5)	{row=79;col+=16;wz=0;}	else;
 						   }	
 						
-						if ((col==32)|(col==48)){
+						if (col==32){
 							if (wz==3)  {row+=8;wz++;}			else;
-							if (wz>=5)	{row=79;col+=16;wz=0;}	else;
+							if (wz>=5)	{row=0;col+=16;wz=7;}	else;  //4~20ma   row（x） 0位col(Y)   WZ（位)
 							}	
+						
+						if (col==48){
+							if (row==8)  {row=79;wz=0;}           else;
+							if (wz==3)  {row+=8;wz++;}			else;
+							if (wz==5)	{row=79;col+=16;wz=0;}	else;
+							}	
+						
 						if(col>=64) col=0;
 								
 						if (col==0)  tem=ss[wz];//第1行
@@ -616,17 +630,27 @@ void SET_COME(void)
 			else
 				{
 					xgbz=1;
-					if( (((page==6))&((col==0)|(col==16)|(col==32)|(col==48))&(wz==0)) | ( (page==8)&(col==16)&(wz==0) ) ) //"+"  ."-"号
+					
+					if( (((page==6))&((col==0)|(col==16)|(col==32)|(col==48))&((wz==0)|(wz==7))) | ( (page==8)&(col==16)&(wz==0) ) ) //"+"  ."-"号
 						{
-							if (tem==0x20)
-								tem=0x2d;   //是"-"
-							else
-								tem=0x20;   //" "   2b  "+"
+							if(wz==0){
+									if (tem==0x20)
+										tem=0x2d;   //是"-"
+									else
+										tem=0x20;   //" "   2b  "+"
+							  }else;
+							
+							if(wz==7){       //4-20 ma切换
+									if(tem==0x30)
+										{tem=0x31;MNL=31;}
+									else
+										{tem=0x30;MNL=30;}
+								}else;
 						}
 					else
 					{
 						tem++;
-						if (tem>=0x3a) tem=0x30;
+						if (tem>=0x3a) tem=0x30;     //设置数字
 						}
 					smode=1;
 					GUI_ShowChar(row,col,tem,16,1);

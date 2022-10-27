@@ -1,11 +1,12 @@
 #include "GP8302.h"
 
 extern int32_t  SZ_LL_Z,SZ_LL_F;
+extern u8 MNL;
 int32_t lins;
 
 void GP8302(int32_t ReadAddr)
 {
-	if(0)   //4-20mA   12mA=0
+	if(MNL==30)   //4-20mA   12mA=0
 		{
 				if(ReadAddr>500  &&  SZ_LL_Z!=0)
 					{
@@ -23,7 +24,7 @@ void GP8302(int32_t ReadAddr)
 						}
 				else GP8302_Read(1570+788);	
 			}		
-	else    //4-20mA   4mA=0
+	else if(MNL==31)    //4-20mA   4mA=0
 		{
        if(ReadAddr>500  &&  SZ_LL_Z!=0)
 					{
@@ -36,6 +37,7 @@ void GP8302(int32_t ReadAddr)
 					}
 				else GP8302_Read(788);	
 	   }
+		else {MNL=30;}
 }
 
 

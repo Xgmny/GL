@@ -34,7 +34,7 @@
 	u16 sto=0,sta=0;
 	int32_t LJ;
 	int32_t LL,CY,WenDu;
-	u8 ms1000=0,K1=0,K2=0,K13=0;
+	u8 ms1000=0,K1=0,K2=0,K13=0,MNL;//MNL 模拟量变量
 	int8_t Gd,Gd_y;
 	u16 A;
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
@@ -74,7 +74,7 @@
 
 	CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);//CAN初始,波特率250Kbps 
 									//最后参数  mode:0,普通模式;1,回环模式; //  
-   IWDG_Init(4,6250);      //狗10s
+ //  IWDG_Init(4,6250);      //狗10s
 	 run=1;      //运行
 //	LED0=1;        
  	while(1)
@@ -252,6 +252,8 @@
 									canbuf_txd[5]=LJ>>16;
 									canbuf_txd[6]=LJ>>8;
 									canbuf_txd[7]=LJ;
+						 
+
 								 
 		//						canbuf_txd[2]=CY>>8;												//温度测试使用
 		//						canbuf_txd[3]=CY;

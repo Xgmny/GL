@@ -88,13 +88,12 @@ void SIX(void)
 	GUI_ShowCHinese(0,0,16,"温补系数：",1);
 	GUI_ShowCHinese(0,16,16,"温度补偿：",1);
 	GUI_ShowCHinese(32,32,16,"补偿：",1);
-	GUI_ShowCHinese(32,48,16,"补偿：",1);
+	GUI_ShowCHinese(16,48,16,"模拟量：",1);
 
-	GUI_ShowCHinese(16,48,16,"度以下：",1);
 	GUI_ShowString(0,32,">35",3,16,1);
 	GUI_ShowString(24,32,"C",1,16,1);
-	GUI_ShowString(0,48,">45",3,16,1);
-	GUI_ShowString(24,48,"C",1,16,1);
+	//GUI_ShowString(16,48,"-12-20mA",8,16,1);
+
 }
 void SEV(void)
 {	

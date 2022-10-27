@@ -1382,7 +1382,7 @@ void YS_YM(int32_t num){
 }
 //****************************************************
 int32_t YS_WD(int32_t num){
-u8 zf;
+u8 zf=0;
 u32 buc=0;
 int32_t wds=0;
 
@@ -1404,15 +1404,21 @@ int32_t wds=0;
 //	 else num=0;
 	   
 	 	 if(SZ_WD_B!=0) {num=(num*(SZ_WD_B)-250*SZ_WD_B)/100;   } //y=xk+b   之前k为111   后为233
-	   else num=0;
+	   else num=0;//else num=0;
      if(SZ_WD_KZ!=0 && wds>350)//温度<45  >35
 		    {	
-				  if(wds>350){num+=(350*SZ_WD_KZ/100);}
-				  else num+=(SZ_WD_KZ*(wds-350))/100;	}else;
-		 if(SZ_WD_KF!=0 && wds>450)						//温度>45 
-				{	num+=(SZ_WD_KF*(wds-450))/100;	}else;
+				  if(wds>350){num+=(350*SZ_WD_KZ/100);}	//SZ_WD_KZ (温度>35系数)
+				else num+=wds/100;	}else; // __A
+					
+					
+//				  else num+=(SZ_WD_KZ*(wds-350))/100;	}else;   //带温度>45 运算  __A'
+//		 if(SZ_WD_KF!=0 && wds>450)						//温度>45 		//								__A'
+//				{	num+=(SZ_WD_KF*(wds-450))/100;	}else;					//							__A'
+					
+					
 
 			    //num+=(5*(((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力下源码补偿
+				
 				   WD_M=((((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力数值补偿
 			 WD=num;  //WD温度补偿
 	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
@@ -1451,7 +1457,7 @@ void YS_YS(int32_t num){
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,lll);
 
-	  GP8302(ccll); //819    DA8302
+	  GP8302(ccll); //819    DA8302    发送模拟量
 
 	     num=ccll;
 	  
