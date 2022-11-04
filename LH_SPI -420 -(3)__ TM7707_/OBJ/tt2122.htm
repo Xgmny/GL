@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\tt2122.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\tt2122.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Thu Oct 27 16:53:23 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Oct 28 16:06:20 2022
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -495,7 +495,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[65]"></a>AT24CXX_Init</STRONG> (Thumb, 1144 bytes, Stack size 16 bytes, 24c64.o(i.AT24CXX_Init))
+<P><STRONG><a name="[65]"></a>AT24CXX_Init</STRONG> (Thumb, 1166 bytes, Stack size 16 bytes, 24c64.o(i.AT24CXX_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = AT24CXX_Init &rArr; BL_24c64 &rArr; A_N_24C64 &rArr; AT24CXX_Read &rArr; I1C_Read_Byte &rArr; SDA_IN &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I1C_Init
@@ -741,8 +741,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SET_COME
 </UL>
 
-<P><STRONG><a name="[90]"></a>GP8302</STRONG> (Thumb, 296 bytes, Stack size 16 bytes, gp8302 .o(i.GP8302))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = GP8302 &rArr; GP8302_Read &rArr; GP8802_Send_Byte &rArr; SDA8302_OUT &rArr; GPIO_Init
+<P><STRONG><a name="[90]"></a>GP8302</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, gp8302 .o(i.GP8302))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = GP8302 &rArr; GP8302_Read &rArr; GP8802_Send_Byte &rArr; SDA8302_OUT &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GP8302_Read
 </UL>
@@ -1433,7 +1433,7 @@ Global Symbols
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I1C_Read_Byte
 </UL>
 
-<P><STRONG><a name="[cc]"></a>SET_COME</STRONG> (Thumb, 4986 bytes, Stack size 24 bytes, setcs.o(i.SET_COME))
+<P><STRONG><a name="[cc]"></a>SET_COME</STRONG> (Thumb, 4982 bytes, Stack size 24 bytes, setcs.o(i.SET_COME))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
 <LI>Call Chain = SET_COME &rArr; TWO &rArr; GUI_ShowString &rArr; GUI_ShowChar &rArr; OLED_Display &rArr; OLED_WR_Byte
 </UL>
@@ -1745,8 +1745,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Made_Data
 </UL>
 
-<P><STRONG><a name="[bb]"></a>YS_YS</STRONG> (Thumb, 406 bytes, Stack size 24 bytes, gui.o(i.YS_YS))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = YS_YS &rArr; YS_LL &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
+<P><STRONG><a name="[bb]"></a>YS_YS</STRONG> (Thumb, 414 bytes, Stack size 32 bytes, gui.o(i.YS_YS))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = YS_YS &rArr; YS_LL &rArr; sqrt &rArr; _dsqrt &rArr; __fpl_dnaninf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GP8302
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;YS_LL

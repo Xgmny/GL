@@ -2,7 +2,7 @@
 #include "24c64.h" 
 #include "delay.h"
 
-	extern u8 ljl[];
+	extern u8 ljl[],MNL;
 	extern int32_t LJ;
 	extern int32_t LL;
 	extern u16 SZ_JZ_Z[], SZ_JZ_F[];                     //   %比校正
@@ -68,6 +68,8 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0200+0x0008,kl,8);  //计数
 	}
 		delay_ms(2);
+	  AT24CXX_Read(0x0075,kl,1);  //模拟量切换
+	  MNL=kl[0];
 		AT24CXX_Read(0X0108,kl,3);
 		myid=(kl[0]-0x30)*100+(kl[1]-0x30)*10+(kl[2]-0x30);
 		if (myid>255) myid=255;
@@ -271,8 +273,8 @@ void BL_24c64(void){
 	  YuanMa	= A_N_24C64(8,kl,0x0080);		//原码  满-0
 	  MANMA		= A_N_24C64(8,kl,0x0088);		//满度压力 Pa   MANMA
 	
-    SZ_WD_KZ= A_N_24C64(5,kl,0x0060);		//     >25度 
-		SZ_WD_KF= A_N_24C64(5,kl,0x0068);		//     >35
+    SZ_WD_KZ= A_N_24C64(5,kl,0x0060);		//     >35度 
+		SZ_WD_KF= A_N_24C64(5,kl,0x0068);		//  模拟量系数
 	  SZ_WD_O = A_N_24C64(5,kl,0x0058);   //0点温度
 	  SZ_WD_B = A_N_24C64(5,kl,0x0050);   //温度补偿系数
 		SZ_LD_Z = A_N_24C64(6,kl,0x0110);   //零点

@@ -1408,7 +1408,7 @@ int32_t wds=0;
      if(SZ_WD_KZ!=0 && wds>350)//温度<45  >35
 		    {	
 				  if(wds>350){num+=(350*SZ_WD_KZ/100);}	//SZ_WD_KZ (温度>35系数)
-				else num+=wds/100;	}else; // __A
+				  else num+=wds/100;	}else; // __A
 					
 					
 //				  else num+=(SZ_WD_KZ*(wds-350))/100;	}else;   //带温度>45 运算  __A'
@@ -1430,7 +1430,7 @@ int32_t wds=0;
 zf 正负号
 ********************************************************/
 void YS_YS(int32_t num){
-	int32_t cc,ccll;
+	int32_t cc,ccll,sm=0;
 	u8 zf;
 //	static int32_t LJL_;
 #if 0
@@ -1458,6 +1458,8 @@ void YS_YS(int32_t num){
 	     NUM_A(num,7,3,zf,lll);
 
 	  GP8302(ccll); //819    DA8302    发送模拟量
+
+		 
 
 	     num=ccll;
 	  

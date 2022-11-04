@@ -6,38 +6,70 @@ int32_t lins;
 
 void GP8302(int32_t ReadAddr)
 {
-	if(MNL==30)   //4-20mA   12mA=0
-		{
-				if(ReadAddr>500  &&  SZ_LL_Z!=0)
-					{
-					GP8302_Read((3135*((ReadAddr*10000)/SZ_LL_Z)/200000)+1567+788);	
-					}
-				else if(ReadAddr<-500  &&  SZ_LL_F!=0)
-					{ 
-						ReadAddr=(~ReadAddr)+1;
-						//	lins=(((3135*(SZ_LL_F*10-ReadAddr))/SZ_LL_F/20)+788);
-						lins=((SZ_LL_F*10-ReadAddr)*3135);
-						lins/=SZ_LL_F;
-						lins/=20;
-						lins+=	789;
-						GP8302_Read(lins);	
-						}
-				else GP8302_Read(1570+788);	
-			}		
-	else if(MNL==31)    //4-20mA   4mA=0
-		{
-       if(ReadAddr>500  &&  SZ_LL_Z!=0)
-					{
-					GP8302_Read((1852*((ReadAddr*10000)/SZ_LL_Z)/200000)+788);		
-					}
-				else if(ReadAddr<-500  &&  SZ_LL_F!=0)
-					{ 
-					ReadAddr=(~ReadAddr)+1;
-					GP8302_Read((1852*((ReadAddr*10000)/SZ_LL_F)/200000)+788);	
-					}
-				else GP8302_Read(788);	
-	   }
-		else {MNL=30;}
+	u32 MN_max=4095,      MN_small=MN_max/5,          monil,              lcH=SZ_LL_Z/100;
+
+	if(MNL==0x30){   //4-20mA   12mA=0
+		if((ReadAddr & 0x80000000)){
+		monil=MN_small;
+		}
+		else{
+		monil=((ReadAddr/1000))* ((MN_max-MN_small)/lcH)+MN_small;  //Ä£ÄâÁ¿c
+		}
+	}
+	else if(MNL==0x31  &&  SZ_LL_F!=0){    //4-20mA   4mA=0
+		if(ReadAddr>50){
+		monil=(((ReadAddr/1000))* ((MN_max-MN_small)/lcH)/2)+MN_small+(MN_max/2);
+		}
+		else if(ReadAddr<50  &&  SZ_LL_F!=0){
+		monil=(((ReadAddr/1000))* ((MN_max-MN_small)/lcH)/2)+MN_small;
+		}
+		else{
+		;
+		}
+	}
+	else monil=MN_small;
+	
+	if(monil>4095){
+	monil=4095;
+	}	else;
+	
+	GP8302_Read(monil);
+	
+//	if(MNL==0x30)   //4-20mA   12mA=0
+//		{
+
+//			
+//			
+//				if(ReadAddr>500  &&  SZ_LL_Z!=0)
+//					{
+//					GP8302_Read((3135*((ReadAddr*10000)/SZ_LL_Z)/200000)+1567+788);	
+//					}
+//				else if(ReadAddr<-500  &&  SZ_LL_F!=0)
+//					{ 
+//						ReadAddr=(~ReadAddr)+1;
+//						//	lins=(((3135*(SZ_LL_F*10-ReadAddr))/SZ_LL_F/20)+788);
+//						lins=((SZ_LL_F*10-ReadAddr)*3135);
+//						lins/=SZ_LL_F;
+//						lins/=20;
+//						lins+=	789;
+//						GP8302_Read(lins);	
+//						}
+//				else GP8302_Read(1570+788);	
+//			}		
+//	else if(MNL==0x31)    //4-20mA   4mA=0
+//		{
+//       if(ReadAddr>500  &&  SZ_LL_Z!=0)
+//					{
+//					GP8302_Read((1852*((ReadAddr*10000)/SZ_LL_Z)/200000)+788);		
+//					}
+//				else if(ReadAddr<-500  &&  SZ_LL_F!=0)
+//					{ 
+//					ReadAddr=(~ReadAddr)+1;
+//					GP8302_Read((1852*((ReadAddr*10000)/SZ_LL_F)/200000)+788);	
+//					}
+//				else GP8302_Read(788);	
+//	   }
+//		else {MNL=30;}
 }
 
 
