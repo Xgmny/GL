@@ -45,7 +45,7 @@ void CAN_Mode_Init(u8 tsjw,u8 tbs2,u8 tbs1,u16 brp,u8 mode)
 	  
  	//CAN单元设置
  	  CAN_InitStructure.CAN_TTCM=DISABLE;						 //非时间触发通信模式  //
- 	  CAN_InitStructure.CAN_ABOM=DISABLE;						 //软件自动离线管理	 //
+ 	  CAN_InitStructure.CAN_ABOM=ENABLE;						 //软件自动离线管理	 //自动回复
   	CAN_InitStructure.CAN_AWUM=DISABLE;						 //睡眠模式通过软件唤醒(清除CAN->MCR的SLEEP位)//
   	CAN_InitStructure.CAN_NART=ENABLE;						 	//禁止报文自动传送 //
   	CAN_InitStructure.CAN_RFLM=DISABLE;						 //报文不锁定,新的覆盖旧的 // 
@@ -59,12 +59,12 @@ void CAN_Mode_Init(u8 tsjw,u8 tbs2,u8 tbs1,u16 brp,u8 mode)
   	CAN_Init(CAN1, &CAN_InitStructure);            // 初始化CAN1 
 
  	CAN_FilterInitStructure.CAN_FilterNumber=0;	  //过滤器0  指定了待初始化的过滤器，它的范围是 1 到 13
-   	CAN_FilterInitStructure.CAN_FilterMode=CAN_FilterMode_IdMask ;   //列表模式    CAN_FilterMode_IdList   掩码CAN_FilterMode_IdMask 
+   	CAN_FilterInitStructure.CAN_FilterMode=CAN_FilterMode_IdList ;   //列表模式    CAN_FilterMode_IdList   掩码CAN_FilterMode_IdMask 
   	CAN_FilterInitStructure.CAN_FilterScale=CAN_FilterScale_32bit; //32位 
-  	CAN_FilterInitStructure.CAN_FilterIdHigh=(0x11950400>>13) & 0xffff;////32位ID    0x0000   0xFFFF   0x1194  0x0401  0x8CA0  0x200C 
-  	CAN_FilterInitStructure.CAN_FilterIdLow=((0x11950400<<3) | 0x04) & 0xffff;
-  	CAN_FilterInitStructure.CAN_FilterMaskIdHigh= 0xFFFF;//32位MASK   119404XX +100    (0x11950400>>13) & 0xffff  ((0x11950400<<3) | 0x04) & 0xffff
-  	CAN_FilterInitStructure.CAN_FilterMaskIdLow=0xFF00;
+  	CAN_FilterInitStructure.CAN_FilterIdHigh=((myid|0x00010000)>>13) & 0xffff;              ////32位ID    0x0000   0xFFFF   0x1194  0x0401  0x8CA0  0x200C 
+  	CAN_FilterInitStructure.CAN_FilterIdLow=(((myid|0x00010000)<<3) | 0x04) & 0xffff;
+  	CAN_FilterInitStructure.CAN_FilterMaskIdHigh= ((myid|0x00010000)>>13) & 0xffff;         //32位MASK   119404XX +100    (0x11950400>>13) & 0xffff  ((0x11950400<<3) | 0x04) & 0xffff
+  	CAN_FilterInitStructure.CAN_FilterMaskIdLow=(((myid|0x00010000)<<3) | 0x04) & 0xffff;
   	CAN_FilterInitStructure.CAN_FilterFIFOAssignment=CAN_Filter_FIFO0;//过滤器0关联到FIFO0
  	  CAN_FilterInitStructure.CAN_FilterActivation=ENABLE; //激活过滤器0
 
@@ -135,7 +135,6 @@ u8 Can_Receive_Msg(u8 *buf)
 	    {
 	      CAN_Receive(CAN1, CAN_FIFO0, &RxMessage);//读取数据	
 						if(RxMessage.ExtId==(myid|0x00010000))
-
 							{
 								for(i=0;i<8;i++)
 											buf[i]=RxMessage.Data[i];  

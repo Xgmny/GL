@@ -53,6 +53,7 @@
  int main(void)
  {	
 	int8_t gd;
+
 	u8 cnt=0,old_key=0,hmqh,yei,Bx=0;
 	u8 canbuf_txd[8]={0x00,0x00,0x32,0x30,0x30,0x30,0x2e,0x30};
   u8 OFF_error=1;
@@ -79,7 +80,6 @@
 //	LED0=1;        
  	while(1)
 	{	
- 
     while( ( Error && OFF_error && Ma_xz!=-1) )  { 
 					OLED_error(Error); 
 					Made_Data();  //AD¼ì²â
