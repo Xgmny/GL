@@ -20,7 +20,7 @@
 #include "GP8302.h"
 #include "mport.h"
 
-  u8 Version[8]={0x32,0x32,0x2e,0x30,0x39,0x2e,0x32,0x31};//∞Ê±æ∫≈
+  u8 Version[8]={0x32,0x32,0x2e,0x31,0x31,0x2e,0x31,0x35};//∞Ê±æ∫≈
   u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lwd_pa[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lll[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
@@ -52,6 +52,8 @@
 	
  int main(void)
  {	
+	u8 can200sm=0;
+	 
 	int8_t gd;
 
 	u8 cnt=0,old_key=0,hmqh,yei,Bx=0;
@@ -80,6 +82,8 @@
 //	LED0=1;        
  	while(1)
 	{	
+//		if(can200sm>99){CAN_Mode_Init(CAN_SJW_1tq,CAN_BS2_8tq,CAN_BS1_9tq,8,0);can200sm=0;}else;    //CAN÷ÿ÷√
+		
     while( ( Error && OFF_error && Ma_xz!=-1) )  { 
 					OLED_error(Error); 
 					Made_Data();  //ADºÏ≤‚
@@ -115,6 +119,7 @@
 		{
 			if(ms200==1)			//200∫¡√Î
 			{
+				can200sm++;   //can ≥ı ºªØ
 				key=KEY_Scan();
 				if (key==4) 
 					{
