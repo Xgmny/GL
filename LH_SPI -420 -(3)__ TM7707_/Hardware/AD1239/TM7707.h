@@ -13,7 +13,7 @@
 //#define CS_1   PBout(10)
 //#define CS_2   PBout(11)
 
-#define __CH1_GAIN_BIPOLAR_BUF	(GAIN_64 | BIPOLAR | BUF_EN)
+#define __CH1_GAIN_BIPOLAR_BUF	(GAIN_32 | BIPOLAR | BUF_EN)
 #define __CH2_GAIN_BIPOLAR_BUF	(GAIN_2 | BIPOLAR | BUF_EN)
 #define __CH2_GAIN2_UNIPOLAR_BUF	(GAIN_1 | UNIPOLAR | BUF_EN)
 	#define RESET_0()	(GPIO_ResetBits(GPIOB,GPIO_Pin_12))

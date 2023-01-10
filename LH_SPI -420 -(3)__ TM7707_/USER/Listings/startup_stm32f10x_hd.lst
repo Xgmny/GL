@@ -568,7 +568,8 @@ ork --depend=..\obj\startup_stm32f10x_hd.d -o..\obj\startup_stm32f10x_hd.o -I"C
 :\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE" -ID:\RoRo
 \Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0 -ID:\RoRo\Keil\Keil5\ARM\CMSIS\In
 clude --predefine="__UVISION_VERSION SETA 514" --predefine="STM32F10X_MD SETA 1
-" --list=.\listings\startup_stm32f10x_hd.lst ..\CORE\startup_stm32f10x_hd.s
+" --predefine="STM32F10X_MD SETA 1" --list=.\listings\startup_stm32f10x_hd.lst 
+..\CORE\startup_stm32f10x_hd.s
 
 
 
