@@ -1,45 +1,45 @@
 #include "GP8302.h"
 
-extern int32_t  SZ_LL_Z,SZ_LL_F ,SZ_WD_KF;
+extern int32_t  SZ_LL_Z,SZ_LL_F ;
+extern int16_t  SZ_WD_KF;
 extern u8 MNL;
 int32_t lins;
 
 void GP8302(int32_t ReadAddr)
 {
-	int32_t MN_max=4095,      MN_small=MN_max/5,     monil,   lcZ=(SZ_LL_Z)*20,               lcF=(SZ_LL_F)*20  ;
-	//      20ma								4ma																	流量量程													量程差					
+	int32_t MN_max=4095,      MN_small=MN_max/5,     monil,   lcZ=(SZ_LL_Z)*10,               lcF=(SZ_LL_F)*10  ;
+	//      20ma								4ma																	流量量程													量程差				
 
-	if(MNL==0x30 &&  SZ_LL_F!=0 && SZ_WD_KF!=0){   //4-20mA   12mA=0
 
-		if((ReadAddr & 0x80000000)){
-		   monil=(ReadAddr)/ (lcF/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
-
+	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0 && SZ_WD_KF!=0){   //4-20mA   12mA=0
+    
+		if(ReadAddr == 0) monil=(MN_max-MN_small)/2;  
+		else if((ReadAddr & 0x80000000)){
+			monil=(ReadAddr)/ ((lcF*2)/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
 		}
-	 else if (MNL==0x30 &&  SZ_LL_Z!=0 && SZ_WD_KF!=0){
-		   monil=(ReadAddr)/ (lcZ/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
-		  
+		else  {
+			monil=(ReadAddr)/ ((lcZ*2)/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
 		}
-	 else;
+	}
+
+	else if(MNL==0x01 &&  SZ_LL_F!=0 && SZ_LL_Z!=0 && SZ_WD_KF!=0){  //4-20mA   4mA=0
 		
-	}
-	else if(MNL==0x31  &&  SZ_LL_F!=0){    //4-20mA   4mA=0
-		if(ReadAddr>50){
-//		monil=(((ReadAddr/1000))* ((MN_max-MN_small)/lcH)/2)+MN_small+(MN_max/2);
+		if(ReadAddr == 0) monil=MN_small;  
+		else if((ReadAddr & 0x80000000)){
+			ReadAddr=~ReadAddr+1;
+			monil=(ReadAddr)/ (lcF/( MN_max-MN_small )) +MN_small;  //模拟量c
 		}
-		else if(ReadAddr<50  &&  SZ_LL_F!=0){
-//		monil=(((ReadAddr/1000))* ((MN_max-MN_small)/lcH)/2)+MN_small;
-		}
-		else{
-		;
+		else  {
+			monil=(ReadAddr)/ (lcZ/( MN_max-MN_small )) +MN_small;  //模拟量c
 		}
 	}
-	else monil=MN_small;
+	else monil=MN_small;//乘系数
 	
-	if(monil>4095){
-	  monil=4095;
-	}	else;
-	
-  monil=monil*(SZ_WD_KF/10);
+	 monil=monil*(SZ_WD_KF/10); 
+	if(monil>4095)	         monil =  4095;
+	else if(monil<MN_small)  monil =  MN_small;
+	else;
+
 	GP8302_Read(monil);
 	
 //	if(MNL==0x30)   //4-20mA   12mA=0

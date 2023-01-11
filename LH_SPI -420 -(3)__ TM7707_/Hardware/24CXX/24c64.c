@@ -274,9 +274,9 @@ void BL_24c64(void){
 	  MANMA		= A_N_24C64(8,kl,0x0088);		//满度压力 Pa   MANMA
 	
     SZ_WD_KZ= A_N_24C64(5,kl,0x0060);		//     >35度 
-		SZ_WD_KF= A_N_24C64(5,kl,0x0068);		//  模拟量系数
+		SZ_WD_KF= A_N_24C64(5,kl,0x0068);		//  模拟量系数    7位 模拟量切换
 	  SZ_WD_O = A_N_24C64(5,kl,0x0058);   //0点温度
-	  SZ_WD_B = A_N_24C64(5,kl,0x0050);   //温度补偿系数
+	  SZ_WD_B = A_N_24C64(5,kl,0x0050);   //温度补偿系数   
 		SZ_LD_Z = A_N_24C64(6,kl,0x0110);   //零点
 	  SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
     SZ_LL_Z = A_N_24C64(6,kl,0X01D0);   //正量程
@@ -308,6 +308,7 @@ void BL_24c64(void){
 		SZ_JZ_F[9]=A_N_24C64(5,kl,0x01C8);	//>90%	
 		
 		LJ = A_N_24C64(8,ljl,0x0200+NIAN);  //累计量
+		MNL = A_N_24C64(1,kl,0x006F);   //模拟量开关
 }	
 
 //累计清0

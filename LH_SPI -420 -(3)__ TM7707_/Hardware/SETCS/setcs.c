@@ -642,9 +642,9 @@ void SET_COME(void)
 							
 							if(wz==7){       //4-20 ma«–ªª
 									if(tem==0x30)
-										{tem=0x31;MNL=0x31;}
+										{tem=0x31;MNL=0x01;}
 									else
-										{tem=0x30;MNL=0x30;}
+										{tem=0x30;MNL=0x00;}
 								}else;
 						}
 					else
