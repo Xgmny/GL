@@ -11,7 +11,7 @@ void GP8302(int32_t ReadAddr)
 	//      20ma								4ma																	流量量程													量程差				
 
 
-	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0 && SZ_WD_KF!=0){   //4-20mA   12mA=0
+	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
     
 		if(ReadAddr == 0) monil=(MN_max-MN_small)/2;  
 		else if((ReadAddr & 0x80000000)){
@@ -22,7 +22,7 @@ void GP8302(int32_t ReadAddr)
 		}
 	}
 
-	else if(MNL==0x01 &&  SZ_LL_F!=0 && SZ_LL_Z!=0 && SZ_WD_KF!=0){  //4-20mA   4mA=0
+	else if(MNL==0x01 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){  //4-20mA   4mA=0
 		
 		if(ReadAddr == 0) monil=MN_small;  
 		else if((ReadAddr & 0x80000000)){
