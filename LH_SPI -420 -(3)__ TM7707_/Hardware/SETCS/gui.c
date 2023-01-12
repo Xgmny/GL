@@ -9,8 +9,8 @@
 #include "24c64.h" 
 #define FZX  0    //消除 CY
 #define ZFX  0    //消除
-#define FZ (SZ_QC_F*10)     //消除 LL
-#define ZF (SZ_QC_Z*10)     //消除
+#define FZ ((double) SZ_QC_F*10)     //消除 LL
+#define ZF ((double) SZ_QC_Z*10)     //消除
 
 //#define YuanMa (8388607-4113000)   //80Kp    无二极管5050000   有二极管 3617000   TM7707 3717000
 
@@ -1266,18 +1266,19 @@ void GUI_DrawBMP(u8 x,u8 y,u8 width, u8 height, u8 BMP[], u8 mode)
 //****************************************************
 int32_t YS_LL(int32_t num){
   double i;
-	int32_t iz,zi;
+	int64_t iz,zi;
 
 	   num=((SZ_LD_F-SZ_LD_Z+WD)*(YuanMa/(MANMA/100))/100)+num; //零点 0.000
 	if((int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100)
-	  {iz=(float)(ZF*ZF)/(int32_t)(SZ_LL_Z *SZ_LL_Z)*YuanMa/100;}  //切除
+	  {iz=(ZF*ZF)/((double)SZ_LL_Z *(double)SZ_LL_Z)*YuanMa/100;}  //切除
+
 	else 
-      {iz=(float)(ZF*ZF)/1;}  //切除
+      {iz=(ZF*ZF)/1;}  //切除
 	
 	if((int32_t)(SZ_LL_F *SZ_LL_F)*YuanMa/-100)
-	  zi=((float)(FZ*FZ)/(int32_t)(SZ_LL_F *SZ_LL_F)*YuanMa/-100);
+	  zi=((FZ*FZ)/((double)SZ_LL_F *(double)SZ_LL_F)*YuanMa/-100);
 	else 
-	  zi=(float)(FZ*FZ)/1;
+	  zi=(FZ*FZ)/1;
  if(num>iz)	
 	{
 		i=num;
@@ -1446,7 +1447,7 @@ void YS_YS(int32_t num){
 		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
          B1++;  if(B1>9){B1=0;B=1;}  else;
 				
-				if	(PJ[0]==PJ[1]&&PJ[2]==PJ[3]&&PJ[4]==PJ[5]&&PJ[6]==PJ[7]&&PJ[8]==PJ[9])//差压传感器报错
+				if	(PJ[0]==PJ[9]&&PJ[2]==PJ[3]&&PJ[4]==PJ[5]&&PJ[6]==PJ[7]&&PJ[8]==PJ[1])//差压传感器报错
 						{ Error=Error|0x02;}
 			 else {Error=Error&~0x02; } 
 			 

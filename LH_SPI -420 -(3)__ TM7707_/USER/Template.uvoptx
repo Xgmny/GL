@@ -181,25 +181,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>643</LineNumber>
+          <LineNumber>38</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134240194</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Hardware\SETCS\setcs.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>25</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134228536</Address>
+          <Address>134228616</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -208,23 +192,7 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Hardware\AD1239\GP8302 .c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\tt2122\../Hardware/AD1239/GP8302 .c\25</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>14</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134228436</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\Hardware\AD1239\GP8302 .c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\tt2122\../Hardware/AD1239/GP8302 .c\14</Expression>
+          <Expression>\\tt2122\../Hardware/AD1239/GP8302 .c\38</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -306,7 +274,7 @@
         <Ww>
           <count>15</count>
           <WinNumber>1</WinNumber>
-          <ItemText>monil,0x0A</ItemText>
+          <ItemText>monil,0x10</ItemText>
         </Ww>
         <Ww>
           <count>16</count>

@@ -13,7 +13,7 @@ void GP8302(int32_t ReadAddr)
 
 	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
     
-		if(ReadAddr == 0) monil=(MN_max-MN_small)/2;  
+		if(ReadAddr == 0) monil=(MN_max-MN_small)/2+MN_small;  
 		else if((ReadAddr & 0x80000000)){
 			monil=(ReadAddr)/ ((lcF*2)/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
 		}
@@ -35,7 +35,7 @@ void GP8302(int32_t ReadAddr)
 	}
 	else monil=MN_small;//乘系数
 	
-	 monil=monil*(SZ_WD_KF/10); 
+	 monil=monil*SZ_WD_KF/10; 
 	if(monil>4095)	         monil =  4095;
 	else if(monil<MN_small)  monil =  MN_small;
 	else;
