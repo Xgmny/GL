@@ -304,7 +304,7 @@ void SET_COME(void)
 									addr+=8;
 									AT24CXX_Read(addr,dd,8);
 								
-									GUI_ShowString(79,0,ss,5,16,1);//显示温度数值
+									GUI_ShowString(79,0, ss,5,16,1);//显示温度数值
 									GUI_ShowString(79,16,ld,5,16,1);
 									GUI_ShowString(79,32,qc,5,16,1);
 									GUI_ShowString(79,48,dd,5,16,1);
@@ -643,8 +643,11 @@ void SET_COME(void)
 							if(wz==7){       //4-20 ma切换
 									if(tem==0x30)
 										{tem=0x31;MNL=0x01;}
+//										{tem=0x3c;MNL=0x01;} 3C<
 									else
 										{tem=0x30;MNL=0x00;}
+										
+										
 								}else;
 						}
 					else

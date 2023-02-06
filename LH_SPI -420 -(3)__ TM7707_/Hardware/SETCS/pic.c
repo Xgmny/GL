@@ -87,11 +87,23 @@ void SIX(void)
 	OLED_Clear(0);             //清屏（全黑）
 	GUI_ShowCHinese(0,0,16,"温补系数：",1);
 	GUI_ShowCHinese(0,16,16,"温度补偿：",1);
-	GUI_ShowCHinese(32,32,16,"补偿：",1);
-	GUI_ShowCHinese(16,48,16,"模拟量：",1);
-
-	GUI_ShowString(0,32,">35",3,16,1);
+		GUI_ShowCHinese(32,32,16,"系数：",1);
+//	GUI_ShowCHinese(16,48,16,"模拟量：",1);	
+	
+	GUI_ShowCHinese(21,48,16,"输",1);
+	GUI_ShowCHinese(38,48,16,"出",1);
+	GUI_ShowCHinese(64,48,16,"：",1);
+	GUI_ShowString(56,48,"I",1,16,1);
+    GUI_ShowString(8,48,"#",1,8,1);
+	
+ GUI_ShowString(0,32,">35",3,16,1);
 	GUI_ShowString(24,32,"C",1,16,1);
+	
+	
+//		GUI_ShowString(16,48,">",1,16,1);
+//	GUI_ShowString(20,48,"I",1,16,1);
+//	GUI_ShowString(0,48,"-",2,16,1);
+
 	//GUI_ShowString(16,48,"-12-20mA",8,16,1);
 
 }
