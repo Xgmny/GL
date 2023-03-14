@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\tt2122.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\tt2122.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Mon Feb 06 11:24:45 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Tue Feb 14 09:37:37 2023
 <BR><P>
 <H3>Maximum Stack Usage =        304 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -890,10 +890,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FIRST_2
 </UL>
 
-<P><STRONG><a name="[9b]"></a>GUI_Draw_sin</STRONG> (Thumb, 400 bytes, Stack size 80 bytes, gui.o(i.GUI_Draw_sin))
+<P><STRONG><a name="[9b]"></a>GUI_Draw_sin</STRONG> (Thumb, 494 bytes, Stack size 80 bytes, gui.o(i.GUI_Draw_sin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = GUI_Draw_sin &rArr; sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_d2iz
 </UL>
 <BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_ShowString
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pixel
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Display
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
@@ -1008,6 +1009,7 @@ Global Symbols
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOUR
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FIVE
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_SET
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GUI_Draw_sin
 </UL>
 
 <P><STRONG><a name="[5]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.HardFault_Handler))

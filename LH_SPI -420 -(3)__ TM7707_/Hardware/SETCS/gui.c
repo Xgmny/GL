@@ -81,6 +81,11 @@ void GUI_Draw_sin(u8 h,u8 color)
 	u16 p;
 //	    OLED_Clear(0); 
  for(p=0;p<100;p++){
+	 if(p==10)GUI_ShowString(0,0,"OLED......ok",12,8,1);
+	 if(p==40)GUI_ShowString(0,8,"CAN.......ok",12,8,1);
+	 if(p==60)GUI_ShowString(0,16,"AD........ok",12,8,1);
+	 if(p==90)GUI_ShowString(0,24,"FLASH.....ok",12,8,1);
+//	 if(p==90)GUI_ShowString(60,24,"ok",2,8,1);
      for(x=0;x<128;x++)
 		{
 		y=sin(((float)x-p%128)/5)*i;
