@@ -59,9 +59,11 @@
   u8 OFF_error=1;
 	delay_init();	    	 //延时函数初始化	
 	OLED_Init();
-	GUI_ShowCHinese(0,15,32,"科瑞仪表",1);
+	GUI_ShowCHinese(0,15,32,"流量仪表",1);
+
    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
 	uart_init(9600);	 	//串口初始化为115200
+	
 	QingJiao_19200();
 	uart_init(19200);	 	//串口初始化为115200
 	LED_Init();		  		//初始化与LED连接的硬件接口
