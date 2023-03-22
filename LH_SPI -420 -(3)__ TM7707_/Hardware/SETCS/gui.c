@@ -1408,7 +1408,7 @@ int32_t wds=0;
 	   else num=0;//else num=0;
      if(SZ_WD_KZ!=0 && wds>350)//温度<45  >35
 		    {	
-				  if(wds>350){num+=(350*SZ_WD_KZ/100);}	//SZ_WD_KZ (温度>35系数)
+				  if(wds>350){num+=(( wds-350 )* ( ( SZ_WD_KZ)* ( SZ_WD_B ) /1000) );}	//SZ_WD_KZ (温度>35系数)
 				  else num+=wds/100;	}else; // __A
 					
 					
