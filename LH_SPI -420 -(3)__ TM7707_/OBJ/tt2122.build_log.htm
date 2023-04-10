@@ -22,15 +22,24 @@ Dialog DLL:      TARMSTM.DLL V1.64.0.0
  
 <h2>Project:</h2>
 C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\Template.uvprojx
-Project File Date:  03/22/2023
+Project File Date:  04/08/2023
 
 <h2>Output:</h2>
 Build target 'Template'
-"..\OBJ\tt2122.axf" - 0 Error(s), 0 Warning(s).
+compiling gui.c...
+..\Hardware\SETCS\gui.c(1387): warning:  #550-D: variable "buc" was set but never used
+  u32 buc=0;
+..\Hardware\SETCS\gui.c(1435): warning:  #177-D: variable "sm" was declared but never referenced
+        int32_t cc,ccll,sm=0;
+..\Hardware\SETCS\gui.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=38034 RO-data=8590 RW-data=572 ZI-data=1047220  
+FromELF: creating hex file...
+"..\OBJ\tt2122.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   C:\Users\DELL\Documents\GitHub\GL\LH_SPI -420 -(3)__ TM7707_\USER\RTE
-  D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\2.4.0
+  D:\RoRo\Keil\Keil5\ARM\PACK\Keil\STM32F1xx_DFP\1.1.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 </pre>

@@ -255,12 +255,12 @@
 						 
 
 								 
-		//						canbuf_txd[2]=CY>>8;												//温度测试使用
-		//						canbuf_txd[3]=CY;
-		//						canbuf_txd[4]=SZ_LD_Z>>8;
-		//						canbuf_txd[5]=SZ_LD_Z;
-		//						canbuf_txd[6]=WenDu>>8;
-		//						canbuf_txd[7]=WenDu;
+//						canbuf_txd[2]=CY>>8;												//温度测试使用
+//						canbuf_txd[3]=CY;
+//		//						canbuf_txd[4]=SZ_LD_Z>>8;
+//		//						canbuf_txd[5]=SZ_LD_Z;
+//						canbuf_txd[6]=WenDu>>8;
+//						canbuf_txd[7]=WenDu;
 								
 							  	Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
 						 

@@ -1395,9 +1395,10 @@ int32_t wds=0;
 	 num=TP1000_wd_(num);
 	 WenDu=num; 
 	 num+=SZ_WD_O;//零点补偿
-	 if(num<-600 || num>1000) { num=250; Error=Error|0x01;}  //断线错误判断
+	 if(num<-60 || num>200) { num=250; Error=Error|0x01;}  //断线错误判断
 	 else {Error=Error&(~0x01); }//错误解除 
-	 NUM_A(num,4,1,zf,lwd);
+	 if(num>0)NUM_A(num,4,1,zf,lwd); 
+	 else NUM_A(~num+1,4,1,1,lwd);
 	 wds=num;
 	 buc=SZ_WD_B;
 	 // num=(num*-111+30900)/100;   //y=xk+b   之前k为111   后为233
