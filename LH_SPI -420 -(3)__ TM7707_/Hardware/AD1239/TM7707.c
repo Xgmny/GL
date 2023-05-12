@@ -440,7 +440,7 @@ u8 TM7705_WaitDRDY(void)
 		if(TM)
 		  {  if (DRDY1_IS_LOW()) {return 1;}	else; }	
 		else
-		  {  if (DRDY2_IS_LOW()) {return 1;}	else; }
+  	  {  if (DRDY2_IS_LOW()) {return 1;}	else; }
 	}
 	if(i>=70000){
 		

@@ -1395,7 +1395,7 @@ int32_t wds=0;
 	 num=TP1000_wd_(num);
 	 WenDu=num; 
 	 num+=SZ_WD_O;//¡„µ„≤π≥•
-	 if(num<-60 || num>200) { num=250; Error=Error|0x01;}  //∂œœﬂ¥ÌŒÛ≈–∂œ
+	 if(num<-600 || num>1000) { num=250; Error=Error|0x01;}  //∂œœﬂ¥ÌŒÛ≈–∂œ  ≥À10±∂µƒŒ¬∂»
 	 else {Error=Error&(~0x01); }//¥ÌŒÛΩ‚≥˝ 
 	 if(num>0)NUM_A(num,4,1,zf,lwd); 
 	 else NUM_A(~num+1,4,1,1,lwd);
@@ -1585,19 +1585,27 @@ int16_t TP1000_wd_(int32_t u)   //º∆À„
 void CY_zero(void)
 {
   u8  kl[8],*kll;
-	if(CY+SZ_LD_Z>=0){
+	if(CY+SZ_LD_Z-SZ_LD_F>=0){
 		
-		SZ_LD_Z=CY+SZ_LD_Z;
+		SZ_LD_Z=CY+SZ_LD_Z-SZ_LD_F;
 		NUM_A(SZ_LD_Z,6,3,0,kl);
 		kll=&kl[1];
 		AT24CXX_Write(0x0110,kll,6);
+		
+		SZ_LD_F=0;
+		NUM_A(SZ_LD_F,6,3,0,kl);
+		AT24CXX_Write(0x0170,kll,6);
 	}
 	else{
 	    
-		SZ_LD_F=(~CY+1)+SZ_LD_F;
+		SZ_LD_F=(~CY+1)+SZ_LD_F-SZ_LD_Z;
 		NUM_A(SZ_LD_F,6,3,0,kl);
 		kll=&kl[1];
 		AT24CXX_Write(0x0170,kll,6);
+		
+		SZ_LD_Z=0;
+		NUM_A(SZ_LD_Z,6,3,0,kl);
+		AT24CXX_Write(0x0110,kll,6);
 		}
 }
 

@@ -80,13 +80,13 @@
 //	LED0=1;        
  	while(1)
 	{	
-    while( ( Error && OFF_error && Ma_xz!=-1) )  { 
-					OLED_error(Error); 
-					Made_Data();  //AD检测
-					delay_ms(800);
-					if (4==KEY_Scan())OFF_error=0;else;
-					if(Error==0){NVIC_SystemReset();}else;
-		}//系统错误判断   重启
+//    while( ( Error && OFF_error && Ma_xz!=-1) )  { 
+//					OLED_error(Error); 
+//					Made_Data();  //AD检测
+//					delay_ms(800);
+//					if (4==KEY_Scan())OFF_error=0;else;
+//					if(Error==0){NVIC_SystemReset();}else;
+//		}//系统错误判断   重启
 		rxd_bz=Can_Receive_Msg(canbuf_rxd);//接收到有数据	
 		if (rxd_bz)   
 		   {
