@@ -296,13 +296,13 @@ void SET_COME(void)
 				{
 					case 0x02:{	
 								SIX();page=6;wz=0;addr=0x0050;  //page=6温度设置
-									AT24CXX_Read(addr,ss,5);
+									AT24CXX_Read(addr,ss,5);  //50
 									addr+=8;
-									AT24CXX_Read(addr,ld,5);
+									AT24CXX_Read(addr,ld,5);	//58
 									addr+=8;
-									AT24CXX_Read(addr,qc,5);
+									AT24CXX_Read(addr,qc,5);	//60
 									addr+=8;
-									AT24CXX_Read(addr,dd,8);
+									AT24CXX_Read(addr,dd,8);	//68
 								
 									GUI_ShowString(79,0, ss,5,16,1);//显示温度数值
 									GUI_ShowString(79,16,ld,5,16,1);

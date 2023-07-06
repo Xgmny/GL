@@ -7,9 +7,9 @@ int32_t lins;
 
 void GP8302(int32_t ReadAddr)
 {
-	int32_t MN_max=4095,      MN_small=MN_max/5,     monil,   lcZ=(SZ_LL_Z)*10,               lcF=(SZ_LL_F)*10  ;
+	int32_t MN_max=4095,      MN_small=MN_max/5,               lcZ=(SZ_LL_Z)*10,               lcF=(SZ_LL_F)*10  ;
 	//      20ma								4ma																	流量量程													量程差				
-
+  int64_t monil;
 
 	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
     
@@ -35,7 +35,12 @@ void GP8302(int32_t ReadAddr)
 	}
 	else monil=MN_small;//乘系数
 	
-	 monil=monil*SZ_WD_KF/10; 
+
+      monil=(monil*(SZ_WD_KF+10000))/10000; 
+//	  monil=(monil* ((float) SZ_WD_KF/10000+1) );  //模拟量修正
+
+	
+	
 	if(monil>4095)	         monil =  4095;
 	else if(monil<MN_small)  monil =  MN_small;
 	else;

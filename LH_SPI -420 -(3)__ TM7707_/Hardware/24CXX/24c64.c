@@ -273,8 +273,8 @@ void BL_24c64(void){
 	  YuanMa	= A_N_24C64(8,kl,0x0080);		//原码  满-0
 	  MANMA		= A_N_24C64(8,kl,0x0088);		//满度压力 Pa   MANMA
 	
-    SZ_WD_KZ= A_N_24C64(5,kl,0x0060);		//     >35度 
 		SZ_WD_KF= A_N_24C64(5,kl,0x0068);		//  模拟量系数    7位 模拟量切换
+	  SZ_WD_KZ= A_N_24C64(5,kl,0x0060);		//     >35度 
 	  SZ_WD_O = A_N_24C64(5,kl,0x0058);   //0点温度
 	  SZ_WD_B = A_N_24C64(5,kl,0x0050);   //温度补偿系数   
 		SZ_LD_Z = A_N_24C64(6,kl,0x0110);   //零点
