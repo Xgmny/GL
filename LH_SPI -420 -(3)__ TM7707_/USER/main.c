@@ -20,7 +20,7 @@
 #include "GP8302.h"
 #include "mport.h"
 
-  u8 Version[8]={0x32,0x33,0x2e,0x30,0x37,0x2e,0x30,0x36};//版本号
+  u8 Version[8]={0x32,0x33,0x2e,0x30,0x39,0x2e,0x32,0x36};//版本号
   u8 lwd[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lwd_pa[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
 	u8 lll[8]={0x2b,0x33,0x32,0x30,0x2e,0x30,0x32,0x30};
@@ -82,12 +82,12 @@
 	{	
 //    while( ( Error && OFF_error && Ma_xz!=-1) )  { 
 //					OLED_error(Error); 
-//					Made_Data();  //AD检测
+//					Made_Data();  
 //					delay_ms(800);
 //					if (4==KEY_Scan())OFF_error=0;else;
 //					if(Error==0){NVIC_SystemReset();}else;
-//		}//系统错误判断   重启
-		rxd_bz=Can_Receive_Msg(canbuf_rxd);//接收到有数据	
+//		}
+		rxd_bz=Can_Receive_Msg(canbuf_rxd);	
 		if (rxd_bz)   
 		   {
 		    	
@@ -161,12 +161,12 @@
 								if (!hmqh)	
 								{	
 //									GP8302_Read((3135*(js/200.0))+788);
-														GUI_ShowString(34, 3,lll,8,16,1);					 // 流量
+														GUI_ShowString(34, 3,lll,8,16,1);				
 									
 										if(ljks)GUI_ShowString(34,24,ljl,8,16,1);					//ljl   lsl
 										else    GUI_ShowString(34,24,ljl,8,16,0);					//ljl   lsl
 									
-										if(LL==0)GUI_ShowString(34,45,cyl_0,8,16,1);	  			//差压
+										if(LL==0)GUI_ShowString(34,45,cyl_0,8,16,1);	  		
 									  else     GUI_ShowString(34,45,cyl,8,16,1);
 									
 									if(key==1)K1++;  else K1=0; //K1
@@ -191,15 +191,15 @@
 										if(Ma_xz==-1)
 											{
 												GUI_ShowString(69,16,lwd_pa ,5,8,1);	//	
-												GUI_ShowNum(69,24,WD_M,5,8,1);	//压力温度补偿
+												GUI_ShowNum(69,24,WD_M,5,8,1);	
 											}
 										else GUI_ShowString(69,16,lwd_pa ,5,16,1);	//
-											GUI_ShowString(3,37,lll,8,8,1);	//流量
-											GUI_ShowString(68,37,cyl,8,8,1);	  			//差压
+											GUI_ShowString(3,37,lll,8,8,1);	
+											GUI_ShowString(68,37,cyl,8,8,1);	  		
 											
-//										GUI_ShowNum(3,37,sto,5,8,1);	//流量
-//										GUI_ShowNum(68,37,sta,5,8,1);	  			//差压
-									//	GUI_ShowString(4,33,jdl	,6,16,1);	//jdl倾角	jdl	
+//										GUI_ShowNum(3,37,sto,5,8,1);	
+//										GUI_ShowNum(68,37,sta,5,8,1);	  			
+									//	GUI_ShowString(4,33,jdl	,6,16,1);	
 //										GUI_ShowNum(4,33,ling,6,16,1);
 //										GUI_ShowNum(62,33,man,6,16,1);
 										

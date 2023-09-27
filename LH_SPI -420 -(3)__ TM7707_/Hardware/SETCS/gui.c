@@ -1459,7 +1459,8 @@ void YS_YS(int32_t num){
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,lll);
 
-	  GP8302(ccll); //819    DA8302    发送模拟量
+	//  GP8302(ccll); //819    DA8302    发送模拟量
+		GP8312(ccll); //819    DA8302    发送模拟量
 
 		 
 

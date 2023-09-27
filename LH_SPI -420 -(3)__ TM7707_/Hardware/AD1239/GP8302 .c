@@ -46,42 +46,52 @@ void GP8302(int32_t ReadAddr)
 	else;
 
 	GP8302_Read(monil);
+}
+//****************************************************************************************************************
+void GP8312(int32_t ReadAddr)
 	
-//	if(MNL==0x30)   //4-20mA   12mA=0
-//		{
+{
 
-//			
-//			
-//				if(ReadAddr>500  &&  SZ_LL_Z!=0)
-//					{
-//					GP8302_Read((3135*((ReadAddr*10000)/SZ_LL_Z)/200000)+1567+788);	
-//					}
-//				else if(ReadAddr<-500  &&  SZ_LL_F!=0)
-//					{ 
-//						ReadAddr=(~ReadAddr)+1;
-//						//	lins=(((3135*(SZ_LL_F*10-ReadAddr))/SZ_LL_F/20)+788);
-//						lins=((SZ_LL_F*10-ReadAddr)*3135);
-//						lins/=SZ_LL_F;
-//						lins/=20;
-//						lins+=	789;
-//						GP8302_Read(lins);	
-//						}
-//				else GP8302_Read(1570+788);	
-//			}		
-//	else if(MNL==0x31)    //4-20mA   4mA=0
-//		{
-//       if(ReadAddr>500  &&  SZ_LL_Z!=0)
-//					{
-//					GP8302_Read((1852*((ReadAddr*10000)/SZ_LL_Z)/200000)+788);		
-//					}
-//				else if(ReadAddr<-500  &&  SZ_LL_F!=0)
-//					{ 
-//					ReadAddr=(~ReadAddr)+1;
-//					GP8302_Read((1852*((ReadAddr*10000)/SZ_LL_F)/200000)+788);	
-//					}
-//				else GP8302_Read(788);	
-//	   }
-//		else {MNL=30;}
+	
+	
+	uint16_t monil;
+	int32_t MN_max=26908,      MN_small=MN_max/5,    lcZ=((SZ_LL_Z)*10),     lcF=((SZ_LL_F)*10)  ;
+	float sss= ReadAddr;
+	//      20ma								4ma													流量量程													量程差				
+
+	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
+    
+		if(ReadAddr == 0) monil=(mA20-mA4)/2+mA4;  
+		else if((ReadAddr & 0x80000000)){
+			monil=sss/lcF*mA16/2+mA8+mA4;
+		}
+		else  {
+			monil= (uint16_t) (((float)ReadAddr/lcZ) * mA16) /2 +mA8+mA4;  //模拟量c
+		}
+	}
+	else if(MNL==0x01 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){  //4-20mA   4mA=0
+		
+		if(ReadAddr == 0) monil=MN_small;  
+		else if((ReadAddr & 0x80000000)){
+			sss=~ReadAddr+1;
+			monil=sss/lcF*mA16+mA4;  //模拟量c
+		}
+		else  {
+			monil=sss/lcZ*mA16+mA4;  //模拟量c
+		}
+	}
+	else monil=MN_small;//乘系数
+
+	
+ //   monil=(monil*(SZ_WD_KF+10000))/10000; 
+//	  monil=(monil* ((float) SZ_WD_KF/10000+1) );  //模拟量修正
+			 monil+=SZ_WD_KF;
+//	if(monil>MN_max+1000)	         monil =  MN_max+1000;
+//	else if(monil<MN_small-1000)  monil =  MN_small-1000;
+//	else;
+
+//	GP8302_Read(monil);
+	GP8312_Read(monil);
 }
 
 
@@ -96,6 +106,24 @@ u8 GP8302_Read(u16 ReadAddr)
 	GP8802_Send_Byte(ReadAddr<<4&0xFF);//发送低地址
 	GP8802_Ack();
     GP8802_Send_Byte(ReadAddr>>4&0xFF);   //发送高地址
+//	GP8802_Wait_Ack();   
+    GP8802_Ack();	
+    GP8802_Stop();//产生一个停止条件	
+    
+	return temp;
+}
+//*****************************************************************
+u8 GP8312_Read(u16 ReadAddr)
+{				  
+	u8 temp=0;		  	    																 
+	GP8802_Start();
+	GP8802_Send_Byte(0XB0);	   //发送写命令
+	GP8802_Ack();
+	GP8802_Send_Byte(0X02);	   //发送写命令
+	GP8802_Ack();
+	GP8802_Send_Byte(ReadAddr&0xFF);//发送低地址
+	GP8802_Ack();
+    GP8802_Send_Byte(ReadAddr>>8&0xFF);   //发送高地址
 //	GP8802_Wait_Ack();   
     GP8802_Ack();	
     GP8802_Stop();//产生一个停止条件	
