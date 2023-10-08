@@ -6,7 +6,7 @@
 #define SCL_8302  PAout(1)
 
 #define MAX_mA 0x7fff	
-#define	mA20 26908
+#define	mA20 26850
 #define	mA4	mA20/5
 #define mA16 (mA20-mA4)	
 #define mA8 	mA16/2

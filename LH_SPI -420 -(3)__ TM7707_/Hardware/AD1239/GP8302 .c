@@ -7,10 +7,10 @@ int32_t lins;
 
 void GP8302(int32_t ReadAddr)
 {
-	int32_t MN_max=4095,      MN_small=MN_max/5,               lcZ=(SZ_LL_Z)*10,               lcF=(SZ_LL_F)*10  ;
+	int32_t MN_max=4095,      MN_small=MN_max/5,               lcZ=(SZ_LL_Z)*100,               lcF=(SZ_LL_F)*10  ;
 	//      20ma								4ma																	流量量程													量程差				
   int64_t monil;
-
+	ReadAddr*=10;
 	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
     
 		if(ReadAddr == 0) monil=(MN_max-MN_small)/2+MN_small;  
@@ -35,15 +35,18 @@ void GP8302(int32_t ReadAddr)
 	}
 	else monil=MN_small;//乘系数
 	
-
-      monil=(monil*(SZ_WD_KF+10000))/10000; 
+	
+//			if(monil>2447&&monil<2467)monil=2457;				//测试
+//		if(monil>2467) monil=4095;				//测试
+//		if(monil<2447) monil=4095/5;		//测试
+	
+    monil=(monil*(SZ_WD_KF+10000))/10000; 
 //	  monil=(monil* ((float) SZ_WD_KF/10000+1) );  //模拟量修正
-
-	
-	
 	if(monil>4095)	         monil =  4095;
-	else if(monil<MN_small)  monil =  MN_small;
+	else if(monil<5)  monil =  10;
 	else;
+
+
 
 	GP8302_Read(monil);
 }
@@ -55,12 +58,11 @@ void GP8312(int32_t ReadAddr)
 	
 	
 	uint16_t monil;
-	int32_t MN_max=26908,      MN_small=MN_max/5,    lcZ=((SZ_LL_Z)*10),     lcF=((SZ_LL_F)*10)  ;
+	int32_t  lcZ=((SZ_LL_Z)*10),     lcF=((SZ_LL_F)*10)  ;
 	float sss= ReadAddr;
-	//      20ma								4ma													流量量程													量程差				
+	//					流量量程													量程差				
 
 	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
-    
 		if(ReadAddr == 0) monil=(mA20-mA4)/2+mA4;  
 		else if((ReadAddr & 0x80000000)){
 			monil=sss/lcF*mA16/2+mA8+mA4;
@@ -71,7 +73,7 @@ void GP8312(int32_t ReadAddr)
 	}
 	else if(MNL==0x01 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){  //4-20mA   4mA=0
 		
-		if(ReadAddr == 0) monil=MN_small;  
+		if(ReadAddr == 0) monil=mA4;  
 		else if((ReadAddr & 0x80000000)){
 			sss=~ReadAddr+1;
 			monil=sss/lcF*mA16+mA4;  //模拟量c
@@ -80,7 +82,7 @@ void GP8312(int32_t ReadAddr)
 			monil=sss/lcZ*mA16+mA4;  //模拟量c
 		}
 	}
-	else monil=MN_small;//乘系数
+	else monil=mA4;//乘系数
 
 	
  //   monil=(monil*(SZ_WD_KF+10000))/10000; 
@@ -90,7 +92,7 @@ void GP8312(int32_t ReadAddr)
 //	else if(monil<MN_small-1000)  monil =  MN_small-1000;
 //	else;
 
-//	GP8302_Read(monil);
+
 	GP8312_Read(monil);
 }
 

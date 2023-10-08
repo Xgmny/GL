@@ -1434,6 +1434,7 @@ zf 正负号
 void YS_YS(int32_t num){
 	int32_t cc,ccll,sm=0;
 	u8 zf;
+//static	u8 cscscs;  //测试
 //	static int32_t LJL_;
 #if 0
 	   //                                    零点校正 负				零点校正 正
@@ -1459,8 +1460,16 @@ void YS_YS(int32_t num){
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
 	     NUM_A(num,7,3,zf,lll);
 
-	//  GP8302(ccll); //819    DA8302    发送模拟量
-		GP8312(ccll); //819    DA8302    发送模拟量
+		
+		
+//		if(ccll==0&&cscscs!=1){GP8312(0);cscscs=1;}						//测试
+//		if(ccll>0&&cscscs!=2){GP8312(200000);cscscs=2;}
+//		if(ccll<0&&cscscs!=3){GP8312(-200000);cscscs=3;}		
+		
+	  GP8302(ccll); //819    DA8302    发送模拟量
+	//	GP8312(ccll); //819    DA8302    发送模拟量
+		
+
 
 		 
 
