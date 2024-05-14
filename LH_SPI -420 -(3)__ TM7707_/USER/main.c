@@ -80,6 +80,7 @@
 //	LED0=1;        
  	while(1)
 	{	
+	u8 cyl_P[8]={0x20,0x30,0x30,0x30,0x2e,0x30,0x30,0x30};
 //    while( ( Error && OFF_error && Ma_xz!=-1) )  { 
 //					OLED_error(Error); 
 //					Made_Data();  
@@ -206,7 +207,7 @@
 									  }
 								    else
 									   {				
-										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,Version ,8,8,1);else gd++; // 版本号	 
+										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,Version ,8,8,1);else gd++; 
 										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd,5,8,1); 			else gd++;
 										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lwd_pa ,5,8,1);		else gd++;
 										if(gd<6 && gd>=0)GUI_ShowString(75,3+10*gd++,lsl,8,8,1);			else gd++;
@@ -261,8 +262,10 @@
 //		//						canbuf_txd[5]=SZ_LD_Z;
 //						canbuf_txd[6]=WenDu>>8;
 //						canbuf_txd[7]=WenDu;
-								
+
 							  	Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
+									Can_Send_Msg(myid,cyl,8);//差压量
+									
 						 
 						if(KEY_ljl==0)     //累计量暂停清零
 						  {

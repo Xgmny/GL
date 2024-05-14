@@ -1395,7 +1395,7 @@ int32_t wds=0;
 	 num=TP1000_wd_(num);
 	 WenDu=num; 
 	 num+=SZ_WD_O;//零点补偿
-	 if(num<-600 || num>1000) { num=250; Error=Error|0x01;}  //断线错误判断  乘10倍的温度
+	 if(num<-600 || num>1000) { num=250; Error=Error|0x01;}  
 	 else {Error=Error&(~0x01); }//错误解除 
 	 if(num>0)NUM_A(num,4,1,zf,lwd); 
 	 else NUM_A(~num+1,4,1,1,lwd);
@@ -1409,7 +1409,7 @@ int32_t wds=0;
 	   else num=0;//else num=0;
      if(SZ_WD_KZ!=0 && wds>350)//温度<45  >35
 		    {	
-				  if(wds>350){num+=(( wds-350 )* ( ( SZ_WD_KZ)* ( SZ_WD_B ) /1000) );}	//SZ_WD_KZ (温度>35系数)
+				  if(wds>350){num+=(( wds-350 )* ( ( SZ_WD_KZ)* ( SZ_WD_B ) /1000) );}	
 				  else num+=wds/100;	}else; // __A
 					
 					
@@ -1421,9 +1421,9 @@ int32_t wds=0;
 
 			    //num+=(5*(((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力下源码补偿
 				
-				   WD_M=((((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);//KPa 温度需修正 压力数值补偿
+				   WD_M=((((double)CY/1000)*1.25)*((double)WenDu-250)*0.0249);
 			 WD=num;  //WD温度补偿
-	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
+	    if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;
 	     NUM_A(num,4,0,zf,lwd_pa);
          
 	return num;
@@ -1449,7 +1449,7 @@ void YS_YS(int32_t num){
 		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
          B1++;  if(B1>9){B1=0;B=1;}  else;
 				
-				if	(PJ[0]==PJ[9]&&PJ[2]==PJ[3]&&PJ[4]==PJ[5]&&PJ[6]==PJ[7]&&PJ[8]==PJ[1])//差压传感器报错
+				if	(PJ[0]==PJ[9]&&PJ[2]==PJ[3]&&PJ[4]==PJ[5]&&PJ[6]==PJ[7]&&PJ[8]==PJ[1])
 						{ Error=Error|0x02;}
 			 else {Error=Error&~0x02; } 
 			 
@@ -1457,7 +1457,7 @@ void YS_YS(int32_t num){
 //	     num+=WD;
 		 num=YS_LL(num);
 		 ccll=num;
-	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
+	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;
 	     NUM_A(num,7,3,zf,lll);
 
 		
@@ -1478,7 +1478,7 @@ void YS_YS(int32_t num){
 	if(ljks)
         	{
 						num=YS_LJ(num);    //累计停止
-		       if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
+		       if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;
 	         NUM_A(num,7,3,zf,ljl);
 	       	}
 	else    ;	
@@ -1496,11 +1496,11 @@ void YS_YS(int32_t num){
 		 num=cc;
 		 num=YS_CY(num);
 	     CY=num;
-	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;//负数转换正数
+	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;
 	     NUM_A(num,7,3,zf,cyl);
 	   
 	     num=QJs;//倾角
-	  if(num>18000)   {num= (36100-QJs); zf=1;} else zf=0;//负数转换正数
+	  if(num>18000)   {num= (36100-QJs); zf=1;} else zf=0;
      	 NUM_A(num,5,2,zf,jdl); 
 
 	    
@@ -1510,14 +1510,14 @@ void YS_YS(int32_t num){
 //数转ASCII
 //数 ,位,小数点, 变量地址
 //******************************************
-void NUM_A(u32 n, u8 i, u8 d, u8 zf, u8*aa){  //数 ,位,小数点, 正负号,变量地址
+void NUM_A(u32 n, u8 i, u8 d, u8 zf, u8*aa){ 
 
-	if(d==0);     		else d=i-d;	    //0不变
-	if(zf==1) aa[0]=45; else aa[0]=32;  //45"-"  32" "
+	if(d==0);     		else d=i-d;	    
+	if(zf==1) aa[0]=45; else aa[0]=32;  
 	
 	  for(;i>0;i--)
 		{
-		 if(d==i&&d!=0){aa[i]=46;i--;} else; //46 ascii "."
+		 if(d==i&&d!=0){aa[i]=46;i--;} else; 
 			 aa[i]=(n%10)+48;
 			 n/=10;
 		 }		
