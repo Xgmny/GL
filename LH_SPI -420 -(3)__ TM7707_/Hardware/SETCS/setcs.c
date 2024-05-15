@@ -550,15 +550,15 @@ void SET_COME(void)
 				{	GUI_ShowChar(row,col,tem,16,1);
 					ss[wz]=tem;
 					row+=8;wz++;smode=1;
-					if(row==48) {row+=8;wz++;}
+					if(row==56) {row+=8;wz++;}//48改56 小数点右移一位
 					tem=ss[wz];
 					if (row>64)
-							{row=24;wz=0;tem=ss[wz];}
+							{row=24;wz=0;tem=ss[wz];}//归零  wz 标记	  row光标  (不确定)
 					GUI_ShowChar(row,38,tem,16,1);
 				}
 			if (page==6) //温度设置光标
 				{
-					GUI_ShowChar(row,col,tem,16,1);
+					GUI_ShowChar(row,col,tem,16,1);//col 行
 					if (col==0)  ss[wz]=tem;
 					if (col==16) ld[wz]=tem;
 					if (col==32) qc[wz]=tem;

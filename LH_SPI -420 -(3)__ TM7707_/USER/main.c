@@ -265,6 +265,7 @@
 
 							  	Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节 
 									Can_Send_Msg(myid,cyl,8);//差压量
+									1111111111
 									
 						 
 						if(KEY_ljl==0)     //累计量暂停清零
