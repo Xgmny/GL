@@ -1457,9 +1457,10 @@ void YS_YS(int32_t num){
 //	     num+=WD;
 		 num=YS_LL(num);
 		 ccll=num;
+		 
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;
-	     NUM_A(num,7,3,zf,lll);
-
+		if(num>999999){num/=10;NUM_A(num,7,2,zf,lll);}//改为2位小数
+	  else NUM_A(num,7,3,zf,lll);
 		
 		
 //		if(ccll==0&&cscscs!=1){GP8312(0);cscscs=1;}						//测试
