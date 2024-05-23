@@ -101,6 +101,7 @@ void GUI_Draw_sin(u8 h,u8 color)
 
 		}
 	}
+ delay_ms((myid & 0xfffffffe)*2);
 }
 /*******************************************************************
  * @name       :void GUI_DrawPoint(u8 x,u8 y,u8 color)  µã
