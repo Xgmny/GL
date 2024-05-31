@@ -264,7 +264,7 @@
 //						canbuf_txd[7]=WenDu;
 
 							  	Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节  流量 累计量
-		//							Can_Send_Msg(myid,cyl,8);//差压量
+									Can_Send_Msg(myid,cyl,8);//差压量
 
 									
 						 

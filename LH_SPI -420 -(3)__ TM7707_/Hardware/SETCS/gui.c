@@ -41,7 +41,7 @@
 	extern u8 Error;
 	extern int32_t LJ;
 	extern int32_t LL;
-	extern u8 B,B1;
+	extern u8 B,B1,B2;
 	extern u16 QJs;
 	extern u8 ljks; //累计开关
 
@@ -52,7 +52,7 @@
 	extern int32_t  YuanMa ,  MANMA;   //
          int32_t WD,WD_Ohm,WD_M;
 //	static int32_t WD_1;
-	static int32_t  PJ[10];
+	static int32_t  PJ[10],PJ2[10];
 	
 	u32 WinDu[51]=
 {
@@ -76,6 +76,7 @@
 ********************************************************************/
 void GUI_Draw_sin(u8 h,u8 color)
 {
+	extern u32 NIAN;
 	int8_t y=0;
 	int16_t x=0,i=4;
 	u16 p;
@@ -101,7 +102,7 @@ void GUI_Draw_sin(u8 h,u8 color)
 
 		}
 	}
- delay_ms((myid & 0xfffffffe)*2);
+ if(NIAN<2)delay_ms((myid & 0xfffffffe)*2);
 }
 /*******************************************************************
  * @name       :void GUI_DrawPoint(u8 x,u8 y,u8 color)  点
@@ -1447,9 +1448,13 @@ void YS_YS(int32_t num){
   // //	     BFB = (num*10) /YuanMa;     //差压百分比
   // //	     if(BFB>9)BFB=9;else;
 	        
-		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
-         B1++;  if(B1>9){B1=0;B=1;}  else;
-				
+//		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
+//         B1++;  if(B1>9){B1=0;B=1;}  else;
+		 PJ[B1]=num; if(B>=1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
+         B1++;  if(B1>9){B1=0;B=1;B2++;}  else;				 
+		 PJ2[B2]=num; if(B==2) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
+         B2++;  if(B2>9){B2=0;B=2;}  else;	
+				 
 				if	(PJ[0]==PJ[9]&&PJ[2]==PJ[3]&&PJ[4]==PJ[5]&&PJ[6]==PJ[7]&&PJ[8]==PJ[1])
 						{ Error=Error|0x02;}
 			 else {Error=Error&~0x02; } 

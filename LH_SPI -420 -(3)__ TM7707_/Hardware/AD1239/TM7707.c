@@ -568,7 +568,7 @@ void TM7705_CalibSelf(uint8_t _ch)
 	TM7705_WriteByte(0x20);    TM7705_WriteByte(0x2f);//ain1
 	TM7705_WriteByte(0x50);    TM7705_WriteByte(0x10);//ain1
 		TM7705_WriteByte(REG_SETUP | WRITE | CH_1);	/* 写通信寄存器，下一步是写设置寄存器，通道1 */		
-		TM7705_WriteByte(MD_CAL_SELF | __CH1_GAIN_BIPOLAR_BUF | FSYNC_0);/* 启动自校准 */         //16倍
+		TM7705_WriteByte(MD_CAL_SELF | __CH1_GAIN_BIPOLAR_BUF | FSYNC_0);/* 启动自校准 */         //32倍
 	}
 //		if (_ch == 1)         //单极性 6-11脚
 //	{
