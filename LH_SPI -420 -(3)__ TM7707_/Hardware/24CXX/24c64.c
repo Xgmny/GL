@@ -8,7 +8,7 @@
 	extern u16 SZ_JZ_Z[], SZ_JZ_F[];                     //   %比校正
 	extern u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F;       //   0点    切除
   extern int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
-  extern int32_t  SZ_LL_Z,SZ_LL_F;		                 //   正反向量程  
+  extern int32_t  SZ_LL_Z,SZ_LL_F, SZ_LC_Z, SZ_LC_F;;		                 //   正反向量程  
 	extern int32_t  YuanMa ,  MANMA,   Ma_xz;//
 	extern u32 myid;	
            u8  JNW[8] ;
@@ -57,9 +57,11 @@ void AT24CXX_Init(void)
 		AT24CXX_Write(0x0088,kl,8);	//MANMA
 		kl[0]=0x20;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;kl[5]=0x30;kl[6]=0x30;kl[7]=0x30;
 		AT24CXX_Write(0x0090,kl,8);	//0点原码修正
-		kl[0]=0x32;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x2e;kl[5]=0x30;kl[6]=0x30;//量程
+		kl[0]=0x30;kl[1]=0x31;kl[2]=0x30;kl[3]=0x30;kl[4]=0x2e;kl[5]=0x30;kl[6]=0x30;//量程
 		AT24CXX_Write(0x01D0,kl,6);		
 		AT24CXX_Write(0x01D8,kl,6);
+		AT24CXX_Write(0x00D0,kl,6);		
+		AT24CXX_Write(0x00D8,kl,6);
 		kl[0]=0x30;kl[1]=0x30;kl[2]=0x30;kl[3]=0x30;kl[4]=0x30;kl[5]=0x30;kl[6]=0x2e;kl[7]=0x30;
 		AT24CXX_Write(0x01e0,kl,8);
 		AT24CXX_Write(0x0200,kl,8);
@@ -251,7 +253,7 @@ int32_t  A_N_24C64 (u8 w,u8 *a,u16 d)
 {
  int32_t  n=0 ,nn=0;
 	u32 bei=1;
- 	AT24CXX_Read(d,a,w);
+ 	if(d!=0xFFFF)AT24CXX_Read(d,a,w);else;
 	 for(;w>0;w--)
 		{
 		  if(a[w-1]<=58&&a[w-1]>=48)			
@@ -279,7 +281,8 @@ void BL_24c64(void){
 	  SZ_WD_B = A_N_24C64(5,kl,0x0050);   //温度补偿系数   
 		SZ_LD_Z = A_N_24C64(6,kl,0x0110);   //零点
 	  SZ_QC_Z = A_N_24C64(5,kl,0x0118);   // 切除
-    SZ_LL_Z = (A_N_24C64(6,kl,0X01D0)*10);   //正量程
+    SZ_LL_Z = (A_N_24C64(6,kl,0X01D0)*10);   //正量程系数
+    SZ_LC_Z = (A_N_24C64(6,kl,0X00D0)*10);   //正量程
 
 		SZ_JZ_Z[0]=A_N_24C64(5,kl,0x0120);	//<10%
 		SZ_JZ_Z[1]=A_N_24C64(5,kl,0x0128);	//<~20%
@@ -294,7 +297,8 @@ void BL_24c64(void){
 	
 		SZ_LD_F = A_N_24C64(6,kl,0x0170);   //零点
 	  SZ_QC_F = A_N_24C64(5,kl,0x0178);   // 切除
-    SZ_LL_F = (A_N_24C64(6,kl,0X01D8)*10);   //反量程
+    SZ_LL_F = (A_N_24C64(6,kl,0X01D8)*10);   //反量程系数
+		SZ_LC_F = (A_N_24C64(6,kl,0X00D8)*10);   //反量程
 
 		SZ_JZ_F[0]=A_N_24C64(5,kl,0x0180);	//<10%
 		SZ_JZ_F[1]=A_N_24C64(5,kl,0x0188);	//<~20%

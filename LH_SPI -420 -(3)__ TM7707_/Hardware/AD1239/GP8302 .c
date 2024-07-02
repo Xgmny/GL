@@ -1,45 +1,52 @@
 #include "GP8302.h"
 
-extern int32_t  SZ_LL_Z,SZ_LL_F ;
+extern int32_t  SZ_LL_Z,SZ_LL_F,SZ_LC_Z,SZ_LC_F ;
 extern int16_t  SZ_WD_KF;
 extern u8 MNL;
 int32_t lins;
 
 void GP8302(int32_t ReadAddr)
 {
-	int32_t MN_max=4095,      MN_small=MN_max/5,               lcZ=(SZ_LL_Z)*100,               lcF=(SZ_LL_F)*10  ;
-  int64_t monil;
-	ReadAddr*=10;
-	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
+	float MN_max=4095,      MN_4ma=MN_max/5,    MN_12ma= (MN_max-MN_4ma)/2+MN_4ma,    lcZ=(SZ_LC_Z)/100 ,   lcF=(SZ_LC_F)/100  ,  ReadAddr_f= (float) ReadAddr/1000;
+  float monil_f;
+	int16_t monil;
+	
+	if(MNL==0x00 &&  SZ_LC_F!=0 && SZ_LC_Z!=0){   //4-20mA   12mA=0
     
-		if(ReadAddr == 0) monil=(MN_max-MN_small)/2+MN_small;  
-		else if((ReadAddr & 0x80000000)){
-			monil=(ReadAddr)/ ((lcF*2)/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
-		}
-		else  {
-			monil=(ReadAddr)/ ((lcZ*2)/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
-		}
+				if(ReadAddr_f == 0) monil=MN_12ma;  
+				else if(((int64_t)ReadAddr_f & 0x8000000000000000))	
+							{
+								ReadAddr_f=ReadAddr_f*-1;
+								monil_f=( MN_max-MN_4ma )/lcZ * ReadAddr_f;			 //模拟量c
+								monil_f=MN_12ma-monil_f;
+								monil=monil_f/2+MN_4ma;
+							}
+				else	
+							{
+								monil_f=( MN_max-MN_4ma )/lcZ * ReadAddr_f+MN_4ma;
+								monil=monil_f/2+MN_12ma;
+							}
+
 	}
 
-	else if(MNL==0x01 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){  //4-20mA   4mA=0
+	else if(MNL==0x01 &&  SZ_LC_F!=0 && SZ_LC_Z!=0){  //4-20mA   4mA=0
 		
-		if(ReadAddr == 0) monil=MN_small;  
-		else if((ReadAddr & 0x80000000)){
-			ReadAddr=~ReadAddr+1;
-			monil=(ReadAddr)/ (lcF/( MN_max-MN_small )) +MN_small;  //模拟量c
+		if(ReadAddr == 0) monil=MN_4ma;  
+		else if(((int64_t)ReadAddr & 0x8000000000000000)){
+			ReadAddr_f=ReadAddr_f*-1;
+			monil=(ReadAddr_f)/ (lcF/( MN_max-MN_4ma )) +MN_4ma;  //模拟量c
 		}
 		else  {
-			monil=(ReadAddr)/ (lcZ/( MN_max-MN_small )) +MN_small;  //模拟量c
+			monil=(ReadAddr_f)/ (lcZ/( MN_max-MN_4ma )) +MN_4ma;  //模拟量c
 		}
 	}
-	else monil=MN_small;//乘系数
+	else monil=MN_4ma;//乘系数
 	
 	
 //			if(monil>2447&&monil<2467)monil=2457;				//测试
 //		if(monil>2467) monil=4095;				//测试
 //		if(monil<2447) monil=4095/5;		//测试
 	
-    monil=(monil*(SZ_WD_KF+10000))/10000; 
 //	  monil=(monil* ((float) SZ_WD_KF/10000+1) );  //模拟量修正
 	if(monil>4095)	         monil =  4095;
 	else if(monil<5)  monil =  10;
@@ -49,6 +56,50 @@ void GP8302(int32_t ReadAddr)
 
 	GP8302_Read(monil);
 }
+//void GP8302(int32_t ReadAddr)  //老版本 电流输出跟随流量系数
+//{
+//	int32_t MN_max=4095,      MN_small=MN_max/5,               lcZ=(SZ_LL_Z)*100,               lcF=(SZ_LL_F)*10  ;
+//  int64_t monil;
+//	ReadAddr*=10;
+//	if(MNL==0x00 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){   //4-20mA   12mA=0
+//    
+//		if(ReadAddr == 0) monil=(MN_max-MN_small)/2+MN_small;  
+//		else if((ReadAddr & 0x80000000)){
+//			monil=(ReadAddr)/ ((lcF*2)/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
+//		}
+//		else  {
+//			monil=(ReadAddr)/ ((lcZ*2)/( MN_max-MN_small )) +MN_small+(MN_max-MN_small)/2;  //模拟量c
+//		}
+//	}
+
+//	else if(MNL==0x01 &&  SZ_LL_F!=0 && SZ_LL_Z!=0){  //4-20mA   4mA=0
+//		
+//		if(ReadAddr == 0) monil=MN_small;  
+//		else if((ReadAddr & 0x80000000)){
+//			ReadAddr=~ReadAddr+1;
+//			monil=(ReadAddr)/ (lcF/( MN_max-MN_small )) +MN_small;  //模拟量c
+//		}
+//		else  {
+//			monil=(ReadAddr)/ (lcZ/( MN_max-MN_small )) +MN_small;  //模拟量c
+//		}
+//	}
+//	else monil=MN_small;//乘系数
+//	
+//	
+////			if(monil>2447&&monil<2467)monil=2457;				//测试
+////		if(monil>2467) monil=4095;				//测试
+////		if(monil<2447) monil=4095/5;		//测试
+//	
+//    monil=(monil*(SZ_WD_KF+10000))/10000; 
+////	  monil=(monil* ((float) SZ_WD_KF/10000+1) );  //模拟量修正
+//	if(monil>4095)	         monil =  4095;
+//	else if(monil<5)  monil =  10;
+//	else;
+
+
+
+//	GP8302_Read(monil);
+//}
 //****************************************************************************************************************
 void GP8312(int32_t ReadAddr)
 	

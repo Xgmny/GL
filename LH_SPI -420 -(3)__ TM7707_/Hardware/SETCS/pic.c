@@ -78,8 +78,12 @@ void FIVE(void)
 {	
 	OLED_Clear(0);             //清屏（全黑）
 	GUI_ShowCHinese(21,16,16,"向流量量程：",1);
-	GUI_ShowString(88,38,"m /h",4,16,1);
-	GUI_ShowString(97,41,"3",1,8,1);
+	GUI_ShowCHinese(0,32,16,"系数：",1);
+	GUI_ShowString(96,32,"m /h",4,16,1);
+	GUI_ShowString(107,36,"3",1,8,1);
+	GUI_ShowCHinese(0,48,16,"量程：",1);
+	GUI_ShowString(96,48,"m /h",4,16,1);
+	GUI_ShowString(107,52,"3",1,8,1);
 	
 }
 void SIX(void)

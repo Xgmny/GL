@@ -102,7 +102,8 @@ void GUI_Draw_sin(u8 h,u8 color)
 
 		}
 	}
- if(NIAN<2)delay_ms((myid & 0xfffffffe)*2);
+ 
+	delay_ms((myid & 0xfffffffe)*2);//if(NIAN<200)delay_ms((myid & 0xfffffffe)*2);
 }
 /*******************************************************************
  * @name       :void GUI_DrawPoint(u8 x,u8 y,u8 color)  点
@@ -1448,12 +1449,16 @@ void YS_YS(int32_t num){
   // //	     BFB = (num*10) /YuanMa;     //差压百分比
   // //	     if(BFB>9)BFB=9;else;
 	        
-//		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
+		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
+         B1++;  if(B1>9){B1=0;B=1;}  else;
+
+//		 PJ[B1]=num; if(B==1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9]);}else;	     //*10
 //         B1++;  if(B1>9){B1=0;B=1;}  else;
-		 PJ[B1]=num; if(B>=1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
-         B1++;  if(B1>9){B1=0;B=1;B2++;}  else;				 
-		 PJ2[B2]=num; if(B==2) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
-         B2++;  if(B2>9){B2=0;B=2;}  else;	
+				 
+//		 PJ[B1]=num; if(B>=1) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
+//         B1++;  if(B1>9){B1=0;B=1;B2++;}  else;				 
+//		 PJ2[B2]=num; if(B==2) {num=(PJ[0]+PJ[1]+PJ[2]+PJ[3]+PJ[4]+PJ[5]+PJ[6]+PJ[7]+PJ[8]+PJ[9])/10;}else;	     
+//         B2++;  if(B2>9){B2=0;B=2;}  else;	
 				 
 				if	(PJ[0]==PJ[9]&&PJ[2]==PJ[3]&&PJ[4]==PJ[5]&&PJ[6]==PJ[7]&&PJ[8]==PJ[1])
 						{ Error=Error|0x02;}
@@ -1476,9 +1481,6 @@ void YS_YS(int32_t num){
 	  GP8302(ccll); //819    DA8302    发送模拟量
 	//	GP8312(ccll); //819    DA8302    发送模拟量
 		
-
-
-		 
 
 	     num=ccll;
 	  
@@ -1503,8 +1505,10 @@ void YS_YS(int32_t num){
 		 num=cc;
 		 num=YS_CY(num);
 	     CY=num;
+
 	  if(num &0x80000000)	{num= ((~num)+1); zf=1;} else zf=0;
-	     NUM_A(num,7,3,zf,cyl);
+		if(num>999999){num/=10;NUM_A(num,7,2,zf,cyl);}	//2位小数点
+	  else NUM_A(num,7,3,zf,cyl);		
 	   
 	     num=QJs;//倾角
 	  if(num>18000)   {num= (36100-QJs); zf=1;} else zf=0;
@@ -1585,14 +1589,14 @@ int16_t TP1000_wd_(int32_t u)   //计算
 	  {
 	    u-=100000;
 		u*=10;   //以前为10
-		u=u/388;
+		u=u/386;		//388
 	  } 
     else
 	{
 	  u=100000-u;
 
 	  u*=10;
-	  u=u/-388;
+	  u=u/-386;  //388
 	}
  return u;
 }

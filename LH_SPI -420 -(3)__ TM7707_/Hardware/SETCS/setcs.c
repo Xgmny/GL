@@ -427,12 +427,14 @@ void SET_COME(void)
 						{
 							if (xgbz==1)
 							{
-								ss[wz]=tem;
+								if(col==32) ss[wz]=tem;
+						    if(col==48) ld[wz]=tem;
 								if(fx==0) 
 									addr=0x01D0;
 									else 
 										addr=0x01D8;
 							AT24CXX_Write(addr,ss,6);
+							AT24CXX_Write(addr - 0x0100,ld,6);		
 							}
 							MENU();row=113;col=4;smode=0;wz=0;page=0;	
 						}
@@ -473,8 +475,10 @@ void SET_COME(void)
 							else
 									GUI_ShowCHinese(5,16,16,"反",1);
 							AT24CXX_Read(addr,ss,6);
-							GUI_ShowString(24,38,ss,6,16,1);
-							col=38;row=24;tem=ss[wz];xgbz=0;
+							GUI_ShowString(44,32,ss,6,16,1);
+							AT24CXX_Read(addr - 0x0100,ld,6);
+							GUI_ShowString(44,48,ld,6,16,1);
+							col=32;row=44;tem=ss[wz];xgbz=0;
 							}
 						else
 						{
@@ -548,13 +552,19 @@ void SET_COME(void)
 				}	
 			 if (page==5)
 				{	GUI_ShowChar(row,col,tem,16,1);
-					ss[wz]=tem;
+					if (col==32) 	ss[wz]=tem;
+					if (col==48)	ld[wz]=tem;
 					row+=8;wz++;smode=1;
-					if(row==56) {row+=8;wz++;}//48改56 小数点右移一位
+					if(row==76) {row+=8;wz++;}//48改56 小数点右移一位
 					tem=ss[wz];
-					if (row>64)
-							{row=24;wz=0;tem=ss[wz];}//归零  wz 标记	  row光标  (不确定)
-					GUI_ShowChar(row,38,tem,16,1);
+					if (row>84)
+							{row=44;col+=16;wz=0;   // 改
+							if(col>=64) col=32;}	  //
+					if (col==32) tem=ss[wz];    //
+					if (col==48) tem=ld[wz];		//1					
+
+							//{row=24;wz=0;tem=ss[wz];}//归零  wz 标记	  row光标  (不确定) 
+					GUI_ShowChar(row,col,tem,16,1);
 				}
 			if (page==6) //温度设置光标
 				{

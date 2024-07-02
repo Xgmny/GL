@@ -40,7 +40,7 @@
 	u16 SZ_JZ_Z[10], SZ_JZ_F[10] ;                     //   %比校正
 	u16 SZ_LD_Z, SZ_LD_F, SZ_QC_Z, SZ_QC_F ;       //   0点    切除
 	int16_t SZ_WD_B ,SZ_WD_O,SZ_WD_KZ,SZ_WD_KF;
-	int32_t  SZ_LL_Z,SZ_LL_F;										//   正反向量程  
+	int32_t  SZ_LL_Z, SZ_LL_F, SZ_LC_Z, SZ_LC_F;										//   正反向量程  
   int32_t  YuanMa ,  MANMA , Ma_xz=0;   //
    extern int32_t WD_Ohm,WD,WD_M;
    extern u32 NIAN;
@@ -167,7 +167,7 @@
 										if(ljks)GUI_ShowString(34,24,ljl,8,16,1);					//ljl   lsl
 										else    GUI_ShowString(34,24,ljl,8,16,0);					//ljl   lsl
 									
-										if(LL==0)GUI_ShowString(34,45,cyl_0,8,16,1);	  		
+										if(LL==0){ cyl[0]=0x20;cyl[1]=0x30;cyl[2]=0x30;cyl[3]=0x30;cyl[4]=0x30;cyl[5]=0x30;cyl[6]=0x30;cyl[7]=0x30; } 		
 									  else     GUI_ShowString(34,45,cyl,8,16,1);
 									
 									if(key==1)K1++;  else K1=0; //K1
@@ -253,8 +253,6 @@
 									canbuf_txd[5]=LJ>>16;
 									canbuf_txd[6]=LJ>>8;
 									canbuf_txd[7]=LJ;
-						 
-
 								 
 //						canbuf_txd[2]=CY>>8;												//温度测试使用
 //						canbuf_txd[3]=CY;
@@ -262,8 +260,15 @@
 //		//						canbuf_txd[5]=SZ_LD_Z;
 //						canbuf_txd[6]=WenDu>>8;
 //						canbuf_txd[7]=WenDu;
-
+                
 							  	Can_Send_Msg(myid,canbuf_txd,8);//发送8个字节  流量 累计量
+						 
+
+									canbuf_txd[4]=CY>>24;
+									canbuf_txd[5]=CY>>16;
+									canbuf_txd[6]=CY>>8;
+									canbuf_txd[7]=CY;
+									
 									Can_Send_Msg(myid,cyl,8);//差压量
 
 									
