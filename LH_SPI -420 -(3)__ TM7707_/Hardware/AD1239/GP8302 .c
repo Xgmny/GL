@@ -17,14 +17,16 @@ void GP8302(int32_t ReadAddr)
 				else if(((int64_t)ReadAddr_f & 0x8000000000000000))	
 							{
 								ReadAddr_f=ReadAddr_f*-1;
+								
 								monil_f=( MN_max-MN_4ma )/lcZ * ReadAddr_f;			 //Ä£ÄâÁ¿c
-								monil_f=MN_12ma-monil_f;
-								monil=monil_f/2+MN_4ma;
+								monil_f=monil_f/2;
+								monil=MN_12ma-monil_f;
+
 							}
 				else	
 							{
-								monil_f=( MN_max-MN_4ma )/lcZ * ReadAddr_f+MN_4ma;
-								monil=monil_f/2+MN_12ma;
+								monil_f=( MN_max-MN_4ma )/lcZ * ReadAddr_f/2;
+								monil=monil_f+MN_12ma;
 							}
 
 	}

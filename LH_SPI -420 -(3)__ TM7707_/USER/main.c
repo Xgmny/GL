@@ -167,8 +167,8 @@
 										if(ljks)GUI_ShowString(34,24,ljl,8,16,1);					//ljl   lsl
 										else    GUI_ShowString(34,24,ljl,8,16,0);					//ljl   lsl
 									
-										if(LL==0){ cyl[0]=0x20;cyl[1]=0x30;cyl[2]=0x30;cyl[3]=0x30;cyl[4]=0x30;cyl[5]=0x30;cyl[6]=0x30;cyl[7]=0x30; } 		
-									  else     GUI_ShowString(34,45,cyl,8,16,1);
+										if(LL==0){ cyl[0]=0x20;cyl[1]=0x30;cyl[2]=0x30;cyl[3]=0x30;cyl[4]=0x2e;cyl[5]=0x30;cyl[6]=0x30;cyl[7]=0x30; } else;		
+									          GUI_ShowString(34,45,cyl,8,16,1);
 									
 									if(key==1)K1++;  else K1=0; //K1
 									if(key==6)K2++;  else K2=0; //K2
